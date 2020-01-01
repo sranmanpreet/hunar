@@ -1,0 +1,28 @@
+.backImg{
+    background-image: url('../../assets/images/about-us.jpg');
+    background-position: center;
+    width: 100vw;
+    height: 30vw;
+    min-height: 300px;
+    border-radius: 0 0 50% 50% / 90px; 
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.backImg h2{
+    padding-top: 5vw;
+    font-size: 2.5rem;
+}
+
+.container h2{
+    text-align: center;
+}
+
+.container p{
+    text-align: justify;
+}
+
+img{
+    box-shadow: 5px 5px 5px grey;
+}

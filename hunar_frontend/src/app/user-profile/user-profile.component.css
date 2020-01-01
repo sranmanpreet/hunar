@@ -1,0 +1,185 @@
+form {
+    max-width: 250px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+.mat-input-element {
+    font-size: 10px;
+}
+
+.mat-drawer,
+.mat-drawer-content {
+    padding: 3px 5px;
+}
+
+.drawer-container {
+    width: 100%;
+    min-height: 400px;
+}
+
+.mat-list-item {
+    color: rgb(184, 184, 184);
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.mat-list-base .mat-list-item {
+    font-size: 10px;
+}
+
+.active {
+    background: rgb(207, 207, 207);
+    color: black;
+}
+
+.mat-list-item:hover {
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+}
+
+.mat-list-item a:active {
+    color: black;
+}
+
+.success {
+    padding-top: 10px;
+    width: 100%;
+    background-color: rgb(105, 182, 105);
+    text-align: center;
+    height: 50px;
+    color: white;
+}
+
+.fail {
+    padding-top: 10px;
+    width: 100%;
+    background-color: rgb(199, 79, 79);
+    text-align: center;
+    color: white;
+    height: 50px;
+}
+
+.mat-form-field {
+    width: 100%;
+    display: flex;
+}
+
+.saved-addresses {
+    width: 180px;
+}
+
+.saved-addresses p,
+i {
+    display: inline;
+}
+
+.saved-addresses p,
+.mat-card-content p {
+    font-size: 10px;
+}
+
+.saved-addresses i {
+    float: right;
+    margin: 5px;
+}
+
+.no-address-found {
+    font-size: 1.1em;
+}
+
+.row {
+    margin: 0px;
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+    .mat-input-element {
+        font-size: 11px;
+    }
+    .mat-drawer,
+    .mat-drawer-content {
+        padding: 3px 6px;
+    }
+    .saved-addresses p,
+    .mat-card-content p,
+    .mat-list-base .mat-list-item {
+        font-size: 11px;
+    }
+    .saved-addresses {
+        width: 200px;
+    }
+    .no-address-found {
+        font-size: 0.8em;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) {
+    .mat-input-element {
+        font-size: 12px;
+    }
+    .mat-drawer,
+    .mat-drawer-content {
+        padding: 5px 10px;
+    }
+    .saved-addresses p,
+    .mat-card-content p,
+    .mat-list-base .mat-list-item {
+        font-size: 12px;
+    }
+    .saved-addresses {
+        width: 210px;
+    }
+    .no-address-found {
+        font-size: 0.9em;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) {
+    .mat-input-element {
+        font-size: 13px;
+    }
+    .mat-drawer,
+    .mat-drawer-content {
+        padding: 10px 15px;
+    }
+    .saved-addresses p,
+    .mat-card-content p,
+    .mat-list-base .mat-list-item {
+        font-size: 13px;
+    }
+    .saved-addresses {
+        width: 220px;
+    }
+    .no-address-found {
+        font-size: 1em;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up)*/
+
+@media (min-width: 1200px) {
+    .mat-input-element {
+        font-size: 14px;
+    }
+    .mat-drawer,
+    .mat-drawer-content {
+        padding: 15px 25px;
+    }
+    .saved-addresses p,
+    .mat-card-content p,
+    .mat-list-base .mat-list-item {
+        font-size: 14px;
+    }
+}

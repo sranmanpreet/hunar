@@ -1,0 +1,107 @@
+<div class="success" *ngIf="showSuccessMessage">
+    {{showSuccessMessage}}
+</div>
+<div class="fail" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+</div>
+<div class="container">
+    <hr>
+    <h4>User Profile</h4>
+    <hr>
+    <mat-drawer-container class="drawer-container">
+        <mat-drawer mode="side" opened>
+            <mat-list role="list">
+                <mat-list-item role="listitem" (click)="onClickGeneral()" [ngClass]="{'active': generalBlock}">General
+                </mat-list-item>
+                <mat-list-item role="listitem" (click)="onClickSavedAddresses()" [ngClass]="{'active': addressBlock}">Saved Addresses
+                </mat-list-item>
+                <mat-list-item role="listitem" (click)="onClickChangePassword()" [ngClass]="{'active': passwordBlock}">Change Password
+                </mat-list-item>
+                <mat-list-item role="listitem" (click)="onLogout()">Logout</mat-list-item>
+            </mat-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <form #generalForm='ngForm' (ngSubmit)="onSaveGeneral(generalForm)" *ngIf="generalBlock && userDetails">
+                <mat-form-field>
+                    <input matInput type='text' name='firstName' [(ngModel)]="userDetails.firstName" maxlength="30" placeholder="First Name" required [pattern]="nameRegex">
+                    <mat-error align='end' *ngIf="generalForm.submitted && generalForm.controls.firstName.invalid">
+                        <label *ngIf="generalForm.controls.firstName.errors.required" class='validation-message'>Enter your first
+              name.</label>
+                        <label *ngIf="generalForm.controls.firstName.errors.pattern" class="validation-message">First Name should
+              contains only alphabets.</label>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type='text' name='lastName' [(ngModel)]="userDetails.lastName" maxlength='30' placeholder="Last Name" required [pattern]="nameRegex">
+                    <mat-error align='end' *ngIf="generalForm.submitted && generalForm.controls.lastName.invalid">
+                        <label *ngIf="generalForm.controls.lastName.errors.required" class='validation-message'>Enter your last
+              name.</label>
+                        <label *ngIf="generalForm.controls.lastName.errors.pattern" class="validation-message">Last Name should
+              contains only alphabets.</label>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type='text' name='email' [(ngModel)]="userDetails.email" maxlength="50" placeholder="Email" required [pattern]="emailRegex">
+                    <mat-error align='end' *ngIf="generalForm.submitted && generalForm.controls.email.errors">
+                        <label *ngIf="generalForm.controls.email.errors.required" class="validation-message">Enter your email
+              id.</label>
+                        <label *ngIf="generalForm.controls.email.errors.pattern" class="validation-message">Invalid email
+              id.</label>
+                    </mat-error>
+                </mat-form-field>
+                <br><br>
+                <button type="submit" mat-raised-button color="primary">Save</button> &nbsp;&nbsp;
+                <button type="button" mat-raised-button color="basic" (click)='resetProfileGeneral()'>Reset</button>
+            </form>
+            <div *ngIf="addressBlock">
+                <div class="row">
+                    <div *ngIf="!addressService.addresses.length">
+                        <br>
+                        <h5 class='no-address-found'>No addresses found.</h5>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let address of addressService.addresses">
+                        <mat-card class="saved-addresses">
+                            <p>{{address.firstName}} {{address.lastName}}</p><a href="JavaScript:void(0)" (click)="onDeleteAddress(address)"><i
+                  class="fa fa-trash" aria-hidden="true"></i></a>
+                            <!--  <a href="JavaScript:void(0)" (click)="onEditAddress(address, f)"><i class="fa fa-pencil" aria-hidden="true"></i></a> -->
+                            <hr>
+                            <mat-card-content>
+                                <p>{{address.addressLine1}}, {{address.addressLine2}}, {{address.city.name}}, {{address.state.name}}, {{address.country.name}}, PostalCode: {{address.postalCode}}, Phone: {{address.country.phoneCode}}{{address.phone}}
+                                </p>
+                            </mat-card-content>
+                        </mat-card><br>
+                    </div>
+                </div>
+            </div>
+            <div class="changePassword" *ngIf="passwordBlock">
+                <form #changePasswordForm='ngForm' (ngSubmit)="onUpdatePassword(changePasswordForm)">
+                    <input type='text' name='firstName' [(ngModel)]="userDetails.firstName" hidden>
+                    <input type='text' name='lastName' [(ngModel)]="userDetails.lastName" hidden>
+                    <input type='text' name='email' [(ngModel)]="userDetails.email" hidden>
+                    <mat-form-field>
+                        <input matInput type='password' name='password' ngModel placeholder="New Password" required [pattern]="passwordRegex">
+                        <mat-error align='end' *ngIf="changePasswordForm.submitted && changePasswordForm.controls.password.invalid">
+                            <label *ngIf="changePasswordForm.controls.password.errors.required" class='validation-message'>Enter
+                password</label>
+                            <label *ngIf="changePasswordForm.controls.password.errors.pattern" class="validation-message">Password
+                should contain
+                atleast one lower case, one uppercase, one digit and one special character.</label>
+                        </mat-error>
+                    </mat-form-field><br><br>
+                    <mat-form-field>
+                        <input matInput [type]="show?'text':'password'" name='cpassword' ngModel placeholder="Confirm Password" required [pattern]="passwordRegex"><span style="position:absolute; right:8px;top:60px;" class="fa fa-eye" (click)="showPassword()"></span>
+                        <mat-error align='end' *ngIf="changePasswordForm.submitted && changePasswordForm.controls.cpassword.invalid">
+                            <label *ngIf="changePasswordForm.controls.cpassword.errors.required" class='validation-message'>Confirm
+                your password. </label>
+                            <label *ngIf="changePasswordForm.controls.cpassword.value != changePasswordForm.controls.password.value" class="validation-message">Passwords do not match. </label>
+                        </mat-error>
+                    </mat-form-field>
+                    <br><br>
+                    <button type="submit" mat-raised-button color="primary">Update</button> &nbsp;&nbsp;
+                    <!--      <button type="button" mat-raised-button color="basic" (click)="cancel()">Cancel</button> -->
+                </form>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+
+</div>

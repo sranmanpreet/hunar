@@ -1,0 +1,86 @@
+<div class="container">
+  <button mat-raised-button routerLink="/gallery-of-art">Continue Shopping <i class="fa fa-arrow-right"
+      aria-hidden="true"></i></button>
+  <hr>
+  <h3>My Cart</h3>
+  <hr>
+  <div class="cart" *ngIf="shoppingCartService.cart">
+    <div *ngIf="shoppingCartService.cart.cartItems.length">
+      <ul>
+        <li class="items" *ngFor="let product of shoppingCartService.cart.cartItems">
+          <div class="item-wrap">
+            <div class="imgSection">
+              <img src="{{product.imgurl}}" alt="image" name="image" class="itemImg" />
+            </div>
+            <div class="itemDetail">
+              <p>{{product.name}}</p>
+              <p><i class="fa fa-minus" aria-hidden="true" (click)="decrementQty(product)"></i><input type="number"
+                  name="quantity" [(ngModel)]="product.quantity" min='1' max='5' readonly><i class="fa fa-plus"
+                  aria-hidden="true" (click)="incrementQty(product)"></i>&nbsp;&nbsp; x <i
+                  class="fa fa-inr"></i>{{product.price}}</p>
+            </div>
+            <div class="artype">
+              <p name="artType">{{product.artType}}</p>
+            </div>
+            <div class="artSize">
+              <p name="artSize">{{product.artSize}}</p>
+            </div>
+  
+            <div class="prodTotal">
+              <p><i class="fa fa-inr"></i>{{calculateProductTotal(product)}}/-</p>
+            </div>
+            <div class="remove">
+              <a href="JavaScript:(0)" (click)="removeProduct(product)" class="remove"><i class="fa fa-trash"></i></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <hr>
+      <div class="subContainer">
+        <div class="promoCode">
+          <label for="promo">Have A Promo Code?</label>
+          <input type="text" class="form-control" name="promo" [(ngModel)]="promoCode" placholder="Enter Code" />&nbsp;
+          <button mat-raised-button color="accent" (click)="applyPromoCode()">Apply</button>
+          <p class="errorPromo" *ngIf="promoCodeError">{{promoCodeError}}</p>
+        </div>
+  
+        <div class="subtotal">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td>Subtotal</td>
+                <td>{{shoppingCartService.cart.subtotal}}</td>
+              </tr>
+              <tr>
+                <td>Shipping</td>
+                <td>{{shoppingCartService.cart.shippingCost}}</td>
+              </tr>
+              <tr>
+                <td>Tax</td>
+                <td>{{shoppingCartService.cart.tax}}</td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th><i class="fa fa-inr"></i> {{shoppingCartService.cart.total}}/-</th>
+              </tr>
+              <br>
+              <tr>
+                <td colspan="2">
+                  <button mat-raised-button color="accent" (click)="onCheckout()">Checkout</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="emptyCart" *ngIf="!(shoppingCartService.cart && shoppingCartService.cart.cartItems.length)">
+    <br>
+    <h5>Your cart is empty.</h5><br>
+    <a routerLink='/gallery-of-art'>
+      <h4>Let's go Shopping</h4>
+    </a>
+  </div>
+
+</div>

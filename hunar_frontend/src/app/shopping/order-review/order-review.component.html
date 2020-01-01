@@ -1,0 +1,67 @@
+<div class="container">
+    <mat-card class="card">
+        <mat-card-header>
+            <h4>Order Summary</h4>
+        </mat-card-header>
+        <hr>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="address">
+                        <h5>Deliver To</h5><a href="JavaScript:void(0)" (click)="onChangeAddress()"><i class="fa fa-pencil"
+                aria-hidden="true"></i></a>
+                        <hr>
+                        <p>{{selectedAddress.firstName}} {{selectedAddress.lastName}}<br><br> {{selectedAddress.addressLine1}}, {{selectedAddress.addressLine2}} {{selectedAddress.city.name}}, {{selectedAddress.state.name}}, {{selectedAddress.country.name}},
+                            {{selectedAddress.postalCode}}, Phone: {{selectedAddress.phone}}</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="cart">
+                    <div class="cartItems">
+                        <h5>Cart Items</h5><a routerLink='/shopping-cart'><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <hr>
+                        <ul class="items">
+                            <li *ngFor="let item of cart.cartItems">
+                                <div class="item">
+                                    <img src="{{item.imgurl}}" alt="image">
+                                    <p class="item-name">{{item.name}}</p>
+                                    <p class="item-artType">{{item.artType}}, {{item.artSize}}, Qty: {{item.quantity}}</p>
+                                    <p class="item-price"><i class="fa fa-inr" aria-hidden="true">{{item.price * item.quantity}}/-</i></p>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="total" *ngIf="cart">
+                        <h5>Cart Total</h5>
+                        <hr>
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Subtotal</td>
+                                    <td><i class="fa fa-inr"></i>{{cart.subtotal}}/-</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping</td>
+                                    <td><i class="fa fa-inr"></i>{{cart.shippingCost}}/-</td>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
+                                    <td><i class="fa fa-inr"></i>{{cart.tax}}/-</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <th><i class="fa fa-inr"></i>{{cart.total}}/-</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <button mat-raised-button color="accent" (click)="onPlaceOrder()">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

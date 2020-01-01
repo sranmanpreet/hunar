@@ -1,0 +1,162 @@
+ul {
+    list-style-type: none;
+}
+
+ul>li:nth-of-type(odd) {
+    background-color: rgb(255, 249, 249);
+}
+
+button {
+    float: right;
+    margin-top: 1%;
+}
+
+.emptyCart {
+    text-align: center;
+    min-height: 35vh;
+}
+
+.emptyCart h5 {
+    color: rgb(133, 133, 133);
+}
+
+.emptyCart a {
+    font-size: 1.5em;
+    color: rgb(2, 179, 164);
+}
+
+.emptyCart a:hover {
+    text-decoration: none;
+    color: rgb(255, 0, 212);
+}
+
+
+/*****Cart Item******/
+
+.item-wrap {
+    display: grid;
+    grid-template-columns: 110px auto 100px auto auto auto;
+}
+
+.item-wrap>div {
+    padding: 5px;
+}
+
+.itemDetail {
+    text-align: left;
+}
+
+.itemDetail>p {
+    margin: 1px;
+}
+
+.itemImg {
+    width: 100px;
+    height: auto;
+}
+
+.prodTotal {
+    text-align: right;
+}
+
+.remove {
+    font-size: 1.2em;
+    text-align: right;
+    color: grey;
+}
+
+.remove:hover {
+    text-decoration: none;
+    color: red;
+}
+
+.form-control {
+    padding: 1px;
+    display: inline;
+    width: 40px;
+    text-align: center;
+}
+
+.itemDetail p input {
+    margin: 0 3px;
+    width: 10%;
+    padding: 0;
+    min-width: 30px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.itemDetail p input:focus {
+    outline-width: 0;
+}
+
+
+/******shopping cart total******/
+
+.subContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.subContainer>div {
+    padding: 15px;
+    margin-left: auto;
+}
+
+.promoCode {
+    border: 2px solid #efefef;
+    text-align: left;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+.promoCode label {
+    display: block;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-bottom: .5em;
+}
+
+.form-control {
+    display: inline;
+    width: 150px;
+}
+
+.subtotal {
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
+    width: 60%;
+    border-radius: 5px;
+    min-width: 150px;
+}
+
+.table {
+    text-align: center;
+}
+
+table tbody tr td,
+th {
+    padding: 0px;
+}
+
+.fa:hover {
+    color: rgb(228, 97, 97);
+    cursor: pointer;
+}
+
+.errorPromo {
+    text-align: center;
+    font-size: 0.8em;
+    background-color: rgb(179, 101, 101);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(179, 101, 101);
+    border-left: none;
+    border-right: none;
+    padding: 2px 20px;
+    margin: 3px auto;
+    width: 100%;
+}

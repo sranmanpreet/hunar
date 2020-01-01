@@ -1,0 +1,84 @@
+.container{
+  padding: 0px;
+}
+
+.card {
+  display: flex;
+}
+
+.items {
+  list-style: none;
+  padding: 0px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 80px auto auto auto auto;
+  width: 100%;
+  padding: 5px;
+}
+
+.item li{
+  padding: 0px;
+  margin: 0px;
+}
+
+.items>li:nth-of-type(odd) .item {
+  background-color: rgb(255, 249, 249);
+}
+
+.item img {
+  margin: 3px;
+  max-width: 70px;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.item .item-name {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  font-size: 110%;
+}
+
+.item .item-price {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.item .item-artType,
+.item-artSize,
+.item-quantity {
+  font-size: 80%;
+}
+
+.total {
+  width: fit-content;
+  min-width: 200px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+table tbody tr td,
+th {
+  padding: 10px;
+}
+
+.address h5,a{
+  display: inline;
+}
+
+.address a{
+  float: right;
+  margin:5px;
+}
+.cartItems h5,a{
+  display: inline;
+}
+
+.cartItems a{
+  float: right;
+  margin:5px;
+}

@@ -1,0 +1,84 @@
+.address {
+    max-width: 300px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.container {
+    margin-top: 15px;
+}
+
+.card {
+    max-width: 500px;
+    margin: 10px;
+}
+
+.mat-card-content {
+    padding: 15px;
+}
+
+.mat-card-actions {
+    padding: 15px;
+}
+
+.saved-addresses h5,
+i {
+    display: inline;
+    font-size: 0.9rem;
+}
+
+.saved-addresses i {
+    float: right;
+    margin: 5px;
+}
+
+
+/* Extra Small devices (landscape phones, 400px and up)*/
+
+@media (min-width: 400px) {
+    .saved-addresses h5,
+    i {
+        font-size: 1rem;
+    }
+    .mat-card-content p {
+        font-size: 0.95rem;
+    }
+}
+
+
+/* Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) {
+    .saved-addresses h5,
+    i {
+        font-size: 1.10rem;
+    }
+    .mat-card-content p {
+        font-size: 1.05rem;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) {
+    .saved-addresses h5,
+    i {
+        font-size: 1.20rem;
+    }
+    .mat-card-content p {
+        font-size: 1.1rem;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) {
+    .saved-addresses h5,
+    i {
+        font-size: 1.25rem;
+    }
+}

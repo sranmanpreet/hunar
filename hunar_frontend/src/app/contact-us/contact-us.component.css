@@ -1,0 +1,76 @@
+.container {
+    background-color: teal;
+    background-position: center;
+    height: auto;
+    width: 100%;
+    box-shadow: 5px 5px 5px rgb(138, 138, 138);
+    padding: 0 50px 50px;
+}
+
+.heading {
+    padding-top: 3%;
+    text-align: center;
+}
+
+h4 {
+    color: white;
+}
+
+td p {
+    margin-top: 16px;
+    color: white;
+}
+
+.thanks {
+    /*     border: 1px solid green; */
+    padding: 20px;
+}
+
+.thanks h3 {
+    color: white;
+}
+
+.thanks p {
+    color: white;
+}
+
+mat-form-field {
+    width: 100%;
+    color: white;
+}
+
+mat-label {
+    color: white;
+}
+
+tr {
+    padding: 5px;
+}
+
+td {
+    padding: 5px;
+}
+
+::placeholder {
+    color: white;
+}
+
+
+/* Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 576px) {}
+
+
+/* Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) {}
+
+
+/* Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) {}
+
+
+/* Extra large devices (large desktops, 1200px and up)*/
+
+@media (min-width: 1200px) {}

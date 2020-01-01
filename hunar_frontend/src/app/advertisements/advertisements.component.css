@@ -1,0 +1,84 @@
+.container h3 {
+    font-size: 1.1em;
+}
+
+.container .requests-container {
+    padding: 0px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul>li:nth-of-type(odd) {
+    background-color: #fbfdff;
+}
+
+.itemImg {
+    width: 100px;
+    height: auto;
+    border: 1px solid rgb(146, 146, 146);
+    margin: 5px;
+}
+
+.request {
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+
+.request-header {
+    background-color: #f1f3f6;
+    padding: 5px 0 0 5px;
+}
+
+.request-footer {
+    border-top: 1px solid black;
+    display: flex;
+}
+
+.request-id {
+    width: fit-content;
+    padding: 5px 10px;
+    color: white;
+    font-size: 0.8em;
+    background-color: darkgoldenrod;
+    border: 1px solid black;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.request-date {
+    width: fit-content;
+    padding: 5px 10px;
+    font-size: 0.8em;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.no-requests {
+    text-align: center;
+}
+
+.no-requests h5 {
+    color: rgb(133, 133, 133);
+}
+
+
+/* Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) {
+    .container h3 {
+        font-size: 1.6em;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up)*/
+
+@media (min-width: 1200px) {
+    .container h3 {
+        font-size: 1.8em;
+    }
+}

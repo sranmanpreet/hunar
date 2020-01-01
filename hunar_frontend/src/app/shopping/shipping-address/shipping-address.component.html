@@ -1,0 +1,169 @@
+<div class="container">
+    <button mat-raised-button color="accent" (click)="onAdd()" *ngIf="addressService.addresses && addressService.addresses.length">{{!showNewAddressForm? 'Add New' : 'Show Saved Addresses'}}</button>
+    <div class="row">
+        <div *ngIf="!showNewAddressForm">
+            <hr>
+            <h4>Select Delivery Address</h4>
+            <hr>
+            <div class="d-flex flex-fill flex-wrap">
+                <div class="address p-2 " *ngFor="let address of addresses">
+                    <mat-card class="saved-addresses">
+                        <h5>{{address.firstName}} {{address.lastName}}</h5><a href="JavaScript:void(0)" (click)="onDelete(address)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <!--  <a href="JavaScript:void(0)" (click)="onEditAddress(address, f)"><i class="fa fa-pencil"
+                aria-hidden="true"></i></a> -->
+                        <hr>
+                        <mat-card-content>
+                            <p>
+                                {{address.addressLine1}}, {{address.addressLine2}}, {{address.city.name}}, {{address.state.name}}, {{address.country.name}}, PostalCode: {{address.postalCode}}, Phone: {{address.country.phoneCode}}{{address.phone}}
+                            </p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-raised-button color="primary" (click)="onSelect(address)">Select</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="showNewAddressForm">
+            <mat-card class="card">
+                <mat-card-header>
+                    <h4>Enter Delivery Address</h4>
+                </mat-card-header>
+                <hr>
+                <form #addressForm='ngForm' (ngSubmit)='onSubmit(addressForm)'>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <input matInput type='text' name='firstName' [(ngModel)]="firstName" placeholder="First Name" required [pattern]="nameRegex">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.firstName.invalid">
+                                        <label *ngIf="addressForm.controls.firstName.errors.required" class='validation-message'>Enter your
+                      first
+                      name</label>
+                                        <label *ngIf="addressForm.controls.firstName.errors.pattern" class="validation-message">Only
+                      alphabets are allowed</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <input matInput type='text' name='lastName' [(ngModel)]="lastName" placeholder="Last Name" required [pattern]="nameRegex">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.lastName.invalid">
+                                        <label *ngIf="addressForm.controls.lastName.errors.required" class='validation-message'>Enter your
+                      last
+                      name</label>
+                                        <label *ngIf="addressForm.controls.lastName.errors.pattern" class="validation-message">Only
+                      alphabets are allowed</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="showEmail">
+                            <div class="col-md-12">
+                                <mat-form-field>
+                                    <input matInput type='text' name='email' [(ngModel)]="email" placeholder="Email" required [pattern]="emailRegex" maxlength="40">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.email.invalid">
+                                        <label *ngIf="addressForm.controls.email.errors.required" class='validation-message'>Enter
+                      your email id</label>
+                                        <label *ngIf="addressForm.controls.email.errors.pattern" class="validation-message">Enter a valid
+                      email id</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <mat-form-field>
+                                    <input matInput type='text' name='addressLine1' [(ngModel)]="addressLine1" placeholder="Address Line 1" required [pattern]="addressRegex" maxlength="80">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.addressLine1.invalid">
+                                        <label *ngIf="addressForm.controls.addressLine1.errors.required" class='validation-message'>Enter
+                      your address</label>
+                                        <label *ngIf="addressForm.controls.addressLine1.errors.pattern" class="validation-message">No
+                      special characters are allowed</label>
+                                    </mat-error>
+                                </mat-form-field><br>
+                                <mat-form-field>
+                                    <input matInput type='text' name='addressLine2' [(ngModel)]="addressLine2" placeholder="Address Line 2" [pattern]="addressRegex" maxlength="80">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.addressLine2.invalid">
+                                        <label *ngIf="addressForm.controls.addressLine2.errors.pattern" class="validation-message">No
+                      special characters are allowed</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label for="country">Country</mat-label>
+                                    <mat-select name="country" [(ngModel)]="country" (ngModelChange)="setStateDropdown(country)" required>
+                                        <mat-option *ngFor="let country of countries" [value]='country'>
+                                            {{country.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.country.errors">
+                                        <label *ngIf="addressForm.controls.country.errors.required">Select a Country</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label for="state">State</mat-label>
+                                    <mat-select name="state" [(ngModel)]="state" (ngModelChange)="setCityDropdown(country, state)" required>
+                                        <mat-option *ngFor="let state of states" [value]='state'>
+                                            {{state.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.state.errors">
+                                        <label *ngIf="addressForm.controls.state.errors.required">Select a State</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label for="city">City</mat-label>
+                                    <mat-select name="city" [(ngModel)]="city" required>
+                                        <mat-option *ngFor="let city of cities" [value]='city'>
+                                            {{city.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.city.errors">
+                                        <label *ngIf="addressForm.controls.city.errors.required">Select a City</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <input matInput type='text' name='postalCode' [(ngModel)]="postalCode" placeholder="Postal Code" required [pattern]="postalCodeRegex" maxlength="6">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.postalCode.invalid">
+                                        <label *ngIf="addressForm.controls.postalCode.errors.required" class='validation-message'>Enter
+                      Postal Code</label>
+                                        <label *ngIf="addressForm.controls.postalCode.errors.pattern" class="validation-message">Invalid
+                      Postal Code</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <input matInput type='text' name='phone' [(ngModel)]="phone" placeholder="Phone" required [pattern]="phoneRegex" maxlength="10">
+                                    <mat-error align='end' *ngIf="addressForm.submitted && addressForm.controls.phone.invalid">
+                                        <label *ngIf="addressForm.controls.phone.errors.required" class='validation-message'>Enter
+                      Phone</label>
+                                        <label *ngIf="addressForm.controls.phone.errors.pattern" class="validation-message">Invalid phone
+                      number</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" type="submit">Save & Next</button>
+                        <button mat-button (click)='onCancel()'>Cancel</button>
+                    </mat-card-actions>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

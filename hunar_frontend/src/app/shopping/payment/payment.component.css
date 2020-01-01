@@ -1,0 +1,19 @@
+.container{
+  margin-top: 15px;
+}
+
+.card {
+  max-width: 500px;
+}
+
+#cc-cvc{
+  width: 50%;
+}
+
+.mat-card-content{
+  padding: 15px;
+}
+
+.mat-card-actions{
+  padding: 15px;
+}

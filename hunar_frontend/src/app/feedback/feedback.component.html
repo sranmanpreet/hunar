@@ -1,0 +1,29 @@
+<div class="container">
+    <br>
+    <h3>My Feedbacks</h3>
+    <hr>
+    <div class="requests-container" *ngIf="requests">
+        <div *ngIf="requests.length">
+            <ul class="requests">
+                <li class="request" *ngFor="let request of requests">
+                    <div class="request-header">
+                        <p class="request-id">Request ID: {{request._id}}</p>
+                    </div>
+                    <div>
+                        <p class="request-date">Message: <b>{{request.message}}</b></p>
+                    </div>
+                    <div class="request-footer">
+                        <p class="request-date">Name: <b>{{request.name}}</b></p>
+                        <p class="request-date">Created On: <b>{{request.createdDate | date : 'mediumDate'}}</b></p>
+                    </div>
+                </li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <div class="no-requests" *ngIf="!(requests && requests.length)">
+        <br>
+        <h5>No feedback provided.</h5><br>
+    </div>
+
+</div>

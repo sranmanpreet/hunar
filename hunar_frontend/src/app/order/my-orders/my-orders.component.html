@@ -1,0 +1,50 @@
+<div class="container">
+    <br>
+    <h3>My Orders</h3>
+    <hr>
+    <div class="orders-container" *ngIf="myOrders">
+        <div *ngIf="myOrders.length">
+            <ul class="orders">
+                <li class="order" *ngFor="let order of myOrders">
+                    <div class="order-header">
+                        <p class="order-id">OrderId: {{order._id}}</p>
+                    </div>
+                    <ul class="order-items">
+                        <li *ngFor="let item of order.orderItems" class="order-item">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 fitSmall">
+                                    <img src="{{item.imgurl}}" alt="image" name="image" class="itemImg" />
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 fitSmall">
+                                    <p class="name">{{item.name}}</p>
+                                    <p class="art-type">Art Type: {{item.artType}}</p>
+                                    <p class="art-size">Art Size: {{item.artSize}}</p>
+                                    <p class="art-size">Qty: {{item.quantity}}</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 fitSmall">
+                                    <p class="art-total"><i class="fa fa-inr" aria-hidden="true"></i> {{calculateProductTotal(item)}}/-</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 fitSmall">
+                                    <p class="art-status">{{order.status}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="order-footer">
+                        <p class="order-date">Ordered On: <b>{{order.date | date : 'mediumDate'}}</b></p>
+                        <p class="order-total">Order Total: <i class="fa fa-inr" aria-hidden="true"></i> <b>{{order.total}}/-</b></p>
+                    </div>
+                </li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+    <div class="no-orders" *ngIf="!(myOrders && myOrders.length)">
+        <br>
+        <h5>No orders found.</h5><br>
+        <a routerLink='/gallery-of-art'>
+            <h4>Let's go Shopping</h4>
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+{
+    "development": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/hunar?authSource=hunar",
+        "MONGODB_USER": "hunarAdmin",
+        "MONGODB_PASS": "hunarAdmin#847",
+        "JWT_SECRET": "hunarJWtSec#9274",
+        "JWT_REFRESH_SECRET": "reFrhunarJtSedc#3223",
+        "JWT_EXP": "60m",
+        "JWT_REFRESH_EXP": "1000m",
+        "SHIPPING_COST_PERCENTAGE": 0.05,
+        "TAX_PERCENTAGE": 0.18,
+        "EXPRESS_SESSION_SECRET": "SECRET@098",
+        "SESSION_NAME": "sidms",
+        "SESS_LIFETIME": 8640000,
+        "EMAIL_USER": "handlwidcare@gmail.com",
+        "EMAIL_PASS": "Handle!0001"
+    },
+    "production": {
+        "PORT": 80,
+        "MONGODB_URI": "mongodb://xxxxxx/hunar",
+        "JWT_SECRET": "SECRET#123",
+        "JWT_EXP": "20m",
+        "SHIPPING_COST_PERCENTAGE": 0.05,
+        "TAX_PERCENTAGE": 0.18,
+        "EXPRESS_SESSION_SECRET": "SECRET@098",
+        "SESSION_NAME": "sidms",
+        "SESS_LIFETIME": 8640000
+    }
+}

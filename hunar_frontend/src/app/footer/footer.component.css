@@ -1,0 +1,83 @@
+.footer {
+  width: 100%;
+  height: fit-content;
+  background: #414141;
+  padding: 0;
+  margin: 0px;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.push-to-bottom {
+  padding: 0px;
+  position: relative;
+  bottom: 0;
+}
+
+
+.row {
+  padding: 0px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.back-to-top {
+  padding: 18px 0;
+  background-color: #3b3333;
+}
+
+.back-to-top p {
+  margin: 0px;
+}
+
+.back-to-top:hover {
+  cursor: pointer;
+  background-color: #535353be
+}
+
+.icon-back {
+  background-color: white;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.hr-line {
+  border-color: white;
+}
+
+.copyright {
+  text-align: center;
+}
+
+a {
+  color: white;
+}
+
+
+.link:hover{
+  cursor: pointer;
+  text-decoration: underline; 
+}
+
+/* Extra small devices (phones, 540px and down) */
+@media only screen and (max-width: 540px) {
+  .footer .row {
+    padding: 15px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 540px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

@@ -1,0 +1,151 @@
+<div class="landing text-center welcome">
+  <br><br><br><br><br><br><br><br><br><br><br>
+  <h1>Welcome</h1>
+  <div class="wrap-cap">
+    <h4 class="cap-1">A Single Stop Solution to Artify Yourself</h4>
+    <h4 class="cap-2">High Quality Art Works for Home and Office</h4>
+    <h4 class="cap-3">Art Works which Meet your Demands</h4>
+    <h4 class="cap-4">Promote Your Brand</h4>
+  </div>
+  <button class="btn btn-primary" (click)="goToGallery()">Visit Gallery</button>
+  <br>
+</div>
+
+<div class="home-wrap">
+  <div class="row text-center">
+    <div class="col-md-12 products">
+      <h2>What do we offer?</h2>
+      <div class="row text-center">
+        <div class="col-md-4" (click)="goToGallery()">
+          <img class="product img-thumbnail" src="../../assets/images/digital11.jpg" alt="">
+          <div class="middle">
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores velit eaque hic est
+              eligendi, veritatis quae illo cumque dolorum! Est saepe nam esse perspiciatis quo illum pariatur a
+              voluptas ab odit excepturi.</div>
+          </div>
+          <h6 class="product-title">High Quality Artwork Prints</h6>
+        </div>
+        <div class="col-md-4" (click)="goToOrder()">
+          <img class="product img-thumbnail" src="../../assets/images/home4.jpg" alt="">
+          <div class="middle">
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores velit eaque hic est
+              eligendi, veritatis quae illo cumque dolorum! Est saepe nam esse perspiciatis quo illum pariatur a
+              voluptas ab odit excepturi.</div>
+          </div>
+          <h6 class="product-title">Artwork on Demand</h6>
+        </div>
+        <div class="col-md-4" (click)="goToAdvertise()">
+          <img class="product img-thumbnail" src="../../assets/images/asd2.jpg" alt="">
+          <div class="middle">
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores velit eaque hic est
+              eligendi, veritatis quae illo cumque dolorum! Est saepe nam esse perspiciatis quo illum pariatur a
+              voluptas ab odit excepturi.</div>
+          </div>
+          <h6 class="product-title">Advertisements</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landing2">
+</div>
+
+<div class="row text-center">
+  <div class="col-md-12 popular-arts">
+    <h2>Popular Arts</h2>
+    <div class="row">
+      <div class="col-md-3 col-sm-4" *ngFor="let popularArt of popularArts">
+        <img class="popular-art img-thumbnail" src="{{popularArt.url}}" alt="">
+        <div class="visit-gallery-middle">
+          <div class="visit-gallery-text" (click)="goToArt(popularArt)">Visit Gallery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landing3">
+</div>
+
+<div class="row text-center">
+  <div class="col-md-12 art-on-demand">
+    <h2>Exclusive Arts</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <img class="product img-thumbnail" src="../../assets/images/work_watercolor.jpg" alt="">
+        <div class="order-now-middle">
+          <div class="order-now-text" (click)="goToOrder()">Order Now</div>
+        </div>
+        <h6 class="art-on-demand-title">Water Color Arts</h6>
+      </div>
+      <div class="col-md-3">
+        <img class="product img-thumbnail" src="../../assets/images/work_charcoal.jpg" alt="">
+        <div class="order-now-middle">
+          <div class="order-now-text" (click)="goToOrder()">Order Now</div>
+        </div>
+        <h6 class="art-on-demand-title">Charcoal Arts</h6>
+      </div>
+      <div class="col-md-3">
+        <img class="product img-thumbnail" src="../../assets/images/work_digital.jpg" alt="">
+        <div class="order-now-middle">
+          <div class="order-now-text" (click)="goToOrder()">Order Now</div>
+        </div>
+        <h6 class="art-on-demand-title">Digital Arts</h6>
+      </div>
+      <div class="col-md-3">
+        <img class="product img-thumbnail" src="../../assets/images/work_acryllic.jpg" alt="">
+        <div class="order-now-middle">
+          <div class="order-now-text" (click)="goToOrder()">Order Now</div>
+        </div>
+        <h6 class="art-on-demand-title">Acryllic Arts</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landing5">
+  <div class="advertise">
+    <h2>Advertisements</h2>
+    <div class="row">
+      <div class="col-md-6 advertise-highlight">
+        <h3>Our COLORS, Your BRAND</h3><br>
+        <h3>Let's Conquer The World TOGETHER</h3>
+      </div>
+      <div class="col-md-6">
+        <p class="block-advertise"><b>"</b> Our colors make the walls speak your BRAND and expand your customer base. We
+          advertise brands by painting
+          walls
+          at
+          public places. Huge experience of the artists and businessmen brings unique expertise which help brands to
+          grab
+          attention of potential customers. <b>"</b>
+        </p>
+      </div>
+    </div><br>
+    <div>
+      <button mat-raised-button (click)="goToAdvertise()">Get Quote</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="row text-center">
+  <div class="col-md-12 our-clients">
+    <div class="clients-wrapper">
+      <h2>Our Clients</h2>
+      <div class="row clients">
+        <div class="col-md-2 col-sm-4" *ngFor="let client of clients">
+          <img class="clientLogo" src="{{client}}">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landing4">
+  <div class="contact-us">
+    <br><br><br><br><br><br>
+    <button mat-raised-button routerLink="/contact-us">Contact Us</button>
+  </div>
+</div>
