@@ -18,6 +18,10 @@ const CartSchema = mongoose.Schema({
             type: String,
             required: true
         },
+        img: {
+            data: Buffer,
+            contentType: String
+        },
         artType: {
             type: String,
             required: true

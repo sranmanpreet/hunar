@@ -26,21 +26,19 @@
 </div>
 
 <div class="wrapper">
-    <form>
+    <form #makeToOrderForm='ngForm' (ngSubmit)="onContinue(makeToOrderForm)">
         <div class="row">
             <div class="col-md-7 offset-md-1 text-center">
                 <br>
                 <div class="img-holder">
-                    <label *ngIf="!photo" for="file-upload" class="img-input">
-                    Upload Your Picture
-                </label>
-                    <input id='file-upload' type="file" (change)="onFileSelect($event)">
+                    <label *ngIf="!photo" for="file-upload" class="img-input">Upload Your Picture</label>
+                    <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
                     <img class='selectedImage img-fluid' [src]="image" alt="" *ngIf="photo">
                 </div>
                 <label *ngIf="photo" for="file-upload" class="img-change">
                 Change Picture
             </label>
-                <input id='file-upload' type="file" (change)="onFileSelect($event)">
+                <!-- <input *ngIf="photo" id='file-upload' type="file" (change)="onFileSelect($event)"> -->
             </div>
             <div class="col-md-3 col-xs-12 text-center">
                 <div class="control">
@@ -67,7 +65,7 @@
                     <mat-form-field class="example-full-width">
                         <mat-label>Expected Delivery Date
                         </mat-label>
-                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" name="edate">
+                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" name="expectedDeliveryDate" [(ngModel)]="expectedDeliveryDate">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
@@ -80,7 +78,7 @@
                     </mat-form-field>
                 </div>
                 <div class="control">
-                    <button mat-raised-button color="accent">Place Order</button>
+                    <button type="submit" mat-raised-button color="accent">Continue</button>
                 </div>
 
             </div>

@@ -10,6 +10,10 @@ const Product = mongoose.Schema({
         type: String,
         required: true
     },
+    productImage: {
+        data: Buffer,
+        contentType: String
+    },
     pricing: {
         artType: [{
             lookupName: String,

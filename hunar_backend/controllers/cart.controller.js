@@ -250,7 +250,7 @@ module.exports.addShoppingCartItem = (req, res, next) => {
                 let cItems = cart.cartItems;
                 let itemPresent = false;
                 for (let i = 0; i < cItems.length; i++) {
-                    if (cItems[i].name === productName && cItems[i].artType === productArtType && cItems[i].artSize === productArtSize) {
+                    if (cItems[i].productType === "Gallery" && cItems[i].name === productName && cItems[i].artType === productArtType && cItems[i].artSize === productArtSize) {
                         itemPresent = true;
                         cItems[i].quantity = cItems[i].quantity + productQuantity;
                         if (cItems[i].quantity > 5) {

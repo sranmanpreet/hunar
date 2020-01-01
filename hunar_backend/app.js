@@ -5,6 +5,8 @@ require('./config/passportConfig');
 // importing modules
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
+const multer = require('multer');
+const fs = require('fs');
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
@@ -20,6 +22,7 @@ var app = express();
 
 // middleware
 app.use(bodyparser.json());
+
 app.use(cors({
     origin: [
         "http://127.0.0.1:4200", "http://localhost:4200"

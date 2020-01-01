@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 export interface ArtTypes {
   name: string;
@@ -16,7 +17,7 @@ export class MakeToOrderComponent implements OnInit {
   defaultImage = '../../../assets/images/footer-fb.png';
   image: any;
   showDate: false;
-  date: Date;
+  expectedDeliveryDate: Date;
   photo = false;
   artTypes: ArtTypes[] = [
     { name: 'Digital' },
@@ -30,8 +31,8 @@ export class MakeToOrderComponent implements OnInit {
     { value: 'A2' },
     { value: 'A1' }
   ];
-  minDate = new Date(2000, 0, 1);
-  maxDate = new Date(2020, 0, 1);
+  minDate = new Date();
+  maxDate = new Date(this.minDate.getFullYear() + 1, 0, 0);
   selectedArtType: string;
   selectedArtSize: string;
   instructions: string;
@@ -54,4 +55,13 @@ export class MakeToOrderComponent implements OnInit {
     }
 
   }
+
+  onContinue(f: NgForm) {
+    if(f.valid){
+      console.log(f.value);
+    } else {
+      console.log("Invalid data");
+    }
+  }
+
 }
