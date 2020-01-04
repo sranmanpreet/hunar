@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { User } from './user.model';
 import { Cart } from '../shopping/cart.model';
 import { Order } from './order.model';
+import { Product } from './product.model';
+import { Price } from './prices.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,16 +32,24 @@ export class DataStorageService {
 //    return this.http.post(environment.apiBaseUrl + '/user/reset-password?token=' + token, data);
   }
 
+  addProduct(product: Product){
+    return this.http.post(environment.apiBaseUrl + '/products/add', product);
+  }
+
+  addPricingToProduct(productId:string, pricing: Price){
+    return this.http.post(environment.apiBaseUrl + '/product/pricing/add/' + productId, pricing);
+  }
+
   fetchGalleryImages() {
-    return this.http.get(environment.apiBaseUrl + '/gallery');
+    return this.http.get(environment.apiBaseUrl + '/products');
   }
   
   fetchGalleryImage(itemId) {
-    return this.http.get(environment.apiBaseUrl + '/gallery/' + itemId);
+    return this.http.get(environment.apiBaseUrl + '/products/' + itemId);
   }
 
   addCartItem(item) {
-    return this.http.post(environment.apiBaseUrl + '/add-to-cart', item);
+    return this.http.post(environment.apiBaseUrl + '/cart/add', item);
   }
 
   removeCartItem(item) {
@@ -47,7 +57,7 @@ export class DataStorageService {
   }
 
   updateCartItemQty(item) {
-    return this.http.post(environment.apiBaseUrl + '/update-cart/', item);
+    return this.http.post(environment.apiBaseUrl + 'cart/update/', item);
   }
 
   saveAddress(address: Address) {
@@ -74,11 +84,11 @@ export class DataStorageService {
   }
 
   getOrders() {
-    return this.http.get(environment.apiBaseUrl + '/orders');
+    return this.http.get(environment.apiBaseUrl + '/order');
   }
 
   getOrder(order) {
-    return this.http.post(environment.apiBaseUrl + '/order/get', order);
+    return this.http.post(environment.apiBaseUrl + '/order', order);
   }
 
   createOrder(order) {
@@ -94,11 +104,11 @@ export class DataStorageService {
   }
 
   createAdvertisementEntry(formDetails) {
-    return this.http.post(environment.apiBaseUrl + '/order/advertise', formDetails);
+    return this.http.post(environment.apiBaseUrl + '/advertisements/create', formDetails);
   }
 
   getAdvertisements() {
-    return this.http.get(environment.apiBaseUrl + '/order/advertisements');
+    return this.http.get(environment.apiBaseUrl + '/advertisements');
   }
 
   createFeedbackEntry(formDetails) {

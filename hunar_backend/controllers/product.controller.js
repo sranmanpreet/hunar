@@ -22,7 +22,6 @@ module.exports.addProduct = (req, res, next) => {
     let newProduct = new Product({
         name: req.body.name,
         url: req.body.url,
-        pricing: req.body.pricing,
         description: req.body.description,
     });
 
@@ -30,17 +29,34 @@ module.exports.addProduct = (req, res, next) => {
         if (err) {
             res.status(500).json({
                 status: false,
-                message: 'Failed to add image to gallery. ErrorCoce- 1001',
+                message: 'Failed to add product. ErrorCoce- 1001',
                 error: err
             });
         } else {
             res.json({
                 status: true,
-                message: 'Image successfully added to gallery'
+                message: 'Product added'
             });
         }
     });
 }
+
+module.exports.addPricingToProduct = (req, res, next) => {
+    let newPricing = {
+        artType: req.body.artType,
+        artSize: req.body.artSize,
+        price: req.body.price
+    };
+
+    Product.updateOne({ _id: req.params.productid }, { $push: { pricing: newPricing } }, (err, product) => {
+        if (err) {
+            res.status(203).send("Product not found.");
+        } else {
+            res.status(201).send("Pricing added to product.");
+        }
+    });
+}
+
 
 module.exports.deleteProduct = (req, res, next) => {
     Product.remove({
