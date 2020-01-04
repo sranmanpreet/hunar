@@ -5,8 +5,6 @@ require('./config/passportConfig');
 // importing modules
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
-const multer = require('multer');
-const fs = require('fs');
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');

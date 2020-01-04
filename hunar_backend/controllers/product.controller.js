@@ -26,9 +26,6 @@ module.exports.addProduct = (req, res, next) => {
         description: req.body.description,
     });
 
-    newProduct.productImage.data = fs.readFileSync(req.files.productImage.path);
-    newProduct.productImage.contentType = 'image/png';
-
     newProduct.save((err, product) => {
         if (err) {
             res.status(500).json({

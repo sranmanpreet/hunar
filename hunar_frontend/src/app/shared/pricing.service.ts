@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Prices } from './prices.model';
+import { Price } from './prices.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PricingService {
-  prices: Prices[] = [
-    { artType: 'Canvas', artSize: 'A1', price: 600 },
-    { artType: 'Canvas', artSize: 'A2', price: 500 },
-    { artType: 'Canvas', artSize: 'A3', price: 400 },
-    { artType: 'Canvas', artSize: 'A4', price: 300 },
-    { artType: 'Digital', artSize: 'A1', price: 500 },
-    { artType: 'Digital', artSize: 'A2', price: 400 },
-    { artType: 'Digital', artSize: 'A3', price: 300 },
-    { artType: 'Digital', artSize: 'A4', price: 200 },
-    { artType: 'Charcoal', artSize: 'A1', price: 750 },
-    { artType: 'Charcoal', artSize: 'A2', price: 650 },
-    { artType: 'Charcoal', artSize: 'A3', price: 530 },
-    { artType: 'Charcoal', artSize: 'A4', price: 440 }
-  ];
+  prices: Price[] = [];
 
   constructor() { }
 
   getPrices() {
     return this.prices;
+  }
+
+  addPricing(newPrice: Price){
+    if(this.removeDuplicateKey(newPrice)){
+      return false;
+    } else{
+      this.prices.push(newPrice);
+      return true;
+    }
+  }
+
+  removeDuplicateKey(newPrice: Price){
+    for(let i=0; i<this.prices.length; i++){
+      if(this.prices[i].artType === newPrice.artType){
+        if(this.prices[i].artSize === newPrice.artSize){
+          //this.prices.splice(i,1);
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

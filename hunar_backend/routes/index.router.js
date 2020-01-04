@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const csrf = require('csurf');
+const multer = require('multer');
+const upload = multer({ dest: "uploads/" });
 
 const jwtHelper = require('../config/jwtHelper');
 const ctrlGallery = require('../controllers/product.controller');
@@ -21,7 +23,7 @@ router.get('/gallery', ctrlGallery.getProducts);
 router.get('/gallery/:itemId', ctrlGallery.getProduct);
 
 // add product
-router.post('/gallery', ctrlGallery.addProduct);
+router.post('/gallery', upload.single('productImage'), ctrlGallery.addProduct);
 
 //deleting product
 router.delete('/gallery/:id', ctrlGallery.deleteProduct);
@@ -47,7 +49,7 @@ router.get('/orders', jwtHelper.verifyJwtToken, ctrlOrder.getOrders);
 router.post('/order', jwtHelper.verifyJwtToken, ctrlOrder.getOrder);
 
 //cancel order
-router.post('/order/cancel', jwtHelper.verifyJwtToken,ctrlOrder.cancelOrder);
+router.post('/order/cancel', jwtHelper.verifyJwtToken, ctrlOrder.cancelOrder);
 
 //create advertisement lead
 router.post('/order/advertise', ctrlAdvertisement.createAdvertisementLead);

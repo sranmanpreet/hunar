@@ -44,6 +44,7 @@ import { ForgotPasswordComponent } from './authentication/forgot-password/forgot
 import { ForgotPasswordResetComponent } from './authentication/forgot-password-reset/forgot-password-reset.component';
 import { ConfirmEqualValidatorDirective } from './authentication/confirm-equal-validator.directive';
 import { ProductComponent } from './gallery/product/product.component';
+import { AddProductComponent } from './admin/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ProductComponent } from './gallery/product/product.component';
     ForgotPasswordComponent,
     ForgotPasswordResetComponent,
     ConfirmEqualValidatorDirective,
-    ProductComponent
+    ProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
