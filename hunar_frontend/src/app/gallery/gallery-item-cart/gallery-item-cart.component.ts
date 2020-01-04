@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./gallery-item-cart.component.css']
 })
 export class GalleryItemCartComponent implements OnInit, OnDestroy {
-  private artDetails: any[][] = new Array();
   private artTypes = [];
   private artSizes = [];
   private selectedArtType = '';
@@ -40,17 +39,9 @@ export class GalleryItemCartComponent implements OnInit, OnDestroy {
     this.artTypes.length = 0;
     this.galleryItemCartForm.get('name').setValue(this.data.product.name);
     this.galleryItemCartForm.get('url').setValue(this.data.product.url);
-    for (const artTypeValue of this.data.product.pricing.artType) {
-      this.artTypes.push(artTypeValue.lookupName);
-    }
-    let artTypeCounter;
-    let artSizeCounter;
-    const a = this.data.product.pricing.artType;
-    // tslint:disable-next-line: prefer-for-of
-    for (artTypeCounter = 0; artTypeCounter < this.data.product.pricing.artType.length; artTypeCounter++) {
-      for (artSizeCounter = 0; artSizeCounter < a[artTypeCounter].artSize.length; artSizeCounter++) {
-        this.artDetails.push([a[artTypeCounter].lookupName, a[artTypeCounter].artSize[artSizeCounter].lookupName,
-        a[artTypeCounter].artSize[artSizeCounter].price]);
+    for (const pricing of this.data.product.pricing) {
+      if (this.artTypes.indexOf(pricing.artType) === -1) {
+        this.artTypes.push(pricing.artType);
       }
     }
   }
@@ -62,13 +53,10 @@ export class GalleryItemCartComponent implements OnInit, OnDestroy {
     this.serverMessage = '';
     this.itemAdded = false;
     this.galleryItemCartForm.value.quantity = 1;
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.data.product.pricing.artType.length; i++) {
-      if (this.data.product.pricing.artType[i].lookupName === artType) {
-        for (const artSizeValue of this.data.product.pricing.artType[i].artSize) {
-          this.artSizes.push(artSizeValue.lookupName);
-        }
-        break;
+
+    for (let i = 0; i < this.data.product.pricing.length; i++) {
+      if (this.data.product.pricing[i].artType === artType) {
+        this.artSizes.push(this.data.product.pricing[i].artSize);
       }
     }
   }
@@ -95,11 +83,11 @@ export class GalleryItemCartComponent implements OnInit, OnDestroy {
     }
   }
 
-  getPrice() {
-    for (const art of this.artDetails) {
-      if (art[0] === this.galleryItemCartForm.value.selectedArtType) {
-        if (art[1] === this.galleryItemCartForm.value.selectedArtSize) {
-          this.galleryItemCartForm.get('price').setValue(art[2]);
+  getPrice(artType?: string, artSize?: string) {
+    if (this.galleryItemCartForm.value.selectedArtType && this.galleryItemCartForm.value.selectedArtSize) {
+      for (let i = 0; i < this.data.product.pricing.length; i++) {
+        if ((this.data.product.pricing[i].artType === this.galleryItemCartForm.value.selectedArtType) && (this.data.product.pricing[i].artSize === this.galleryItemCartForm.value.selectedArtSize)) {
+          this.galleryItemCartForm.get('price').setValue(this.data.product.pricing[i].price);
         }
       }
     }

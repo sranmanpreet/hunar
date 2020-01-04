@@ -15,15 +15,11 @@ const Product = mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-    pricing: {
-        artType: [{
-            lookupName: String,
-            artSize: [{
-                lookupName: String,
-                price: Number
-            }]
-        }]
-    },
+    pricing: [{
+        artType: String,
+        artSize: String,
+        price: Number
+    }],
     description: {
         type: String,
         required: true

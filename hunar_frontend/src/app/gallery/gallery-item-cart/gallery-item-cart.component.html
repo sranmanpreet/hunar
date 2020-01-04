@@ -1,54 +1,51 @@
 <div class="cartContainer">
-  <div class="dialogHeader">
-    <p class="cartHeader">Select Art Type and Size</p><button mat-button (click)="continueShopping()" type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
-  </div>
-  <p class="message" *ngIf="serverMessage">{{serverMessage}}</p>
-  <p class="errorMessage" *ngIf="serverErrorMessage">{{serverErrorMessage}}</p>
-  <form [formGroup]="galleryItemCartForm" (ngSubmit)='onSubmit()'>
-    <div class="row">
-      <div class="col-md-6 col-sm-5 left">
-        <p class="art-name">{{galleryItemCartForm.value.name}}</p>
-        <img class='img-fluid img-thumbnail' src="{{galleryItemCartForm.value.url}}" alt="image">
-        <div class="qtyControl">
-          <i class="fa fa-minus" aria-hidden="true" (click)="decrementQty()"></i><input type="number" min='1' max='5'
-            formControlName="quantity" readonly><i class="fa fa-plus" aria-hidden="true" (click)="incrementQty()"></i>
-        </div>
-      </div>
-      <div class="col-md-5 col-sm-4 left art-details">
-        <mat-form-field>
-          <mat-label for="selectedArtType">Art Type</mat-label>
-          <mat-select formControlName="selectedArtType"
-            (ngModelChange)="setArtSizeDropdown(galleryItemCartForm.value.selectedArtType)" autofocus>
-            <mat-option *ngFor="let artType of artTypes" [value]='artType'>
-              {{artType}}
-            </mat-option>
-          </mat-select>
-          <mat-error align='end' *ngIf="galleryItemCartForm.controls.selectedArtType.errors">
-            <label *ngIf="galleryItemCartForm.controls.selectedArtType.errors.required">Select an Art-type.</label>
-          </mat-error>
-        </mat-form-field><br>
-        <mat-form-field *ngIf="galleryItemCartForm.value.selectedArtType">
-          <mat-label for="artSize">Art Size</mat-label>
-          <mat-select formControlName="selectedArtSize" (ngModelChange)="getPrice()">
-            <mat-option *ngFor="let artSize of artSizes" [value]='artSize'>
-              {{artSize}}
-            </mat-option>
-          </mat-select>
-          <mat-error align='end' *ngIf="galleryItemCartForm.controls.selectedArtSize.errors">
-            <label *ngIf="galleryItemCartForm.controls.selectedArtSize.errors.required">Select an Art-size.</label>
-          </mat-error>
-        </mat-form-field>
-        <p class="left" *ngIf="galleryItemCartForm.value.selectedArtSize"><i class="fa fa-inr"></i>
-          {{galleryItemCartForm.value.price * galleryItemCartForm.value.quantity}}/-</p>
-      </div>
-      <div class="col-md-1 col-sm-3 center add-buttons">
-        <button *ngIf="!itemAdded" mat-raised-button color="accent" type="submit">Add to Cart</button> &nbsp;
-        <button *ngIf="itemAdded" mat-raised-button color="primary" (click)="goToCart()" type="button">Go to
-          Cart</button> &nbsp;        
-      </div>
+    <div class="dialogHeader">
+        <p class="cartHeader">Select Art Type and Size</p><button mat-button (click)="continueShopping()" type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
     </div>
-    <input type="number" formControlName="price" hidden>
-    <input type="text" formControlName="name" hidden>
-    <input type="text" formControlNamee="url" hidden>
-  </form>
+    <p class="message" *ngIf="serverMessage">{{serverMessage}}</p>
+    <p class="errorMessage" *ngIf="serverErrorMessage">{{serverErrorMessage}}</p>
+    <form [formGroup]="galleryItemCartForm" (ngSubmit)='onSubmit()'>
+        <div class="row">
+            <div class="col-md-6 col-sm-5 left">
+                <p class="art-name">{{galleryItemCartForm.value.name}}</p>
+                <img class='img-fluid img-thumbnail' src="{{galleryItemCartForm.value.url}}" alt="image">
+                <div class="qtyControl">
+                    <i class="fa fa-minus" aria-hidden="true" (click)="decrementQty()"></i><input type="number" min='1' max='5' formControlName="quantity" readonly><i class="fa fa-plus" aria-hidden="true" (click)="incrementQty()"></i>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-4 left art-details">
+                <mat-form-field>
+                    <mat-label for="selectedArtType">Art Type</mat-label>
+                    <mat-select formControlName="selectedArtType" (ngModelChange)="setArtSizeDropdown(galleryItemCartForm.value.selectedArtType)" [(ngModel)]="selectedArtType">
+                        <mat-option *ngFor="let artType of artTypes" [value]='artType'>
+                            {{artType}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error align='end' *ngIf="galleryItemCartForm.controls.selectedArtType.errors">
+                        <label *ngIf="galleryItemCartForm.controls.selectedArtType.errors.required">Select an Art-type.</label>
+                    </mat-error>
+                </mat-form-field><br>
+                <mat-form-field *ngIf="galleryItemCartForm.value.selectedArtType">
+                    <mat-label for="artSize">Art Size</mat-label>
+                    <mat-select formControlName="selectedArtSize" (ngModelChange)="getPrice(galleryItemCartForm.value.selectedArtType, galleryItemCartForm.value.selectedArtSize)" [(ngModel)]="selectedArtSize">
+                        <mat-option *ngFor="let artSize of artSizes" [value]='artSize'>
+                            {{artSize}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error align='end' *ngIf="galleryItemCartForm.controls.selectedArtSize.errors">
+                        <label *ngIf="galleryItemCartForm.controls.selectedArtSize.errors.required">Select an Art-size.</label>
+                    </mat-error>
+                </mat-form-field>
+                <p class="left" *ngIf="galleryItemCartForm.value.selectedArtSize"><i class="fa fa-inr"></i> <b>{{galleryItemCartForm.value.price * galleryItemCartForm.value.quantity}}/- </b> <span class="price-quantity">({{galleryItemCartForm.value.price}} x {{galleryItemCartForm.value.quantity}})</span></p>
+            </div>
+            <div class="col-md-1 col-sm-3 center add-buttons">
+                <button *ngIf="!itemAdded" mat-raised-button color="accent" type="submit">Add to Cart</button> &nbsp;
+                <button *ngIf="itemAdded" mat-raised-button color="primary" (click)="goToCart()" type="button">Go to
+          Cart</button> &nbsp;
+            </div>
+        </div>
+        <input type="number" formControlName="price" hidden>
+        <input type="text" formControlName="name" hidden>
+        <input type="text" formControlNamee="url" hidden>
+    </form>
 </div>

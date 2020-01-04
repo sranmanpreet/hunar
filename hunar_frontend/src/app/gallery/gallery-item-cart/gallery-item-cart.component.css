@@ -1,167 +1,176 @@
-.dialogHeader{
-  display: flex;
-  padding: 5px 10px;
-  background-color: rgb(233, 233, 233);
+.dialogHeader {
+    display: flex;
+    padding: 5px 10px;
+    background-color: rgb(233, 233, 233);
 }
 
-.dialogHeader button{
-  margin: 0 0 0 auto;
-}
-
-.row{
-  width:fit-content;
-}
-
-.cartHeader {
-  margin: 10px;
-}
-
-img {
-  max-width: 200px;
-  max-height: 200px;
-  border: 1px solid rgb(146, 146, 146);
-  margin: 5px;
+.dialogHeader button {
+    margin: 0 0 0 auto;
 }
 
 .row {
-  min-height: 200px;
+    width: fit-content;
+}
+
+.cartHeader {
+    margin: 10px;
+}
+
+img {
+    max-width: 200px;
+    max-height: 200px;
+    border: 1px solid rgb(146, 146, 146);
+    margin: 5px;
+}
+
+.row {
+    min-height: 200px;
 }
 
 .left {
-  text-align: center;
+    text-align: center;
 }
 
 .center {
-  text-align: left;
+    text-align: left;
 }
 
 .right {
-  text-align: left;
+    text-align: left;
 }
 
-.qtyControl{
-  margin-bottom: 15px;
+.qtyControl {
+    margin-bottom: 15px;
 }
 
 .qtyControl input {
-  margin: 0 3px;
-  width: 30px;
-  padding: 0px;
-  text-align: center;
-  border-radius: 5px;
-  border: 1px solid grey;
+    margin: 0 3px;
+    width: 30px;
+    padding: 0px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid grey;
 }
 
 .qtyControl input:focus {
-  outline-width: 0;
+    outline-width: 0;
 }
 
 .qtyControl i {
-  padding: 5px;
+    padding: 5px;
 }
 
 .qtyControl i:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .qtyControl i:active {
-  color: blue;
+    color: blue;
 }
 
-
-
-.art-name{
-  margin: 5px;
+.price-quantity {
+    color: grey;
+    font-size: 80%;
 }
 
-.add-buttons{
-  margin-bottom: 20px;
+.art-name {
+    margin: 5px;
+}
+
+.add-buttons {
+    margin-bottom: 20px;
 }
 
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
+
 /* Extra Small devices*/
+
 @media (min-width: 300px) {
-  img {
-    max-width: 220px;
-  }
-
-  .center {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .right {
-    text-align: center;
-  }
-
-  .right button{
-    margin-top: 20px;
-  }
+    img {
+        max-width: 220px;
+    }
+    .center {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .right {
+        text-align: center;
+    }
+    .right button {
+        margin-top: 20px;
+    }
 }
 
 .message {
-  text-align: center;
-  background-color: antiquewhite;
-  color: rgb(78, 78, 78);
-  border-left: none;
-  font-size: 13px;
-  border-right: none;
-  padding: 5px 20px;
-  margin: 3px auto;
-  width: 100%;
+    text-align: center;
+    background-color: antiquewhite;
+    color: rgb(78, 78, 78);
+    border-left: none;
+    font-size: 13px;
+    border-right: none;
+    padding: 5px 20px;
+    margin: 3px auto;
+    width: 100%;
 }
 
 .errorMessage {
-  text-align: center;
-  background-color: antiquewhite;
-  color: red;
-  font-size: 13px;
-  border-left: none;
-  border-right: none;
-  padding: 5px 20px;
-  margin: 3px auto;
-  width: 100%;
+    text-align: center;
+    background-color: antiquewhite;
+    color: red;
+    font-size: 13px;
+    border-left: none;
+    border-right: none;
+    padding: 5px 20px;
+    margin: 3px auto;
+    width: 100%;
 }
+
 
 /* Small devices*/
-@media (min-width: 576px) {
-  img {
-    max-width: 200px;
-  }
-  .cartHeader {
-    font-size: 1em;
-  }
 
-  .art-details{
-    margin-top: 18px;
-  }
-  .add-buttons button{
-    margin-top: 160px;
-  }
+@media (min-width: 576px) {
+    img {
+        max-width: 200px;
+    }
+    .cartHeader {
+        font-size: 1em;
+    }
+    .art-details {
+        margin-top: 18px;
+    }
+    .add-buttons button {
+        margin-top: 160px;
+    }
 }
+
 
 /* Medium devices (tablets, 768px and up)*/
+
 @media (min-width: 768px) {
-  img {
-    max-width: 220px;
-  }
+    img {
+        max-width: 220px;
+    }
 }
+
 
 /* Large devices (desktops, 992px and up)*/
+
 @media (min-width: 992px) {
-  img {
-    max-width: 230px;
-  }
+    img {
+        max-width: 230px;
+    }
 }
 
+
 /*Extra large devices (large desktops, 1200px and up)*/
+
 @media (min-width: 1200px) {
-  img {
-    max-width: 250px;
-  }
+    img {
+        max-width: 250px;
+    }
 }
