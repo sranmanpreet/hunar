@@ -37,4 +37,16 @@ export class ProductService {
     ));
   }
 
+  addProduct(newProduct: Product){
+    this.dataService.addProduct(newProduct).pipe(map(
+      (product: Product)=>{
+        this.images.push(product);
+        console.log(this.images);
+      },
+      (err)=>{
+        alert(err);
+      }
+    ))
+  }
+
 }

@@ -13,7 +13,7 @@ router.get('/', ctrlProduct.getProducts);
 router.get('/:itemId', ctrlProduct.getProduct);
 
 // add product
-router.post('/add', upload.single('productImage'), ctrlProduct.addProduct);
+router.post('/add', ctrlProduct.addProduct);
 
 //deleting product
 router.delete('/:id', ctrlProduct.deleteProduct);

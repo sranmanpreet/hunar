@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ArtSizes, ArtTypes } from 'src/app/order/make-to-order/make-to-order.component';
 import { PricingService } from 'src/app/shared/pricing.service';
 import { Price } from 'src/app/shared/prices.model';
+import { Product } from 'src/app/shared/product.model';
+import { ProductService } from 'src/app/shared/product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -33,7 +35,7 @@ export class AddProductComponent implements OnInit {
   selectedArtPrice: number;
   productPrices: Price[];
 
-  constructor(private pricingService: PricingService) { }
+  constructor(private productService: ProductService, private pricingService: PricingService) { }
 
   ngOnInit() {
     this.productPrices = this.pricingService.getPrices();
@@ -55,21 +57,22 @@ export class AddProductComponent implements OnInit {
 
   onAddProduct(f: NgForm) {
     if (f.valid) {
-      console.log(f.value);
+      if (this.productPrices.length) {
+        const newProduct = new Product(f.value.name, f.value.description, this.productPrices);
+        this.productService.addProduct(newProduct);
+      } else {
+        alert("Add pricing to proceed");
+      }
     } else {
-      console.log("Invalid product data");
+      alert("Invalid product data");
     }
   }
   addPricing(f: NgForm) {
     if (f.valid) {
-      const newPrice = new Price(f.value.artType, f.value.artSize, f.value.price);
-      if(this.pricingService.addPricing(newPrice)){
-        this.productPrices = this.pricingService.getPrices();
-      } else {
-        alert("Pricing already exist for this combination");
-      }
+      const newPrice = new Price(f.value.artType, f.value.artSize, +f.value.price);
+      this.productPrices = this.pricingService.overrideDuplicatePricing(newPrice, this.productPrices);
     } else {
-      console.log("Invalid pricing data");
+      alert("Invalid pricing data");
     }
   }
 

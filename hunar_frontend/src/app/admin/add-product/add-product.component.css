@@ -125,9 +125,33 @@ label {
     max-height: 420px;
 }
 
+.table thead th {
+    min-width: 70px;
+    font-size: 0.8em;
+}
+
+.table td {
+    padding: 2px 5px;
+}
+
 #file-upload {
     display: none;
 }
+
+.custom-grid {
+    padding: 2px 5px;
+    font-size: 0.7em;
+}
+
+.btn-success {
+    font-size: 0.95em;
+}
+
+@media (min-width: 300px) {}
+
+@media (min-width: 360px) {}
+
+@media (min-width: 400px) {}
 
 
 /* Small devices (landscape phones, 576px and up)*/

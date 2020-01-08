@@ -33,11 +33,8 @@ export class DataStorageService {
   }
 
   addProduct(product: Product){
+    console.log(product);
     return this.http.post(environment.apiBaseUrl + '/products/add', product);
-  }
-
-  addPricingToProduct(productId:string, pricing: Price){
-    return this.http.post(environment.apiBaseUrl + '/product/pricing/add/' + productId, pricing);
   }
 
   fetchGalleryImages() {

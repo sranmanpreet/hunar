@@ -14,23 +14,33 @@ export class PricingService {
     return this.prices;
   }
 
-  addPricing(newPrice: Price) {
-    if (this.removeDuplicateKey(newPrice)) {
-      return false;
-    } else {
-      this.dataStorageService.addPricingToProduct("sfs", newPrice).subscribe();
-      this.prices.push(newPrice);
-      return true;
-    }
+  addPricing(newPricing: Price[]) {
+    this.prices.concat(newPricing);
   }
 
-  removeDuplicateKey(newPrice: Price) {
-    for (let i = 0; i < this.prices.length; i++) {
-      if (this.prices[i].artType === newPrice.artType && this.prices[i].artSize === newPrice.artSize) {
-        //this.prices.splice(i,1);
-        return true;
+  overrideDuplicatePricing(newPrice: Price, currentPrices: Price[]) {
+    let isDuplicate = false;
+    for (let i = 0; i < currentPrices.length; i++) {
+      if (currentPrices[i].artType === newPrice.artType && currentPrices[i].artSize === newPrice.artSize) {
+        if(currentPrices[i].price === newPrice.price){
+          isDuplicate = true;
+          alert("Pricing already exist");
+          return currentPrices;
+        } else{
+          isDuplicate = true;
+          if(confirm("Pricing already exist. Do you want to override it?")){
+             currentPrices.splice(i,1);
+             currentPrices.push(newPrice);
+             return currentPrices;
+          } else {
+            return currentPrices;
+          }
+        }
       }
     }
-    return false;
+    if(!isDuplicate){
+      currentPrices.push(newPrice);
+    }
+    return currentPrices;
   }
 }

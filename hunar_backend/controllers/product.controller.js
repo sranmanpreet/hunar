@@ -19,10 +19,12 @@ module.exports.getProduct = (req, res, next) => {
 }
 
 module.exports.addProduct = (req, res, next) => {
+    console.log("i am in add product method");
     let newProduct = new Product({
         name: req.body.name,
         url: req.body.url,
         description: req.body.description,
+        pricing: req.body.pricing
     });
 
     newProduct.save((err, product) => {
