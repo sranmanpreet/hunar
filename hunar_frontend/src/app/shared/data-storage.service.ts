@@ -4,10 +4,7 @@ import { Observable } from 'rxjs';
 import { Address } from './address.model';
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
-import { Cart } from '../shopping/cart.model';
-import { Order } from './order.model';
 import { Product } from './product.model';
-import { Price } from './prices.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +29,7 @@ export class DataStorageService {
 //    return this.http.post(environment.apiBaseUrl + '/user/reset-password?token=' + token, data);
   }
 
-  addProduct(product: Product){
+  addProduct(product: any){
     console.log(product);
     return this.http.post(environment.apiBaseUrl + '/products/add', product);
   }

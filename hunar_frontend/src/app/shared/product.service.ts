@@ -37,7 +37,7 @@ export class ProductService {
     ));
   }
 
-  addProduct(newProduct: Product){
+  addProduct(newProduct){
     this.dataService.addProduct(newProduct).pipe(map(
       (product: Product)=>{
         this.images.push(product);
