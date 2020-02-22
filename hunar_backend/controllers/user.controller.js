@@ -167,8 +167,6 @@ module.exports.forgotPasswordSendEmail = (req, res, next) => {
 }
 
 module.exports.resetPassword = (req, res, next) => {
-    console.log(req.body);
-    console.log(req.params);
     if (req.body.password === req.body.cpassword) {
         User.findOne({
             resetPasswordToken: req.params.token
@@ -179,7 +177,6 @@ module.exports.resetPassword = (req, res, next) => {
                     message: 'Sorry, your password reset link is invalid.'
                 });
             } else {
-                console.log(user.resetPasswordExpires);
                 if (user.resetPasswordExpires > Date.now()) {
                     user.password = req.body.password;
                     user.resetPasswordExpires = Date.now();

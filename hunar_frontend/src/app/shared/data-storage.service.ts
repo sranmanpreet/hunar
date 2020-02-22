@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { Address } from './address.model';
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
-import { Cart } from '../shopping/cart.model';
-import { Order } from './order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +29,11 @@ export class DataStorageService {
   }
 
   fetchGalleryImages() {
-    return this.http.get(environment.apiBaseUrl + '/gallery');
+    return this.http.get(environment.apiBaseUrl + '/products');
   }
   
   fetchGalleryImage(itemId) {
-    return this.http.get(environment.apiBaseUrl + '/gallery/' + itemId);
+    return this.http.get(environment.apiBaseUrl + '/product/' + itemId);
   }
 
   addCartItem(item) {

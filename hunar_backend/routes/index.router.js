@@ -17,16 +17,28 @@ const csrfProtection = csrf();
 //router.use(csrfProtection);
 
 // retrieving products
-router.get('/gallery', ctrlGallery.getProducts);
+router.get('/products', ctrlGallery.getProducts);
 
 // retrieving product
-router.get('/gallery/:itemId', ctrlGallery.getProduct);
+router.get('/product/:itemId', ctrlGallery.getProduct);
 
 // add product
-router.post('/gallery', upload.single('productImage'), ctrlGallery.addProduct);
+router.post('/product/add', upload.single('productImage'), ctrlGallery.addProduct);
+
+// update product
+router.put('/product/:id', ctrlGallery.updateProduct);
+
+// add pricing to product
+router.put('/product/:productId/pricing/add', ctrlGallery.addPricingToProduct);
+
+// update pricing on product
+router.put('/product/:productId/pricing/update', ctrlGallery.updatePricingOnProduct);
+
+// delete pricing on product
+router.delete('/product/:productId/pricing/:id', ctrlGallery.deletePricing);
 
 //deleting product
-router.delete('/gallery/:id', ctrlGallery.deleteProduct);
+router.delete('/product/:id', ctrlGallery.deleteProduct);
 
 router.get('/cart', ctrlShoppingCart.getShoppingCartItems);
 

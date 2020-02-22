@@ -22,7 +22,6 @@ module.exports.addProduct = (req, res, next) => {
     let newProduct = new Product({
         name: req.body.name,
         url: req.body.url,
-        pricing: req.body.pricing,
         description: req.body.description,
     });
 
@@ -30,16 +29,81 @@ module.exports.addProduct = (req, res, next) => {
         if (err) {
             res.status(500).json({
                 status: false,
-                message: 'Failed to add image to gallery. ErrorCoce- 1001',
+                message: 'Failed to add product. ErrorCode- 1001',
                 error: err
             });
         } else {
-            res.json({
-                status: true,
-                message: 'Image successfully added to gallery'
-            });
+            res.send(product);
         }
     });
+}
+
+module.exports.updateProduct = (req, res, next) => {
+    Product.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.body.name, description: req.body.description } }, { new: true }, function(err, product) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(product);
+        }
+    })
+}
+
+module.exports.addPricingToProduct = (req, res, next) => {
+    const product_id = req.params.productId;
+    let pricing = {
+        artType: req.body.artType,
+        artSize: req.body.artSize,
+        price: req.body.price
+    }
+
+    Product.findOneAndUpdate({ _id: product_id }, { $push: { pricing: pricing } }, { new: true }, function(err, result) {
+        if (err) {
+            res.send(err.message);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+module.exports.updatePricingOnProduct = (req, res, next) => {
+    const product_id = req.params.productId;
+    const pricing_id = req.params.id;
+    Product.findOneAndUpdate({ _id: product_id }, {
+            $set: {
+                "pricing.$[row].artType": req.body.artType,
+                "pricing.$[row].artSize": req.body.artSize,
+                "pricing.$[row].price": req.body.price
+            }
+        }, {
+            new: true,
+            arrayFilters: [{ "row._id": pricing_id }]
+        },
+        function(err, product) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(product);
+            }
+        });
+}
+
+module.exports.deletePricing = (req, res, next) => {
+    const product_id = req.params.productId;
+    const pricing_id = req.params.id;
+    Product.findOneAndUpdate({ _id: product_id }, {
+            $pull: {
+                pricing: { $elemMatch: { _id: pricing_id } }
+            }
+        }, {
+            new: true
+        },
+        function(err, product) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(product);
+            }
+        });
 }
 
 module.exports.deleteProduct = (req, res, next) => {
@@ -58,5 +122,5 @@ module.exports.deleteProduct = (req, res, next) => {
                 message: "Product deleted"
             });
         }
-    })
+    });
 }
