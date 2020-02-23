@@ -14,29 +14,11 @@ export class AddProductComponent implements OnInit {
   description: string;
   image: string | ArrayBuffer;
   photo = false;
-  artTypes: ArtTypes[] = [
-    { name: 'Digital' },
-    { name: 'Water Colors' },
-    { name: 'Miniature' },
-    { name: 'Charcoal' }
-  ];
-  artSizes: ArtSizes[] = [
-    { value: 'A6' },
-    { value: 'A5' },
-    { value: 'A4' },
-    { value: 'A3' },
-    { value: 'A2' },
-    { value: 'A1' }
-  ];
-  selectedArtType: string;
-  selectedArtSize: string;
-  selectedArtPrice: number;
-  productPrices: Price[];
 
   constructor(private pricingService: PricingService) { }
 
   ngOnInit() {
-    this.productPrices = this.pricingService.getPrices();
+    
   }
 
   onFileSelect(event) {
@@ -58,18 +40,6 @@ export class AddProductComponent implements OnInit {
       console.log(f.value);
     } else {
       console.log("Invalid product data");
-    }
-  }
-  addPricing(f: NgForm) {
-    if (f.valid) {
-      const newPrice = new Price(f.value.artType, f.value.artSize, f.value.price);
-      if(this.pricingService.addPricing(newPrice)){
-        this.productPrices = this.pricingService.getPrices();
-      } else {
-        alert("Pricing already exist for this combination");
-      }
-    } else {
-      console.log("Invalid pricing data");
     }
   }
 

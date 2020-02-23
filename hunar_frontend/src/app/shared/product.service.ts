@@ -13,6 +13,7 @@ const desc = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi 
 })
 export class ProductService {
   images: Product[];
+  allProducts: Product[];
 
   constructor(private dataService: DataStorageService) { }
 
@@ -26,6 +27,18 @@ export class ProductService {
       }
     ));
   }
+
+  getAllProducts(): Observable<Product[]> {
+    return this.dataService.fetchAllProducts().pipe(map(
+      (products: Product[]) => {
+        return this.allProducts = products;
+      },
+      (err) => {
+        return err;
+      }
+    ));
+  }
+
   getProduct(id): Observable<Product> {
     return this.dataService.fetchGalleryImage(id).pipe(map(
       (product: Product) => {

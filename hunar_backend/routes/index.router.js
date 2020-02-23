@@ -19,6 +19,9 @@ const csrfProtection = csrf();
 // retrieving products
 router.get('/products', ctrlGallery.getProducts);
 
+// retrieving all products
+router.get('/all-products', ctrlGallery.getAllProducts);
+
 // retrieving product
 router.get('/product/:itemId', ctrlGallery.getProduct);
 

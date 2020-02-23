@@ -18,45 +18,6 @@
                         <button type="submit" mat-raised-button color="accent">Add Product</button>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <form #addPricingForm='ngForm' (ngSubmit)="addPricing(addPricingForm)">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <h4>Pricing</h4>
-                                </tr>
-                                <tr class="d-flex">
-                                    <th class="col-md-4">Art Type</th>
-                                    <th class="col-md-2">Art Size</th>
-                                    <th class="col-md-3">Price</th>
-                                    <th class="col-md-3">Action</th>
-                                </tr>
-                                <tr class="d-flex">
-                                    <th class="col-md-4">
-                                        <select class="form-control form-control-sm" name="artType" [(ngModel)]="selectedArtType">
-                                    <option *ngFor="let artType of artTypes" [value]="artType.name">{{artType.name}}</option>
-                                </select>
-                                    </th>
-                                    <th class="col-md-2">
-                                        <select class="form-control form-control-sm" name="artSize" [(ngModel)]="selectedArtSize">
-                                    <option *ngFor="let artSize of artSizes" [value]="artSize.value">{{artSize.value}}</option>
-                                  </select>
-                                    </th>
-                                    <th class="col-md-3">
-                                        <input class="form-control form-control-sm" type="text" name="price" [(ngModel)]="selectedArtPrice"></th>
-                                    <th class="col-md-3"><button type="submit" class='btn btn-success'>Add</button></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="d-flex" *ngFor="let productPrice of productPrices">
-                                    <td class="col-md-4">{{productPrice.artType}}</td>
-                                    <td class="col-md-2">{{productPrice.artSize}}</td>
-                                    <td class="col-md-3">{{productPrice.price}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
                 <div class="col-md-4 text-center">
                     <br>
                     <div class="img-holder">

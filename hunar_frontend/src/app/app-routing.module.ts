@@ -35,6 +35,9 @@ import { ForgotPasswordComponent } from './authentication/forgot-password/forgot
 import { ForgotPasswordResetComponent } from './authentication/forgot-password-reset/forgot-password-reset.component';
 import { ProductComponent } from './gallery/product/product.component';
 import { AddProductComponent } from './admin/add-product/add-product.component';
+import { AllProductsComponent } from './admin/all-products/all-products.component';
+import { AllProductsResolverService } from './admin/all-products/all-products-resolver.service';
+import { PricingComponent } from './admin/pricing/pricing.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, resolve: { products: GalleryProductResolverService } },
@@ -44,7 +47,9 @@ const routes: Routes = [
   { path: 'reset-password', component: ForgotPasswordResetComponent },
   { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard], resolve: { addresses: AddressResolverService } },
   
-  { path: 'administration/add-product', component: AddProductComponent },
+  { path: 'administration/manage/products', component: AllProductsComponent, resolve: { products: AllProductsResolverService }},
+  { path: 'administration/manage/product/add', component: AddProductComponent },
+  { path: 'administration/manage/product/:id/pricing', component: PricingComponent },
   
   {
     path: 'support-requests',

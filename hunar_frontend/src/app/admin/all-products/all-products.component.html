@@ -1,0 +1,27 @@
+<div class="container">
+    <h4>Manage Products<button mat-raised-button color="primary" routerLink="/administration/manage/product/add">Add Product</button></h4>
+    <table class="table table-hover">
+        <thead>
+            <tr class="d-flex">
+                <th class="col-md-2 td-container">Product</th>
+                <th class="col-md-2 td-container">Name</th>
+                <th class="col-md-3 td-container">Description</th>
+                <th class="col-md-3 td-container">Id</th>
+                <th class="col-md-1 td-container">Pricing</th>
+                <th class="col-md-1 td-container">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="d-flex" *ngFor="let product of products">
+                <td class="col-md-2 td-container"><img class="img-fluid img-thumbnail" src="{{product.url}}" alt="{{product.name}}.jpg"></td>
+                <td class="col-md-2 td-container">{{product.name}}</td>
+                <td class="col-md-3 td-container">
+                    <div>{{product.description}}</div>
+                </td>
+                <td class="col-md-3 td-container">{{product._id}}</td>
+                <td class="col-md-1 td-container"><button class='btn btn-primary' (click)="viewPricingDetails(product)">Pricing</button></td>
+                <td class="col-md-1 td-container"><button class='btn btn-primary'>Update</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

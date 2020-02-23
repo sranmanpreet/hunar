@@ -25,13 +25,17 @@ export class DataStorageService {
   }
 
   resetPassword(data, token) {
-//    return this.http.post(environment.apiBaseUrl + '/user/reset-password?token=' + token, data);
+    //    return this.http.post(environment.apiBaseUrl + '/user/reset-password?token=' + token, data);
   }
 
   fetchGalleryImages() {
     return this.http.get(environment.apiBaseUrl + '/products');
   }
-  
+
+  fetchAllProducts() {
+    return this.http.get(environment.apiBaseUrl + '/all-products');
+  }
+
   fetchGalleryImage(itemId) {
     return this.http.get(environment.apiBaseUrl + '/product/' + itemId);
   }

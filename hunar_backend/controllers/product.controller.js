@@ -3,6 +3,17 @@ const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 
 module.exports.getProducts = (req, res, next) => {
+    Product.find({ pricing: { $gt: [] }, url: { $ne: null } }, function(err, galleryImages) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(galleryImages);
+        }
+    });
+}
+
+module.exports.getAllProducts = (req, res, next) => {
     Product.find(function(err, galleryImages) {
         res.json(galleryImages);
     });
@@ -56,13 +67,18 @@ module.exports.addPricingToProduct = (req, res, next) => {
         price: req.body.price
     }
 
-    Product.findOneAndUpdate({ _id: product_id }, { $push: { pricing: pricing } }, { new: true }, function(err, result) {
-        if (err) {
-            res.send(err.message);
-        } else {
-            res.send(result);
-        }
-    });
+    if (!checkIfDuplicatePricingExist(product_id, pricing)) {
+        Product.findOneAndUpdate({ _id: product_id }, { $push: { pricing: pricing } }, { new: true }, function(err, result) {
+            if (err) {
+                res.send(err.message);
+            } else {
+                res.send(result);
+            }
+        });
+    } else {
+        res.send("Pricing already exists");
+    }
+
 }
 
 module.exports.updatePricingOnProduct = (req, res, next) => {
@@ -121,6 +137,27 @@ module.exports.deleteProduct = (req, res, next) => {
                 status: true,
                 message: "Product deleted"
             });
+        }
+    });
+}
+
+function checkIfDuplicatePricingExist(productId, newPrice) {
+    Product.findOne({ _id: productId }, (err, product) => {
+        if (err) {
+            console.log(err);
+            return false;
+        }
+        if (product) {
+            let productPrices = product.pricing;
+            let productPricesSize = productPrices.length;
+            for (let i = 0; i < productPricesSize; i++) {
+                if (productPrices[i].artType === newPrice.artType) {
+                    if (productPrices[i].artSize === newPrice.artSize) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     });
 }
