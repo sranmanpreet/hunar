@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/shared/product.service';
 import { Product } from 'src/app/shared/product.model';
+import { ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ProductResolverService {
-    constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
-    resolve(): Observable<Product>{
-        return this.productService.getProduct('sd');
-    }
+  resolve(route: ActivatedRouteSnapshot,
+  ): Observable<Product> {
+    return this.productService.getProduct(route.paramMap.get('id'));
+  }
 }

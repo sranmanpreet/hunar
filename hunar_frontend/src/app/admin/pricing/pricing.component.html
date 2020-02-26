@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="product">
     <div class="row">
         <div class="col-md-3 sub-container">
             <span class="bold">Name: </span> {{product.name}} <br> <span class="bold">Id: </span>{{product._id}}
@@ -47,7 +47,7 @@
                             <td class="col-md-12" *ngIf="productService.successMessage">{{productService.successMessage}}</td>
                             <td class="col-md-12" *ngIf="productService.errorMessage">{{productService.errorMessage}}</td>
                         </tr>
-                        <tr class="d-flex" *ngFor="let productPrice of productPrices">
+                        <tr class="d-flex" *ngFor="let productPrice of product.pricing">
                             <td class="col-md-4">{{productPrice.artType}}</td>
                             <td class="col-md-2">{{productPrice.artSize}}</td>
                             <td class="col-md-3">{{productPrice.price}}</td>

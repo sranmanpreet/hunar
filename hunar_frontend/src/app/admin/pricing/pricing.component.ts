@@ -40,12 +40,10 @@ export class PricingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.data.subscribe(
-      () => {
-        const productId = this.route.snapshot.params['id'];
-        this.productService.getProduct(productId).subscribe(
+      (data) => {
+        this.productService.getProduct(data.product._id).subscribe(
           (product) => {
             this.product = product;
-            this.productPrices = this.product.pricing;
           },
           (err) => {
             console.log(err);
@@ -62,7 +60,6 @@ export class PricingComponent implements OnInit, OnDestroy {
       this.dataService.addPricing(this.product["_id"], newPrice).subscribe(
         (product: Product) => {
           this.product = product;
-          this.productPrices = product.pricing;
         },
         (err) => {
           console.log(err);
@@ -77,7 +74,6 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.dataService.removePricing(productId, pricingId).subscribe(
       (product: Product) => {
         this.product = product;
-        this.productPrices = product.pricing;
       }
     );
   }

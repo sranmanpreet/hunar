@@ -69,6 +69,7 @@ module.exports.addPricingToProduct = (req, res, next) => {
 
     if (pricing.artType && pricing.artSize && pricing.price) {
         if (!checkIfDuplicatePricingExist(product_id, pricing)) {
+
             Product.findOneAndUpdate({ _id: product_id }, { $push: { pricing: pricing } }, { new: true }, function(err, result) {
                 if (err) {
                     res.status(400).send(err.message);
@@ -77,7 +78,7 @@ module.exports.addPricingToProduct = (req, res, next) => {
                 }
             });
         } else {
-            res.status(205).send("Pricing already exists");
+            res.status(403).send("Pricing already exists");
         }
     } else {
         res.status(400).send("ArtType, ArtSize or Price can't be empty");
@@ -160,26 +161,30 @@ module.exports.deleteProduct = (req, res, next) => {
 }
 
 function checkIfDuplicatePricingExist(productId, newPrice, existingPricingId) {
-    Product.findOne({ _id: productId }, (err, product) => {
+    return Product.findOne({ _id: productId }, (err, product) => {
         if (err) {
             console.log(err);
             return false;
         }
         if (product) {
+            console.log(product);
             let productPrices = product.pricing;
             let productPricesSize = productPrices.length;
             for (let i = 0; i < productPricesSize; i++) {
                 if (existingPricingId != undefined) {
                     if (productPrices[i]._id == existingPricingId) {
+                        console.log("continueeeeeeee");
                         continue;
                     }
                 }
                 if (productPrices[i].artType === newPrice.artType) {
                     if (productPrices[i].artSize === newPrice.artSize) {
+                        console.log("Duplicate existsss");
                         return true;
                     }
                 }
             }
+            console.log("Duplicate doesn't exist");
             return false;
         }
     });

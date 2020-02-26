@@ -15,12 +15,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data) => {
-        const productId = this.route.snapshot.params['id'];
-        data.products.forEach((p) => {
-          if (p._id == productId) {
-            this.product = p;
-          }
-        });
+        this.product = data.product;
       }
     );
   }

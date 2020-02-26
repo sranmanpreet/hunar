@@ -38,6 +38,7 @@ import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
 import { AllProductsResolverService } from './admin/all-products/all-products-resolver.service';
 import { PricingComponent } from './admin/pricing/pricing.component';
+import { ProductResolverService } from './gallery/product/product-resolver.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, resolve: { products: GalleryProductResolverService } },
@@ -46,11 +47,11 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ForgotPasswordResetComponent },
   { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard], resolve: { addresses: AddressResolverService } },
-  
-  { path: 'administration/manage/products', component: AllProductsComponent, resolve: { products: AllProductsResolverService }},
-  { path: 'administration/manage/product/add', component: AddProductComponent },
-  { path: 'administration/manage/product/:id/pricing', component: PricingComponent },
-  
+
+  { path: 'administration/manage/products', component: AllProductsComponent, canActivate: [AuthGuard], resolve: { products: AllProductsResolverService } },
+  { path: 'administration/manage/product/add', component: AddProductComponent, canActivate: [AuthGuard] },
+  { path: 'administration/manage/product/:id/pricing', component: PricingComponent, canActivate: [AuthGuard], resolve: { product: ProductResolverService } },
+
   {
     path: 'support-requests',
     component: SupportRequestsComponent,
@@ -76,7 +77,7 @@ const routes: Routes = [
         path: 'exclusive-arts', component: MakeToOrderComponent
       },
       { path: 'gallery-of-art', component: GalleryOfArtComponent, resolve: { products: GalleryProductResolverService } },
-      { path: 'gallery-of-art/:id', component: ProductComponent, resolve: { products: GalleryProductResolverService } },
+      { path: 'gallery-of-art/:id', component: ProductComponent, resolve: { product: ProductResolverService } },
       { path: 'advertise', component: AdvertiseComponent }
     ]
   },
