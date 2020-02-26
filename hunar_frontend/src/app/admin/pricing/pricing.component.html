@@ -28,25 +28,34 @@
                         </tr>
                         <tr class="d-flex">
                             <th class="col-md-4">
-                                <select class="form-control form-control-sm" name="artType" [(ngModel)]="selectedArtType">
+                                <select class="form-control form-control-sm" name="artType" [(ngModel)]="selectedArtType" required>
                   <option *ngFor="let artType of artTypes" [value]="artType.name">{{artType.name}}</option>
               </select>
                             </th>
                             <th class="col-md-2">
-                                <select class="form-control form-control-sm" name="artSize" [(ngModel)]="selectedArtSize">
+                                <select class="form-control form-control-sm" name="artSize" [(ngModel)]="selectedArtSize" required>
                   <option *ngFor="let artSize of artSizes" [value]="artSize.value">{{artSize.value}}</option>
                 </select>
                             </th>
                             <th class="col-md-3">
-                                <input class="form-control form-control-sm" type="text" name="price" [(ngModel)]="selectedArtPrice"></th>
+                                <input class="form-control form-control-sm" type="number" name="price" [(ngModel)]="selectedArtPrice" required></th>
                             <th class="col-md-3"><button type="submit" class='btn btn-success'>Add</button></th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr class="d-flex" *ngIf="productService.successMessage || productService.errorMessage">
+                            <td class="col-md-12" *ngIf="productService.successMessage">{{productService.successMessage}}</td>
+                            <td class="col-md-12" *ngIf="productService.errorMessage">{{productService.errorMessage}}</td>
+                        </tr>
                         <tr class="d-flex" *ngFor="let productPrice of productPrices">
                             <td class="col-md-4">{{productPrice.artType}}</td>
                             <td class="col-md-2">{{productPrice.artSize}}</td>
                             <td class="col-md-3">{{productPrice.price}}</td>
+                            <td class="col-md-3">
+                                <div class="remove">
+                                    <a href="JavaScript:(0)" (click)="removePricing(product._id, productPrice._id)" class="remove"><i class="fa fa-trash"></i></a>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

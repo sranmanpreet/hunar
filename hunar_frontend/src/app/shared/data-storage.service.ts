@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Address } from './address.model';
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
+import { Product } from './product.model';
+import { Price } from './prices.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,13 +30,33 @@ export class DataStorageService {
     //    return this.http.post(environment.apiBaseUrl + '/user/reset-password?token=' + token, data);
   }
 
-  fetchGalleryImages() {
-    return this.http.get(environment.apiBaseUrl + '/products');
-  }
+  // administration
 
   fetchAllProducts() {
     return this.http.get(environment.apiBaseUrl + '/all-products');
   }
+
+  addProduct(product: Product) {
+
+  }
+
+  addPricing(productId: String, newPrice: Price) {
+    return this.http.put(environment.apiBaseUrl + '/product/' + productId + '/pricing/add', newPrice);
+  }
+
+  updatePricing() {
+
+  }
+
+  removePricing(productId: String, pricingId: String){
+    return this.http.delete(environment.apiBaseUrl + '/product/' + productId+ '/pricing/' + pricingId);
+  }
+
+
+  fetchGalleryImages() {
+    return this.http.get(environment.apiBaseUrl + '/products');
+  }
+
 
   fetchGalleryImage(itemId) {
     return this.http.get(environment.apiBaseUrl + '/product/' + itemId);

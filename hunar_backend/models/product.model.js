@@ -15,9 +15,18 @@ const Product = mongoose.Schema({
         contentType: String
     },
     pricing: [{
-        artType: String,
-        artSize: String,
-        price: Number
+        artType: {
+            type: String,
+            required: true
+        },
+        artSize: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: Number,
+            required: true
+        }
     }],
     description: {
         type: String,
