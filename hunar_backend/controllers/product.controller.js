@@ -59,7 +59,7 @@ module.exports.updateProduct = (req, res, next) => {
     })
 }
 
-module.exports.addPricingToProduct = (req, res, next) => {
+module.exports.addPricingToProduct = async(req, res, next) => {
     const product_id = req.params.productId;
     let pricing = {
         artType: req.body.artType,
@@ -68,15 +68,17 @@ module.exports.addPricingToProduct = (req, res, next) => {
     };
 
     if (pricing.artType && pricing.artSize && pricing.price) {
-        if (!checkIfDuplicatePricingExist(product_id, pricing)) {
-
-            Product.findOneAndUpdate({ _id: product_id }, { $push: { pricing: pricing } }, { new: true }, function(err, result) {
-                if (err) {
-                    res.status(400).send(err.message);
-                } else {
-                    res.status(201).send(result);
-                }
-            });
+        let duplicatePricing;
+        await Promise.resolve(checkIfDuplicatePricingExist(product_id, pricing)).then((val) => { duplicatePricing = val; });
+        if (!duplicatePricing) {
+            Product.findOneAndUpdate({ _id: product_id }, { $push: { pricing: pricing } }, { new: true },
+                function(err, result) {
+                    if (err) {
+                        res.status(400).send(err.message);
+                    } else {
+                        res.status(201).send(result);
+                    }
+                });
         } else {
             res.status(403).send("Pricing already exists");
         }
@@ -86,7 +88,7 @@ module.exports.addPricingToProduct = (req, res, next) => {
 
 }
 
-module.exports.updatePricingOnProduct = (req, res, next) => {
+module.exports.updatePricingOnProduct = async(req, res, next) => {
     const product_id = req.params.productId;
     const pricing_id = req.params.id;
 
@@ -96,7 +98,10 @@ module.exports.updatePricingOnProduct = (req, res, next) => {
         price: req.body.price
     };
 
-    if (!checkIfDuplicatePricingExist(product_id, pricing, pricing_id)) {
+    let duplicatePricing;
+    await Promise.resolve(checkIfDuplicatePricingExist(product_id, pricing, pricing_id)).then((val) => { duplicatePricing = val; });
+
+    if (!duplicatePricing) {
         Product.findOneAndUpdate({
                 _id: product_id
             }, {
@@ -127,7 +132,7 @@ module.exports.deletePricing = (req, res, next) => {
     const pricing_id = req.params.id;
     Product.findOneAndUpdate({ _id: product_id }, {
             $pull: {
-                pricing: { $elemMatch: { _id: pricing_id } }
+                pricing: { _id: pricing_id }
             }
         }, {
             new: true
@@ -160,32 +165,30 @@ module.exports.deleteProduct = (req, res, next) => {
     });
 }
 
-function checkIfDuplicatePricingExist(productId, newPrice, existingPricingId) {
-    return Product.findOne({ _id: productId }, (err, product) => {
+async function checkIfDuplicatePricingExist(productId, newPrice, existingPricingId) {
+    let pricingExist = false;
+    await Product.findOne({ _id: productId }, (err, product) => {
         if (err) {
-            console.log(err);
-            return false;
+            pricingExist = false;
         }
         if (product) {
-            console.log(product);
             let productPrices = product.pricing;
             let productPricesSize = productPrices.length;
             for (let i = 0; i < productPricesSize; i++) {
                 if (existingPricingId != undefined) {
                     if (productPrices[i]._id == existingPricingId) {
-                        console.log("continueeeeeeee");
-                        continue;
+                        pricingExist = false;
+                        break;
                     }
                 }
                 if (productPrices[i].artType === newPrice.artType) {
                     if (productPrices[i].artSize === newPrice.artSize) {
-                        console.log("Duplicate existsss");
-                        return true;
+                        pricingExist = true;
+                        break;
                     }
                 }
             }
-            console.log("Duplicate doesn't exist");
-            return false;
         }
     });
+    return pricingExist;
 }

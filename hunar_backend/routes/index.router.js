@@ -35,7 +35,7 @@ router.put('/product/:id', ctrlGallery.updateProduct);
 router.put('/product/:productId/pricing/add', ctrlGallery.addPricingToProduct);
 
 // update pricing on product
-router.put('/product/:productId/pricing/update', ctrlGallery.updatePricingOnProduct);
+router.put('/product/:productId/pricing/update/:id', ctrlGallery.updatePricingOnProduct);
 
 // delete pricing on product
 router.delete('/product/:productId/pricing/:id', ctrlGallery.deletePricing);

@@ -5,8 +5,7 @@ import { ArtTypes, ArtSizes } from 'src/app/order/make-to-order/make-to-order.co
 import { Price } from 'src/app/shared/prices.model';
 import { PricingService } from 'src/app/shared/pricing.service';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
@@ -17,7 +16,6 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
 export class PricingComponent implements OnInit, OnDestroy {
   product: Product;
   productPrices: Price[];
-  pricingSubscription: Subscription;
   artTypes: ArtTypes[] = [
     { name: 'Digital' },
     { name: 'Water Colors' },
@@ -35,8 +33,12 @@ export class PricingComponent implements OnInit, OnDestroy {
   selectedArtType: string;
   selectedArtSize: string;
   selectedArtPrice: number;
+  selectedArtPricingId: string;
 
-  constructor(private productService: ProductService, private pricingService: PricingService, private dataService: DataStorageService, private route: ActivatedRoute) { }
+  errorMessage: String;
+  successMessage: String;
+
+  constructor(private productService: ProductService, private pricingService: PricingService, private dataService: DataStorageService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -60,13 +62,43 @@ export class PricingComponent implements OnInit, OnDestroy {
       this.dataService.addPricing(this.product["_id"], newPrice).subscribe(
         (product: Product) => {
           this.product = product;
+          this.showMessage("Pricing added", true);
+          f.reset();
         },
         (err) => {
           console.log(err);
+          this.showMessage(err.error, false);
         }
       )
     } else {
-      alert("Invalid pricing data");
+      this.showMessage("Invalid pricing data", false);
+    }
+  }
+
+  setFormForPricingUpdate(pricingId, artType, artSize, price) {
+    this.selectedArtPricingId = pricingId;
+    this.selectedArtType = artType;
+    this.selectedArtSize = artSize;
+    this.selectedArtPrice = price;
+  }
+
+  updatePricing(f: NgForm) {
+    if (f.valid) {
+      const updatedPricing = new Price(f.value.artType, f.value.artSize, f.value.price);
+      this.dataService.updatePricing(this.product["_id"], updatedPricing, this.selectedArtPricingId).subscribe(
+        (product: Product) => {
+          this.product = product;
+          this.showMessage("Pricing updated", true);
+          f.reset();
+          this.selectedArtPricingId = "";
+        },
+        (err) => {
+          console.log(err);
+          this.showMessage(err.error, false);
+        }
+      )
+    } else {
+      this.showMessage("Invalid pricing data", false);
     }
   }
 
@@ -74,12 +106,38 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.dataService.removePricing(productId, pricingId).subscribe(
       (product: Product) => {
         this.product = product;
+        this.showMessage("Pricing deleted", true);
+      },
+      (err) => {
+        this.showMessage(err.error, false);
       }
     );
   }
 
+  showMessage(message: String, success: Boolean) {
+    if (success) {
+      this.successMessage = message;
+    } else {
+      this.errorMessage = message;
+    }
+    setTimeout(
+      () => {
+        this.errorMessage = "";
+        this.successMessage = "";
+      }, 3000);
+  }
+
+  editProduct(product: Product){
+    this.productService.setProduct(product);
+    this.router.navigateByUrl('administration/manage/product/add');
+    console.log(product);
+  }
+
+  resetForm(f: NgForm){
+    f.reset();
+  }
+
   ngOnDestroy() {
-    this.pricingSubscription.unsubscribe();
   }
 
 }

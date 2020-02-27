@@ -44,12 +44,12 @@ export class DataStorageService {
     return this.http.put(environment.apiBaseUrl + '/product/' + productId + '/pricing/add', newPrice);
   }
 
-  updatePricing() {
-
+  updatePricing(productId: String, updatedPricing: Price, pricingId: String) {
+    return this.http.put(environment.apiBaseUrl + '/product/' + productId + '/pricing/update/' + pricingId, updatedPricing);
   }
 
-  removePricing(productId: String, pricingId: String){
-    return this.http.delete(environment.apiBaseUrl + '/product/' + productId+ '/pricing/' + pricingId);
+  removePricing(productId: String, pricingId: String) {
+    return this.http.delete(environment.apiBaseUrl + '/product/' + productId + '/pricing/' + pricingId);
   }
 
 

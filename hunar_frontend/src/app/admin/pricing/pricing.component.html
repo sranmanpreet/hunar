@@ -1,20 +1,22 @@
 <div class="container" *ngIf="product">
+    <h4><span class="bold">Name: </span> {{product.name}} <button class="btn btn-primary edit-product-button" (click)="editProduct(product)">Edit Product</button></h4>
+    <span class="bold">Id: </span>{{product._id}}
     <div class="row">
-        <div class="col-md-3 sub-container">
-            <span class="bold">Name: </span> {{product.name}} <br> <span class="bold">Id: </span>{{product._id}}
+        <!--     <div class="col-md-3 sub-container">
+            <span class="bold">Name: </span> {{product.name}}
+        </div> -->
+        <div class="col-md-7 sub-container">
+            <img class="img-fluid img-thumbnail" src="{{product.url}}" alt="{{product.name}}.jpg">
         </div>
-        <div class="col-md-4 sub-container">
+        <div class="col-md-5 sub-container">
             <div>
                 <span class="bold">Description:</span> {{product.description}}
             </div>
         </div>
-        <div class="col-md-5 sub-container">
-            <img class="img-fluid img-thumbnail" src="{{product.url}}" alt="{{product.name}}.jpg">
-        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form #addPricingForm='ngForm' (ngSubmit)="addPricing(addPricingForm)">
+            <form #addPricingForm='ngForm' (ngSubmit)="selectedArtPricingId? updatePricing(addPricingForm): addPricing(addPricingForm)">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -25,6 +27,14 @@
                             <th class="col-md-2">Art Size</th>
                             <th class="col-md-3">Price</th>
                             <th class="col-md-3">Action</th>
+                        </tr>
+                        <tr class="d-flex" *ngIf="successMessage || errorMessage">
+                            <th class="col-md-12 text-center message">
+                                <p>
+                                    <span class="success" *ngIf="successMessage">{{successMessage}}</span>
+                                    <span class="error" *ngIf="errorMessage">{{errorMessage}}</span>
+                                </p>
+                            </th>
                         </tr>
                         <tr class="d-flex">
                             <th class="col-md-4">
@@ -38,22 +48,28 @@
                 </select>
                             </th>
                             <th class="col-md-3">
-                                <input class="form-control form-control-sm" type="number" name="price" [(ngModel)]="selectedArtPrice" required></th>
-                            <th class="col-md-3"><button type="submit" class='btn btn-success'>Add</button></th>
+                                <input class="form-control form-control-sm" type="number" name="price" [(ngModel)]="selectedArtPrice" required>
+                                <input class="form-control form-control-sm" type="text" name="pricingId" [(ngModel)]="selectedArtPricingId" hidden></th>
+                            <th class="col-md-3">
+                                <div class="fa-icon">
+                                    <a href="JavaScript:(0)" *ngIf="selectedArtType || selectedArtSize || selectedArtPrice" (click)="resetForm(addPricingForm)" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                </div>
+                                <button *ngIf="!selectedArtPricingId" type="submit" class='btn btn-success'>Add Pricing</button>
+                                <button *ngIf="selectedArtPricingId" type="submit" class='btn btn-success'>Update Pricing</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="d-flex" *ngIf="productService.successMessage || productService.errorMessage">
-                            <td class="col-md-12" *ngIf="productService.successMessage">{{productService.successMessage}}</td>
-                            <td class="col-md-12" *ngIf="productService.errorMessage">{{productService.errorMessage}}</td>
-                        </tr>
                         <tr class="d-flex" *ngFor="let productPrice of product.pricing">
                             <td class="col-md-4">{{productPrice.artType}}</td>
                             <td class="col-md-2">{{productPrice.artSize}}</td>
                             <td class="col-md-3">{{productPrice.price}}</td>
                             <td class="col-md-3">
-                                <div class="remove">
+                                <div class="fa-icon">
                                     <a href="JavaScript:(0)" (click)="removePricing(product._id, productPrice._id)" class="remove"><i class="fa fa-trash"></i></a>
+                                </div>
+                                <div class="fa-icon" matTooltip="Edit pricing">
+                                    <a href="JavaScript:(0)" (click)="setFormForPricingUpdate(productPrice._id, productPrice.artType, productPrice.artSize, productPrice.price)" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 </div>
                             </td>
                         </tr>

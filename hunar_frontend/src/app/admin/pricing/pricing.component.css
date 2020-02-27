@@ -1,5 +1,4 @@
 .sub-container {
-    max-height: 150px;
     font-size: 80%;
     margin-top: 10px;
 }
@@ -14,8 +13,16 @@
 }
 
 .sub-container img {
-    max-height: 125px;
+    max-height: 350px;
     width: auto;
+}
+
+.btn {
+    margin-left: 5px;
+}
+
+.edit-product-button {
+    float: right;
 }
 
 .bold {
@@ -27,6 +34,28 @@
     ;
 }
 
-.remove {
+.fa-icon {
+    display: inline;
+}
+
+.fa-icon a {
     color: grey;
+    margin: 5px;
+}
+
+.message {
+    font-size: 0.8rem;
+    margin: 0px;
+    padding: 0px;
+    background-color: antiquewhite;
+}
+
+.message .success {
+    padding-top: 10px;
+    color: green;
+}
+
+.message .error {
+    padding-top: 10px;
+    color: red;
 }

@@ -14,6 +14,7 @@ const desc = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi 
 export class ProductService {
   images: Product[];
   allProducts: Product[];
+  productToBeEdited: Product;
 
   constructor(private dataService: DataStorageService) { }
 
@@ -48,6 +49,10 @@ export class ProductService {
         return err;
       }
     ));
+  }
+
+  setProduct(product: Product){
+    this.productToBeEdited = product;
   }
 
 }
