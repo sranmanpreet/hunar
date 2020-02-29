@@ -19,9 +19,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService, private pricingService: PricingService) { }
 
   ngOnInit() {
-    this.name =  this.productService.productToBeEdited.name;
-    this.description =  this.productService.productToBeEdited.description;
-    this.image =  this.productService.productToBeEdited.url;
+    if(this.productService.productToBeEdited){
+      this.name =  this.productService.productToBeEdited.name;
+      this.description =  this.productService.productToBeEdited.description;
+      this.image =  this.productService.productToBeEdited.url;
+    }
   }
 
   onFileSelect(event) {

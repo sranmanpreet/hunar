@@ -1,10 +1,19 @@
-<div class="wrapper1">
-    <h3 class="text-center">Add Product</h3>
+<div class="container">
+    <h3 class="text-center">{{!productService.productToBeEdited? 'Add Product' : 'Edit Product'}}</h3>
     <hr>
     <div class="wrapper">
         <form #addProductForm='ngForm' (ngSubmit)="onAddProduct(addProductForm)">
             <div class="row">
-                <div class="col-md-3 col-xs-12">
+                <div class="col-md-7 text-center">
+                    <br>
+                    <div class="img-holder">
+                        <label *ngIf="!photo" for="file-upload" class="img-input">Upload Product Image</label>
+                        <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
+                        <img class='selectedImage img-fluid' [src]="image" alt="" *ngIf="photo">
+                    </div>
+                    <label *ngIf="photo" for="file-upload" class="img-change">Change Image</label>
+                </div>
+                <div class="col-md-5 col-xs-12">
                     <div class="form-group">
                         <label for="productName">Product Name</label>
                         <input type="email" class="form-control form-control-sm" name="productName" [(ngModel)]="name" placeholder="e.g. Mona Lisa">
@@ -15,18 +24,10 @@
                         <textarea class="form-control form-control-sm" name="description" [(ngModel)]="description" rows="6" placeholder="e.g. The Mona Lisa is an oil painting by Italian artist, inventor, and writer Leonardo da Vinci. Likely completed in 1506, the piece features a portrait of a seated woman set against an imaginary landscape. "></textarea>
                     </div>
                     <div class="control">
-                        <button type="submit" mat-raised-button color="accent">Add Product</button>
+                        <button type="submit" mat-raised-button color="accent">Save Product</button>
                     </div>
                 </div>
-                <div class="col-md-4 text-center">
-                    <br>
-                    <div class="img-holder">
-                        <label *ngIf="!photo" for="file-upload" class="img-input">Upload Product Image</label>
-                        <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
-                        <img class='selectedImage img-fluid' [src]="image" alt="" *ngIf="photo">
-                    </div>
-                    <label *ngIf="photo" for="file-upload" class="img-change">Change Picture</label>
-                </div>
+
 
             </div>
         </form>

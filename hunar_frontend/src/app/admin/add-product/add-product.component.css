@@ -1,62 +1,39 @@
-.wrapper1 {
-    background-color: rgb(243, 243, 243);
-    padding: 10px;
-    margin: 20px 0;
+::placeholder {
+    color: rgb(190, 190, 190);
+    opacity: 0.8;
 }
-
-.how-to {
-    height: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.wrapper {
-    background-color: rgb(243, 243, 243);
-    padding: 10px;
-    margin: 20px 0;
-}
-
-
-/* .btn {
-    width: fit-content;
-    border-radius: 0;
-    color: white;
-    background-color: #4B378F;
-    box-shadow: 3px 3px 3px grey;
-    margin: 0px;
-}
-
-.btn:hover,
-.btn:active {
-    background-color: white;
-    color: #4B378F;
-} */
 
 .img-input {
-    margin: 40px;
-    border: 1px solid #ccc;
-    display: inline-block;
+    font-size: small;
+    border: 1px solid rgb(44, 44, 44);
     padding: 6px 12px;
     cursor: pointer;
+    margin: 0;
+    color: white;
+    background-color: black;
 }
 
 .img-input:hover {
-    color: green;
-    border: 1px solid green;
+    color: black;
+    background-color: white;
+    border: 1px solid grey;
 }
 
 .img-change {
+    font-size: small;
     margin: 5px;
     border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
+    color: white;
+    background-color: black;
 }
 
 .img-change:hover {
-    color: green;
-    border: 1px solid green;
+    color: black;
+    background-color: white;
+    border: 1px solid grey;
 }
 
 .selectedImage {
@@ -76,8 +53,7 @@
 }
 
 .control {
-    /* margin: 20px 5px; */
-    margin: 20px auto;
+    margin: 20px 0;
     min-width: 210px;
     max-width: 250px;
     padding: 0;
@@ -91,34 +67,12 @@ label {
     white-space: nowrap;
 }
 
-.dateinput {
-    width: 100%;
-}
-
-.dropdown-menu {
-    margin: 0px;
-    border: none;
-    border-radius: 0 0 5px 5px;
-    width: 100%;
-    padding: 0 0 3px 0;
-    box-shadow: 3px 3px 3px grey;
-}
-
-.dropdown-item {
-    text-align: center;
-}
-
-.dropdown-item:hover {
-    background-color: rgb(210, 210, 211);
-}
-
 .img-holder {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    padding: 5px;
     width: auto;
     text-align: center;
-    padding: 2px;
+    position: relative;
+    min-height: 100px;
 }
 
 .img-holder img {
@@ -127,37 +81,4 @@ label {
 
 #file-upload {
     display: none;
-}
-
-
-/* Small devices (landscape phones, 576px and up)*/
-
-@media (min-width: 576px) {
-    .img-input {
-        margin-top: 100px;
-    }
-}
-
-
-/* Medium devices (tablets, 768px and up)*/
-
-@media (min-width: 768px) {
-    .img-holder {
-        min-height: 380px;
-    }
-    .img-input {
-        margin-top: 140px;
-    }
-}
-
-
-/* Large devices (desktops, 992px and up)*/
-
-@media (min-width: 992px) {
-    .img-holder {
-        min-height: 420px;
-    }
-    .img-input {
-        margin-top: 170px;
-    }
 }
