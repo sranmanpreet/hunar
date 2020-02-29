@@ -1,435 +1,435 @@
 .landing {
-  background-image: url('../../assets/images/home5.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 110vh;
-  z-index: -1;
+    background-image: url('../../assets/images/home5.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 110vh;
+    z-index: -1;
 }
 
 .landing2,
 .landing3,
 .landing4 {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 50vh;
-  z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 50vh;
+    z-index: -1;
 }
 
 .landing5 {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 80vh;
-  z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 80vh;
+    z-index: -1;
 }
 
 .landing2 {
-  background-image: url('../../assets/images/home10.jpg');
+    background-image: url('../../assets/images/home10.jpg');
 }
 
 .landing3 {
-  background-image: url('../../assets/images/asd5.jpg');
+    background-image: url('../../assets/images/asd5.jpg');
 }
 
 .landing4 {
-  background-image: url('../../assets/images/contact_us.jpg');
+    background-image: url('../../assets/images/contact_us.jpg');
 }
 
 .landing5 {
-  background-image: url('../../assets/images/asd_new.jpg');
+    background-image: url('../../assets/images/asd_new.jpg');
 }
 
 .navhide {
-  position: absolute;
-  top: -50px;
+    position: absolute;
+    top: -50px;
 }
 
 .home-wrap {
-  padding: 5vw 2vw;
+    padding: 5vw 2vw;
 }
 
-.welcome{
-  color: white;
-  text-shadow: 1px 1px 14px rgb(59, 59, 59);
+.welcome {
+    color: white;
+    text-shadow: 1px 1px 14px rgb(59, 59, 59);
 }
 
-.welcome h1{
-  font-size: 3rem;
+.welcome h1 {
+    font-size: 3rem;
 }
 
-.welcome button{
-  padding-left: 5vw;
-  padding-right: 5vw;
-  border-radius: 23px;
+.welcome button {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border-radius: 23px;
 }
 
-.cap-1{
-  visibility: hidden;
-  animation-name: "cap";
-  animation-duration: 8s;
-  animation-delay: 0s;
-  animation-iteration-count: infinite;
-}
-.cap-2{
-  visibility: hidden;
-  animation-name: "cap";
-  animation-duration: 8s;
-  animation-delay: 2s;
-  animation-iteration-count: infinite;
-}
-.cap-3{
-  visibility: hidden;
-  animation-name: "cap";
-  animation-duration: 8s;
-  animation-delay: 4s;
-  animation-iteration-count: infinite;
-}
-.cap-4{
-  visibility: hidden;
-  animation-name: "cap";
-  animation-duration: 8s;
-  animation-delay: 6s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes cap{
-  0% {
-    opacity: 0;
+.cap-1 {
     visibility: hidden;
-  }
-  25% {
-    visibility: visible;
-    opacity: 1;
-  }
-  50%{
-    opacity: 0;
+    animation-name: "cap";
+    animation-duration: 8s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+}
+
+.cap-2 {
     visibility: hidden;
-  }
-  75%{
-    opacity: 0;
+    animation-name: "cap";
+    animation-duration: 8s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+}
+
+.cap-3 {
     visibility: hidden;
-  }
-  100% {
-    opacity: 0;
+    animation-name: "cap";
+    animation-duration: 8s;
+    animation-delay: 4s;
+    animation-iteration-count: infinite;
+}
+
+.cap-4 {
     visibility: hidden;
-  }
+    animation-name: "cap";
+    animation-duration: 8s;
+    animation-delay: 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes cap {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    25% {
+        visibility: visible;
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    75% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .products h2,
 .popular-arts h2,
 .art-on-demand h2,
 .our-clients h2 {
-  font-family: Roboto, Arial, sans-serif;
-  color: rgb(59, 59, 59);
-  text-shadow: 5px 5px 25px rgb(59, 59, 59);
-  margin: 5vh 0;
+    font-family: Roboto, Arial, sans-serif;
+    color: rgb(59, 59, 59);
+    text-shadow: 5px 5px 25px rgb(59, 59, 59);
+    margin: 5vh 0;
 }
 
-.our-clients{
-  margin: 6vh 0;
+.our-clients {
+    margin: 6vh 0;
 }
 
 .advertise h2 {
-  font-family: Roboto, Arial, sans-serif;
-  color: darkturquoise;
-  font-size: 2rem;
-  text-shadow: 1px 1px 3px rgb(0, 0, 0);
-  margin: 5vh 0;
-  opacity: 0.8;
+    font-family: Roboto, Arial, sans-serif;
+    color: darkturquoise;
+    font-size: 2rem;
+    text-shadow: 1px 1px 3px rgb(0, 0, 0);
+    margin: 5vh 0;
+    opacity: 0.8;
 }
 
-.advertise-highlight{
-  padding-top: 5%;
+.advertise-highlight {
+    padding-top: 5%;
 }
 
 .advertise-highlight h3 {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 .block-advertise {
-  padding: 3vw;
-  font-family: cursive;
-  background-color: rgb(110, 110, 110);
-  opacity: 0.8;
-  color: rgb(255, 255, 255);
+    padding: 3vw;
+    font-family: cursive;
+    background-color: rgb(110, 110, 110);
+    opacity: 0.8;
+    color: rgb(255, 255, 255);
 }
 
 .product-title {
-  padding: 2vw;
+    padding: 2vw;
 }
 
 .art-on-demand-title {
-  padding: 1vw 2vw 2vw;
+    padding: 1vw 2vw 2vw;
 }
 
 .product-title:hover {
-  cursor: pointer;
-  color: cadetblue;
+    cursor: pointer;
+    color: cadetblue;
 }
 
 .product {
-  opacity: 1;
-  transition: .5s ease;
-  backface-visibility: hidden;
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
 }
 
 .middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  text-align: justify;
-  padding: 15px;
-  margin: 0;
-  width: 90%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    text-align: justify;
+    padding: 15px;
+    margin: 0;
+    width: 90%;
 }
 
 .text {
-  width: 100%;
-  color: white;
-  font-size: 16px;
-  background-color: rgb(95, 141, 143);
-  padding: 2%;
-  opacity: 0.8;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    background-color: rgb(95, 141, 143);
+    padding: 2%;
+    opacity: 0.8;
 }
 
 .visit-gallery-middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  bottom: 38%;
-  left: 5%;
-  text-align: justify;
-  padding: 15px;
-  margin: 0;
-  width: 90%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 38%;
+    left: 5%;
+    text-align: justify;
+    padding: 15px;
+    margin: 0;
+    width: 90%;
 }
 
-
 .visit-gallery-text {
-  text-align: center;
-  width: 100%;
-  color: rgb(255, 255, 255);
-  font-size: 16px;
-  background-color: rgb(0, 28, 29);
-  padding: 2%;
-  opacity: 0.8;
+    text-align: center;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    background-color: rgb(0, 28, 29);
+    padding: 2%;
+    opacity: 0.8;
 }
 
 .order-now-text {
-  text-align: center;
-  width: 100%;
-  color: rgb(255, 255, 255);
-  font-size: 16px;
-  background-color: rgb(0, 28, 29);
-  padding: 2%;
-  opacity: 0.8;
+    text-align: center;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    background-color: rgb(0, 28, 29);
+    padding: 2%;
+    opacity: 0.8;
 }
 
 .order-now-middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  bottom: 38%;
-  left: 5%;
-  text-align: justify;
-  padding: 15px;
-  margin: 0;
-  width: 90%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 38%;
+    left: 5%;
+    text-align: justify;
+    padding: 15px;
+    margin: 0;
+    width: 90%;
 }
 
 @keyframes offers-anim {
-  0% {
-    top: 0%;
-    left: 0%;
-  }
-
-  100% {
-    top: 10%;
-    left: 5%;
-  }
+    0% {
+        top: 0%;
+        left: 0%;
+    }
+    100% {
+        top: 10%;
+        left: 5%;
+    }
 }
 
 @keyframes popularArts-anim {
-  0% {
-    bottom: 0%;
-    left: 0%;
-  }
-
-  100% {
-    bottom: 38%;
-    left: 5%;
-  }
+    0% {
+        bottom: 0%;
+        left: 0%;
+    }
+    100% {
+        bottom: 38%;
+        left: 5%;
+    }
 }
 
 .col-md-4:hover .product,
 .col-md-3:hover .product {
-  opacity: 0.3;
+    opacity: 0.3;
 }
 
 .col-md-4:hover .middle,
 .col-md-3:hover .middle {
-  opacity: 1;
-  animation: "offers-anim"1s;
+    opacity: 1;
+    animation: "offers-anim"1s;
 }
 
 .col-md-3:hover .popular-art,
 .col-sm-4:hover .popular-art {
-  opacity: 0.3;
+    opacity: 0.3;
 }
 
 .col-md-3:hover .visit-gallery-middle,
 .col-sm-4:hover .visit-gallery-middle {
-  opacity: 1;
-  animation: "popularArts-anim"0.3s;
+    opacity: 1;
+    animation: "popularArts-anim"0.3s;
 }
 
 .col-md-3:hover .art-on-demand,
 .col-sm-4:hover .art-on-demand {
-  opacity: 0.3;
+    opacity: 0.3;
 }
 
 .col-md-3:hover .order-now-middle,
 .col-sm-4:hover .order-now-middle {
-  opacity: 1;
-  animation: "popularArts-anim"0.3s;
+    opacity: 1;
+    animation: "popularArts-anim"0.3s;
 }
 
 .products .row div:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .order-now-text:hover {
-  cursor: pointer;
-  color: aqua;
+    cursor: pointer;
+    color: aqua;
 }
 
 .order-now-text:active {
-  color: rgb(2, 124, 124);
+    color: rgb(2, 124, 124);
 }
 
 .popular-art {
-  width: 300px;
-  height: 400px;
-  object-fit: contain;
-  border: none;
+    width: 300px;
+    height: 400px;
+    object-fit: contain;
+    border: none;
 }
 
 .visit-gallery-text:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .popular-art:hover {
-  opacity: 0.5;
-  transition: 0.3s;
+    opacity: 0.5;
+    transition: 0.3s;
 }
 
 .visit-gallery-text:hover {
-  cursor: pointer;
-  color: aqua;
+    cursor: pointer;
+    color: aqua;
 }
 
 .visit-gallery-text:active {
-  color: rgb(2, 124, 124);
+    color: rgb(2, 124, 124);
 }
 
-
 .clientLogo {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
 }
 
 .clients-wrapper {
-  background: white;
+    background: white;
 }
 
 .advertise {
-  margin: 2.5vw;
-  color: white;
-  text-align: center;
-  padding: 2.5vw 10vw;
+    margin: 2.5vw;
+    color: white;
+    text-align: center;
+    padding: 2.5vw 10vw;
 }
 
 .contact-us {
-  text-align: center;
+    text-align: center;
 }
 
 
 /* Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) {
-  .clientLogo {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-  }
 
-  .advertise h2 {
-    font-size: 2rem;
-  }
-  .welcome h1{
-    font-size: 4rem;
-  }
+@media (min-width: 576px) {
+    .clientLogo {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+    }
+    .advertise h2 {
+        font-size: 2rem;
+    }
+    .welcome h1 {
+        font-size: 4rem;
+    }
 }
+
 
 /* Medium devices (tablets, 768px and up)*/
+
 @media (min-width: 768px) {
-  .clientLogo {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-  }
-
-  .advertise h2 {
-    font-size: 2rem;
-  }
-
-  .advertise-highlight h3 {
-    font-size: 1.6rem;
-  }
-  .welcome h1{
-    font-size: 4rem;
-  }
+    .clientLogo {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+    }
+    .advertise h2 {
+        font-size: 2rem;
+    }
+    .advertise-highlight h3 {
+        font-size: 1.6rem;
+    }
+    .welcome h1 {
+        font-size: 4rem;
+    }
 }
+
 
 /* Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
-  .clientLogo {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-  }
 
-  .advertise h2 {
-    font-size: 1.7rem;
-  }
-  .welcome h1{
-    font-size: 4rem;
-  }
+@media (min-width: 992px) {
+    .clientLogo {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+    }
+    .advertise h2 {
+        font-size: 1.7rem;
+    }
+    .welcome h1 {
+        font-size: 4rem;
+    }
 }
 
+
 /* Extra large devices (large desktops, 1200px and up)*/
+
 @media (min-width: 1200px) {
-  .clientLogo {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-  }
-
-  .advertise h2 {
-    font-size: 3rem;
-  }
-
-  .advertise-highlight h3 {
-    font-size: 1.8rem;
-  }
-  .welcome h1{
-    font-size: 5rem;
-  }
+    .clientLogo {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+    }
+    .advertise h2 {
+        font-size: 3rem;
+    }
+    .advertise-highlight h3 {
+        font-size: 1.8rem;
+    }
+    .welcome h1 {
+        font-size: 5rem;
+    }
 }

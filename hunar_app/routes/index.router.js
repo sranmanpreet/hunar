@@ -6,7 +6,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, "./public/frontend/src/assets/products/");
     },
     filename: function(req, file, cb) {
         cb(null, dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname);
