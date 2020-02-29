@@ -1,8 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const csrf = require('csurf');
+const dateFormat = require('dateformat');
 const multer = require('multer');
-const upload = multer({ dest: "uploads/" });
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname);
+    }
+});
+
+const upload = multer({
+    storage: storage
+});
 
 const jwtHelper = require('../config/jwtHelper');
 const ctrlGallery = require('../controllers/product.controller');

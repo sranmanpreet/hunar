@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col md-5 col-sm-5 col-xs-12">
+        <h4>{{ galleryItem.name}}</h4>
+        <p>{{galleryItem.description}}</p>
+    </div>
+
+    <div class="col-md-7 col-sm-7 col-xs-12 img-holder">
+        <img class="img-fluid img-thumbnail" src="{{galleryItem.url}}" alt="" (click)="openImage()">
+        <br>
+        <button mat-raised-button color="primary" (click)="openDialog(galleryItem)">Add to Cart</button>
+    </div>
+
+    <div class='no-img-model' [ngClass]="{'img-modal': modelOpen}">
+        <span class="close" (click)="closeImage()">&times;</span>
+        <img class="modal-content" src="{{galleryItem.url}}" alt=""><br>
+        <div id="caption">{{ galleryItem.name}} &nbsp;<button mat-raised-button color="basic" (click)="openDialog(galleryItem)">Add to Cart</button></div>
+    </div>
+</div>

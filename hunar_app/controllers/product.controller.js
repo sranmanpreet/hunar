@@ -30,9 +30,10 @@ module.exports.getProduct = (req, res, next) => {
 }
 
 module.exports.addProduct = (req, res, next) => {
+    console.log(req.file);
     let newProduct = new Product({
         name: req.body.name,
-        url: req.body.url,
+        url: req.file.path,
         description: req.body.description,
     });
 
