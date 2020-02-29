@@ -33,7 +33,7 @@ module.exports.addProduct = (req, res, next) => {
     console.log(req.file);
     let newProduct = new Product({
         name: req.body.name,
-        url: req.file.path,
+        url: req.file.path.slice(20),
         description: req.body.description,
     });
 

@@ -51,6 +51,10 @@ export class ProductService {
     ));
   }
 
+  addProduct(product: Product){
+    
+  }
+
   setProduct(product: Product){
     this.productToBeEdited = product;
   }
