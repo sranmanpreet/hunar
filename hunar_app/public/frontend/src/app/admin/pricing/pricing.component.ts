@@ -130,7 +130,6 @@ export class PricingComponent implements OnInit, OnDestroy {
   editProduct(product: Product){
     this.productService.setProduct(product);
     this.router.navigateByUrl('administration/manage/product/add');
-    console.log(product);
   }
 
   resetForm(f: NgForm){

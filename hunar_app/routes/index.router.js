@@ -42,7 +42,7 @@ router.get('/product/:itemId', ctrlGallery.getProduct);
 router.post('/product/add', upload.single('productImage'), ctrlGallery.addProduct);
 
 // update product
-router.put('/product/:id', ctrlGallery.updateProduct);
+router.put('/product/:id', upload.single('productImage'), ctrlGallery.updateProduct);
 
 // add pricing to product
 router.put('/product/:productId/pricing/add', ctrlGallery.addPricingToProduct);

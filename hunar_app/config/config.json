@@ -14,7 +14,8 @@
         "SESSION_NAME": "sidms",
         "SESS_LIFETIME": 8640000,
         "EMAIL_USER": "handlwidcare@gmail.com",
-        "EMAIL_PASS": "Handle!0001"
+        "EMAIL_PASS": "Handle!0001",
+        "PRODUCT_IMAGES_BASE_PATH": "public/frontend/src/"
     },
     "production": {
         "PORT": 80,

@@ -5,28 +5,26 @@
             <tr class="d-flex">
                 <th class="col-md-2 td-container">Product</th>
                 <th class="col-md-2 td-container">Name</th>
-                <th class="col-md-3 td-container">Description</th>
-                <th class="col-md-3 td-container">Id</th>
-                <th class="col-md-1 td-container">Actions</th>
+                <th class="col-md-6 td-container">Description</th>
+                <th class="col-md-2 td-container">Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr class="d-flex" *ngFor="let product of products">
                 <td class="col-md-2 td-container"><img class="img-fluid img-thumbnail" src="{{product.url}}" alt="{{product.name}}.jpg"></td>
                 <td class="col-md-2 td-container">{{product.name}}</td>
-                <td class="col-md-3 td-container">
+                <td class="col-md-6 td-container">
                     <div>{{product.description}}</div>
                 </td>
-                <td class="col-md-3 td-container">{{product._id}}</td>
                 <td class="col-md-2 td-container">
                     <div class="fa-icon">
                         <a href="JavaScript:(0)" (click)="viewPricingDetails(product)" class="remove">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <i class="fa fa-pencil-square-o" matTooltip="Edit Product / Pricing" aria-hidden="true"></i>
                         </a>
                     </div>
                     <div class="fa-icon">
                         <a href="JavaScript:(0)" (click)="deleteProduct(product._id)" class="remove">
-                            <i class="fa fa-trash"></i>
+                            <i class="fa fa-trash" matTooltip="Delete Product"></i>
                         </a>
                     </div>
                 </td>

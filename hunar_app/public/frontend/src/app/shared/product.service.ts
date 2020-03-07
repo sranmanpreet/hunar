@@ -54,6 +54,11 @@ export class ProductService {
   addProduct(product: any){
     return this.dataService.addProduct(product);
   }
+  
+  updateProduct(product: any, productId: string){
+    console.log(product);
+    return this.dataService.updateProduct(product, productId);
+  }
 
   deleteProduct(productId: String){
     return this.dataService.deleteProduct(productId);

@@ -40,6 +40,10 @@ export class DataStorageService {
     return this.http.post(environment.apiBaseUrl + '/product/add', product);
   }
 
+  updateProduct(product: any, productId: string) {
+    return this.http.put(environment.apiBaseUrl + '/product/' + productId, product);
+  }
+
   deleteProduct(productId: String) {
     return this.http.delete(environment.apiBaseUrl + '/product/' + productId);
   }

@@ -31,35 +31,77 @@ module.exports.getProduct = (req, res, next) => {
 }
 
 module.exports.addProduct = (req, res, next) => {
-    console.log(req.body);
-    console.log(req.file);
-    let newProduct = new Product({
-        name: req.body.name,
-        url: req.file.path.slice(20),
-        description: req.body.description,
-    });
+    if (req.body.name && req.file && req.body.description) {
 
-    newProduct.save((err, product) => {
-        if (err) {
-            res.status(500).json({
-                status: false,
-                message: 'Failed to add product. ErrorCode- 1001',
-                error: err
-            });
-        } else {
-            res.send(product);
-        }
-    });
+        let newProduct = new Product({
+            name: req.body.name,
+            url: req.file.path.slice(20),
+            description: req.body.description
+        });
+
+        newProduct.save((err, product) => {
+            if (err) {
+                res.status(500).json({
+                    status: false,
+                    message: 'Failed to add product. ErrorCode- 1001',
+                    error: err
+                });
+            } else {
+                res.send(product);
+            }
+        });
+
+    } else {
+        res.send("Invalid product");
+    }
 }
 
-module.exports.updateProduct = (req, res, next) => {
-    Product.findOneAndUpdate({ _id: req.params.id }, { $set: { name: req.body.name, description: req.body.description } }, { new: true }, function(err, product) {
-        if (err) {
-            res.send(err);
+module.exports.updateProduct = async(req, res, next) => {
+    if (req.body.name || req.body.description || req.file) {
+        let product;
+        let currentImageUrl;
+        if (req.file) {
+            product = {
+                name: req.body.name,
+                url: req.file.path.slice(20),
+                description: req.body.description
+            }
+            await Product.findOne({ _id: req.params.id }, function(err, product) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    currentImageUrl = process.env.PRODUCT_IMAGES_BASE_PATH + product.url;
+                }
+            })
         } else {
-            res.send(product);
+            product = {
+                name: req.body.name,
+                description: req.body.description
+            }
         }
-    })
+
+        Product.findOneAndUpdate({ _id: req.params.id }, { $set: product }, { new: true }, function(err, product) {
+            if (err) {
+                res.send(err);
+            } else {
+                if (currentImageUrl) {
+                    try {
+                        fs.unlinkSync(currentImageUrl);
+                    } catch (err) {
+                        if (err.code === 'ENOENT') {
+                            console.log('File not found at : ' + currentImageUrl);
+                        } else {
+                            throw err;
+                        }
+                    }
+                }
+                res.send(product);
+            }
+        });
+
+    } else {
+        res.send("Invalid product data");
+    }
 }
 
 module.exports.addPricingToProduct = async(req, res, next) => {
@@ -155,8 +197,11 @@ module.exports.deleteProduct = async(req, res, next) => {
         function(err, product) {
             if (err) {
                 res.send(err);
+            } else if (product) {
+                productImagePath = process.env.PRODUCT_IMAGES_BASE_PATH + product.url;
+                console.log(productImagePath);
             } else {
-                productImagePath = 'public/frontend/src/' + product.url;
+                res.send("Product not found");
             }
         }
     )

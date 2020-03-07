@@ -4,6 +4,8 @@ import { ArtSizes, ArtTypes } from 'src/app/order/make-to-order/make-to-order.co
 import { PricingService } from 'src/app/shared/pricing.service';
 import { Price } from 'src/app/shared/prices.model';
 import { ProductService } from 'src/app/shared/product.service';
+import { HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -13,51 +15,84 @@ import { ProductService } from 'src/app/shared/product.service';
 export class AddProductComponent implements OnInit, OnDestroy {
   name: string;
   description: string;
-  image: string | ArrayBuffer;
-  photo = false;
+  imageFileData: File;
+  previewImage: string | ArrayBuffer;
+  fileUploadProgress: string = null;
 
-  constructor(private productService: ProductService, private pricingService: PricingService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
-    if(this.productService.productToBeEdited){
-      this.name =  this.productService.productToBeEdited.name;
-      this.description =  this.productService.productToBeEdited.description;
-      this.image =  this.productService.productToBeEdited.url;
-      if(this.image){
-        this.photo = true;
-      }
-    }
+    this.editProductView();
   }
 
   onFileSelect(event) {
     if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.image = reader.result;
-        this.photo = true;
-      };
+      this.imageFileData = <File>event.target.files[0];
+      this.preview();
     }
 
   }
 
-  onAddProduct(f: NgForm) {
+  preview() {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(this.imageFileData); // read file as data url
+
+    reader.onload = (_event) => { // called once readAsDataURL is completed
+      this.previewImage = reader.result;
+    };
+  }
+
+  onAddProduct(f: NgForm, event: Event) {
     if (f.valid) {
-      console.log(f.value);
-      this.productService.addProduct({
-        name: f.value.name,
-        description: f.value.description,
-        productImage: f.value.image
-
-      }).subscribe();
+      event.preventDefault();
+      const productFormData = new FormData();
+      productFormData.append('name', f.value.name);
+      productFormData.append('description', f.value.description);
+      productFormData.append('productImage', this.imageFileData);
+      this.productService.addProduct(productFormData).subscribe(
+        (product) => {
+          console.log(" iam here " + product);
+          this.router.navigateByUrl("administration/manage/product/" + product['_id'] + "/pricing");
+        },
+        (error) => {
+          console.log(error);
+        });
     } else {
-      console.log("Invalid product data");
+      alert("Invalid product data");
     }
   }
 
-  ngOnDestroy(){
+  onUpdateProduct(f: NgForm, event: Event) {
+    if (f.valid) {
+      event.preventDefault();
+      const productFormData = new FormData();
+      productFormData.append('name', f.value.name);
+      productFormData.append('description', f.value.description);
+      if (this.imageFileData) {
+        productFormData.append('productImage', this.imageFileData);
+      }
+      this.productService.updateProduct(productFormData, this.productService.productToBeEdited['_id']).subscribe(
+        (product) => {
+          this.router.navigateByUrl("administration/manage/product/" + product['_id'] + "/pricing");
+        },
+        (error) => {
+          console.log(error);
+        });
+    } else {
+      alert("Invalid product data");
+    }
+  }
+
+  editProductView() {
+    if (this.productService.productToBeEdited) {
+      this.name = this.productService.productToBeEdited.name;
+      this.description = this.productService.productToBeEdited.description;
+      this.previewImage = this.productService.productToBeEdited.url;
+    }
+  }
+
+  ngOnDestroy() {
     this.productService.setProduct(null);
   }
 

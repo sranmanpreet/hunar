@@ -8,7 +8,8 @@ const Product = mongoose.Schema({
         unique: true
     },
     url: {
-        type: String
+        type: String,
+        required: true
     },
     productImage: {
         data: Buffer,
