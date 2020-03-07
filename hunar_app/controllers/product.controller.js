@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 const Product = mongoose.model('Product');
 
@@ -30,6 +31,7 @@ module.exports.getProduct = (req, res, next) => {
 }
 
 module.exports.addProduct = (req, res, next) => {
+    console.log(req.body);
     console.log(req.file);
     let newProduct = new Product({
         name: req.body.name,
@@ -147,8 +149,18 @@ module.exports.deletePricing = (req, res, next) => {
         });
 }
 
-module.exports.deleteProduct = (req, res, next) => {
-    Product.remove({
+module.exports.deleteProduct = async(req, res, next) => {
+    let productImagePath;
+    await Product.findOne({ _id: req.params.id },
+        function(err, product) {
+            if (err) {
+                res.send(err);
+            } else {
+                productImagePath = 'public/frontend/src/' + product.url;
+            }
+        }
+    )
+    Product.deleteOne({
         _id: req.params.id
     }, function(err, result) {
         if (err) {
@@ -158,6 +170,17 @@ module.exports.deleteProduct = (req, res, next) => {
                 error: err
             });
         } else {
+            if (productImagePath) {
+                try {
+                    fs.unlinkSync(productImagePath);
+                } catch (err) {
+                    if (err.code === 'ENOENT') {
+                        console.log('File not found at : ' + productImagePath);
+                    } else {
+                        throw err;
+                    }
+                }
+            }
             res.status(200).json({
                 status: true,
                 message: "Product deleted"

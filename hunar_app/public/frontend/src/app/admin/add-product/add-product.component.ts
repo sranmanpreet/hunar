@@ -23,6 +23,9 @@ export class AddProductComponent implements OnInit, OnDestroy {
       this.name =  this.productService.productToBeEdited.name;
       this.description =  this.productService.productToBeEdited.description;
       this.image =  this.productService.productToBeEdited.url;
+      if(this.image){
+        this.photo = true;
+      }
     }
   }
 
@@ -43,6 +46,12 @@ export class AddProductComponent implements OnInit, OnDestroy {
   onAddProduct(f: NgForm) {
     if (f.valid) {
       console.log(f.value);
+      this.productService.addProduct({
+        name: f.value.name,
+        description: f.value.description,
+        productImage: f.value.image
+
+      }).subscribe();
     } else {
       console.log("Invalid product data");
     }

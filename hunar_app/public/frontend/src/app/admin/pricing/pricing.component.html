@@ -1,5 +1,5 @@
 <div class="container" *ngIf="product">
-    <h4><span class="bold">Name: </span> {{product.name}} <button class="btn btn-primary edit-product-button" (click)="editProduct(product)">Edit Product</button></h4>
+    <h4><span class="bold">Name: </span> {{product.name}} <button mat-raised-button color="primary" class="edit-product-button" (click)="editProduct(product)">Edit Product</button></h4>
     <span class="bold">Id: </span>{{product._id}}
     <div class="row">
         <!--     <div class="col-md-3 sub-container">
@@ -54,8 +54,8 @@
                                 <div class="fa-icon">
                                     <a href="JavaScript:(0)" *ngIf="selectedArtType || selectedArtSize || selectedArtPrice" (click)="resetForm(addPricingForm)" class="remove"><i class="fa fa-times" aria-hidden="true"></i></a>
                                 </div>
-                                <button *ngIf="!selectedArtPricingId" type="submit" class='btn btn-success'>Add Pricing</button>
-                                <button *ngIf="selectedArtPricingId" type="submit" class='btn btn-success'>Update Pricing</button>
+                                <button *ngIf="!selectedArtPricingId" type="submit" mat-raised-button color="primary">Add Pricing</button>
+                                <button *ngIf="selectedArtPricingId" type="submit" mat-raised-button color="primary">Update Pricing</button>
                             </th>
                         </tr>
                     </thead>

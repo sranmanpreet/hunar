@@ -8,7 +8,7 @@
                     <br>
                     <div class="img-holder">
                         <label *ngIf="!photo" for="file-upload" class="img-input">Upload Product Image</label>
-                        <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
+                        <input id='file-upload' type="file" name="image" [(ngModel)]="image" (change)="onFileSelect($event)">
                         <img class='selectedImage img-fluid' [src]="image" alt="" *ngIf="photo">
                     </div>
                     <label *ngIf="photo" for="file-upload" class="img-change">Change Image</label>

@@ -36,8 +36,12 @@ export class DataStorageService {
     return this.http.get(environment.apiBaseUrl + '/all-products');
   }
 
-  addProduct(product: Product) {
+  addProduct(product: any) {
+    return this.http.post(environment.apiBaseUrl + '/product/add', product);
+  }
 
+  deleteProduct(productId: String) {
+    return this.http.delete(environment.apiBaseUrl + '/product/' + productId);
   }
 
   addPricing(productId: String, newPrice: Price) {

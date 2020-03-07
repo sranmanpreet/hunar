@@ -20,3 +20,16 @@ h4 button {
     float: right;
     margin-bottom: 10px;
 }
+
+.fa {
+    font-size: 130%;
+}
+
+.fa-icon {
+    display: inline;
+}
+
+.fa-icon a {
+    color: grey;
+    margin: 5px;
+}

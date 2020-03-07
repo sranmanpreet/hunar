@@ -25,4 +25,20 @@ export class AllProductsComponent implements OnInit {
     this.router.navigateByUrl('administration/manage/product/' + product["_id"] + '/pricing');
   }
 
+  deleteProduct(productId: String) {
+    this.productService.deleteProduct(productId).subscribe(
+      (err) => {
+        console.log(err);
+      },
+      (result) => {
+        this.products.forEach((product, index) => {
+          if (product.id.toString() == productId) {
+            this.products.splice(index, 1);
+          }
+        });
+        console.log(result);
+      }
+    )
+  }
+
 }

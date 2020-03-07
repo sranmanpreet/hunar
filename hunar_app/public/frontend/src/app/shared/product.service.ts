@@ -51,8 +51,12 @@ export class ProductService {
     ));
   }
 
-  addProduct(product: Product){
-    
+  addProduct(product: any){
+    return this.dataService.addProduct(product);
+  }
+
+  deleteProduct(productId: String){
+    return this.dataService.deleteProduct(productId);
   }
 
   setProduct(product: Product){

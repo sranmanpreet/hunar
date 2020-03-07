@@ -7,7 +7,6 @@
                 <th class="col-md-2 td-container">Name</th>
                 <th class="col-md-3 td-container">Description</th>
                 <th class="col-md-3 td-container">Id</th>
-                <th class="col-md-1 td-container">Pricing</th>
                 <th class="col-md-1 td-container">Actions</th>
             </tr>
         </thead>
@@ -19,8 +18,18 @@
                     <div>{{product.description}}</div>
                 </td>
                 <td class="col-md-3 td-container">{{product._id}}</td>
-                <td class="col-md-1 td-container"><button class='btn btn-primary' (click)="viewPricingDetails(product)">Pricing</button></td>
-                <td class="col-md-1 td-container"><button class='btn btn-primary'>Update</button></td>
+                <td class="col-md-2 td-container">
+                    <div class="fa-icon">
+                        <a href="JavaScript:(0)" (click)="viewPricingDetails(product)" class="remove">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="fa-icon">
+                        <a href="JavaScript:(0)" (click)="deleteProduct(product._id)" class="remove">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
