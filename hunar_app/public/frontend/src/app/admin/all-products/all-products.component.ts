@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AllProductsComponent implements OnInit {
   private products: Product[];
+  showSpinner: boolean = false;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) { }
 
@@ -26,9 +27,11 @@ export class AllProductsComponent implements OnInit {
   }
 
   deleteProduct(productId: String) {
+    this.showSpinner = true;
     this.productService.deleteProduct(productId).subscribe(
       (err) => {
         console.log(err);
+        this.showSpinner = false;
       },
       (result) => {
         this.products.forEach((product, index) => {
@@ -36,7 +39,7 @@ export class AllProductsComponent implements OnInit {
             this.products.splice(index, 1);
           }
         });
-        console.log(result);
+        this.showSpinner = false;
       }
     )
   }

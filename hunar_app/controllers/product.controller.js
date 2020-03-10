@@ -41,7 +41,7 @@ module.exports.addProduct = (req, res, next) => {
 
         newProduct.save((err, product) => {
             if (err) {
-                res.status(500).json({
+                res.json({
                     status: false,
                     message: 'Failed to add product. ErrorCode- 1001',
                     error: err

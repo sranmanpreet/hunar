@@ -48,11 +48,11 @@
                 </select>
                             </th>
                             <th class="col-md-3">
-                                <input class="form-control form-control-sm" type="number" name="price" [(ngModel)]="selectedArtPrice" required>
+                                <input class="form-control form-control-sm" type="number" min="1" name="price" [(ngModel)]="selectedArtPrice" required>
                                 <input class="form-control form-control-sm" type="text" name="pricingId" [(ngModel)]="selectedArtPricingId" hidden></th>
                             <th class="col-md-3">
                                 <div class="fa-icon">
-                                    <a href="JavaScript:(0)" *ngIf="selectedArtType || selectedArtSize || selectedArtPrice" (click)="resetForm(addPricingForm)" class="remove"><i class="fa fa-times" matTooltip="Reset Pricing Fields" aria-hidden="true"></i></a>
+                                    <a href="JavaScript:(0)" *ngIf="selectedArtType || selectedArtSize || selectedArtPrice" (click)="resetForm(addPricingForm)" class="remove"><i class="fa fa-times reset-icon" matTooltip="Reset Pricing Fields" aria-hidden="true"></i></a>
                                 </div>
                                 <button *ngIf="!selectedArtPricingId" type="submit" mat-raised-button color="primary">Add Pricing</button>
                                 <button *ngIf="selectedArtPricingId" type="submit" mat-raised-button color="primary">Update Pricing</button>

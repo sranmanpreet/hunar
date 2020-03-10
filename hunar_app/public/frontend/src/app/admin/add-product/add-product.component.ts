@@ -18,6 +18,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
   imageFileData: File;
   previewImage: string | ArrayBuffer;
   fileUploadProgress: string = null;
+  message: string;
+
+  nameRegex = /^[a-zA-Z0-9 ]{1,30}$/;
+  descriptionRegex = /^[a-zA-Z0-9 ,.]{1,400}$/;
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -44,43 +48,47 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   onAddProduct(f: NgForm, event: Event) {
-    if (f.valid) {
-      event.preventDefault();
-      const productFormData = new FormData();
-      productFormData.append('name', f.value.name);
-      productFormData.append('description', f.value.description);
-      productFormData.append('productImage', this.imageFileData);
-      this.productService.addProduct(productFormData).subscribe(
-        (product) => {
-          console.log(" iam here " + product);
-          this.router.navigateByUrl("administration/manage/product/" + product['_id'] + "/pricing");
-        },
-        (error) => {
-          console.log(error);
-        });
-    } else {
-      alert("Invalid product data");
+    if (f.valid && f.dirty) {
+      if (!this.previewImage) {
+        alert("Please select an image.");
+      } else {
+        event.preventDefault();
+        const productFormData = new FormData();
+        productFormData.append('name', f.value.name);
+        productFormData.append('description', f.value.description);
+        productFormData.append('productImage', this.imageFileData);
+        this.productService.addProduct(productFormData).subscribe(
+          (product) => {
+            this.router.navigateByUrl("administration/manage/product/" + product['_id'] + "/pricing");
+          },
+          (error) => {
+            this.message = error.error;
+            console.log(error.error);
+          });
+      }
     }
   }
 
   onUpdateProduct(f: NgForm, event: Event) {
-    if (f.valid) {
-      event.preventDefault();
-      const productFormData = new FormData();
-      productFormData.append('name', f.value.name);
-      productFormData.append('description', f.value.description);
-      if (this.imageFileData) {
-        productFormData.append('productImage', this.imageFileData);
+    if (f.valid && f.dirty) {
+      if (!this.previewImage) {
+        alert("Please select an image.");
+      } else {
+        event.preventDefault();
+        const productFormData = new FormData();
+        productFormData.append('name', f.value.name);
+        productFormData.append('description', f.value.description);
+        if (this.imageFileData) {
+          productFormData.append('productImage', this.imageFileData);
+        }
+        this.productService.updateProduct(productFormData, this.productService.productToBeEdited['_id']).subscribe(
+          (product) => {
+            this.router.navigateByUrl("administration/manage/product/" + product['_id'] + "/pricing");
+          },
+          (error) => {
+            this.message = error;
+          });
       }
-      this.productService.updateProduct(productFormData, this.productService.productToBeEdited['_id']).subscribe(
-        (product) => {
-          this.router.navigateByUrl("administration/manage/product/" + product['_id'] + "/pricing");
-        },
-        (error) => {
-          console.log(error);
-        });
-    } else {
-      alert("Invalid product data");
     }
   }
 

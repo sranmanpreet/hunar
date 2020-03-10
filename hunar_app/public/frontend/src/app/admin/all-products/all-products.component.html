@@ -1,5 +1,6 @@
 <div class="container">
-    <h4>Manage Products<button mat-raised-button color="primary" routerLink="/administration/manage/product/add">Add Product</button></h4>
+    <h4>Manage Products
+        <mat-spinner diameter="20" *ngIf="showSpinner"></mat-spinner><button mat-raised-button color="primary" routerLink="/administration/manage/product/add">Add Product</button></h4>
     <table class="table table-hover">
         <thead>
             <tr class="d-flex">

@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const csrf = require('csurf');
 const dateFormat = require('dateformat');
@@ -14,7 +15,23 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({
-    storage: storage
+    storage: storage,
+    limits: { fileSize: 1000000 },
+    fileFilter: function(req, file, cb) {
+
+        // Set the filetypes, it is optional 
+        var filetypes = /jpeg|jpg|png/;
+        var mimetype = filetypes.test(file.mimetype);
+
+        var extname = filetypes.test(path.extname(
+            file.originalname).toLowerCase());
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: File upload only supports the " +
+            "following filetypes - " + filetypes);
+    }
 });
 
 const jwtHelper = require('../config/jwtHelper');
