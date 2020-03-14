@@ -1,10 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ArtSizes, ArtTypes } from 'src/app/order/make-to-order/make-to-order.component';
-import { PricingService } from 'src/app/shared/pricing.service';
-import { Price } from 'src/app/shared/prices.model';
 import { ProductService } from 'src/app/shared/product.service';
-import { HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +17,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   message: string;
 
   nameRegex = /^[a-zA-Z0-9 ]{1,30}$/;
-  descriptionRegex = /^[a-zA-Z0-9 ,.]{1,400}$/;
+  descriptionRegex = /^[a-zA-Z0-9 ,.']{1,1000}$/;
 
   constructor(private productService: ProductService, private router: Router) { }
 
@@ -30,11 +26,22 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   onFileSelect(event) {
+    this.message = '';
     if (event.target.files && event.target.files[0]) {
-      this.imageFileData = <File>event.target.files[0];
-      this.preview();
+      const file = event.target.files[0];
+      if(file.type == 'image/jpeg' || file.type == 'image/jpg' || file.type == 'image/png'){
+        if(file.size <= 1000000){          
+          this.imageFileData = <File>event.target.files[0];
+          this.preview();
+        } else {
+          this.previewImage = '';
+          this.message = "File size should be upto 1 MB";
+        }
+      } else {
+        this.previewImage = '';
+        this.message = "Only jpeg, jpg and png files are allowed.";
+      }
     }
-
   }
 
   preview() {
@@ -50,7 +57,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
   onAddProduct(f: NgForm, event: Event) {
     if (f.valid && f.dirty) {
       if (!this.previewImage) {
-        alert("Please select an image.");
+        this.message = "Please select an image.";
       } else {
         event.preventDefault();
         const productFormData = new FormData();

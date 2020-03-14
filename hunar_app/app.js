@@ -12,6 +12,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
+const metadataRoutes = require('./routes/meta-data.router');
 const addressRoutes = require('./routes/address.router');
 const rtsIndex = require('./routes/index.router');
 const userRoutes = require('./routes/user.router');
@@ -58,6 +59,7 @@ app.use((err, req, res, next) => {
     }
 });
 
+app.use('/api/metadata', metadataRoutes);
 app.use('/api/address', addressRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api', rtsIndex);

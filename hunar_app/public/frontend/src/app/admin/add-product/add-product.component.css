@@ -82,3 +82,9 @@ label {
 #file-upload {
     display: none;
 }
+
+.message {
+    color: red;
+    font-size: 80%;
+    font-style: italic;
+}

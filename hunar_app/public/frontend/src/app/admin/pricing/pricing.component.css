@@ -47,7 +47,10 @@
     font-size: 0.8rem;
     margin: 0px;
     padding: 0px;
-    background-color: antiquewhite;
+}
+
+.message p {
+    margin: 0;
 }
 
 .message .success {
@@ -56,6 +59,7 @@
 }
 
 .message .error {
+    margin-top: 5px;
     padding-top: 10px;
     color: red;
 }

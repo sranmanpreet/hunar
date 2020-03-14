@@ -5,15 +5,12 @@ const Product = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate: [/^[a-zA-Z0-9 ]{1,30}$/, 'No special characters are allowed.']
     },
     url: {
         type: String,
         required: true
-    },
-    productImage: {
-        data: Buffer,
-        contentType: String
     },
     pricing: [{
         artType: {
@@ -31,7 +28,8 @@ const Product = mongoose.Schema({
     }],
     description: {
         type: String,
-        required: true
+        required: true,
+        validate: [/^[a-zA-Z0-9 ,.']{1,1000}$/, 'No special characters are allowed.']
     }
 });
 

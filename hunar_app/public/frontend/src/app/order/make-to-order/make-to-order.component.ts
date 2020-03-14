@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 export interface ArtTypes {
-  name: string;
+  value: string;
 }
 export interface ArtSizes {
   value: string;
@@ -20,10 +20,10 @@ export class MakeToOrderComponent implements OnInit {
   expectedDeliveryDate: Date;
   photo = false;
   artTypes: ArtTypes[] = [
-    { name: 'Digital' },
-    { name: 'Water Colors' },
-    { name: 'Miniature' },
-    { name: 'Charcoal' }
+    { value: 'Digital' },
+    { value: 'Water Colors' },
+    { value: 'Miniature' },
+    { value: 'Charcoal' }
   ];
   artSizes: ArtSizes[] = [
     { value: 'A4' },

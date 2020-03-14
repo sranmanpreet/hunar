@@ -41,18 +41,22 @@ module.exports.addProduct = (req, res, next) => {
 
         newProduct.save((err, product) => {
             if (err) {
-                res.json({
-                    status: false,
-                    message: 'Failed to add product. ErrorCode- 1001',
-                    error: err
-                });
+                if (err instanceof MulterError) {
+                    res.status(400).send({ error: 'File not supported!' });
+                } else {
+                    res.json({
+                        status: false,
+                        message: 'Failed to add product. ErrorCode- 1001',
+                        error: err
+                    });
+                }
             } else {
                 res.send(product);
             }
         });
 
     } else {
-        res.send("Invalid product");
+        res.json({ error: "Invalid product" });
     }
 }
 

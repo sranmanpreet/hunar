@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { DataStorageService } from './data-storage.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,14 @@ import { DataStorageService } from './data-storage.service';
 export class PricingService {
 
 
-  constructor(private dataService: DataStorageService) { }
+  constructor(private http: HttpClient) { }
+
+  public getArtTypes(){
+    return this.http.get(environment.apiBaseUrl + '/metadata/arttypes');
+  }
+
+  public getArtSizes(){
+    return this.http.get(environment.apiBaseUrl + '/metadata/artsizes');
+  }
 
 }

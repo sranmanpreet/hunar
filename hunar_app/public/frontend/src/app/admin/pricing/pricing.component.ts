@@ -16,20 +16,8 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
 export class PricingComponent implements OnInit, OnDestroy {
   product: Product;
   productPrices: Price[];
-  artTypes: ArtTypes[] = [
-    { name: 'Digital' },
-    { name: 'Water Colors' },
-    { name: 'Miniature' },
-    { name: 'Charcoal' }
-  ];
-  artSizes: ArtSizes[] = [
-    { value: 'A6' },
-    { value: 'A5' },
-    { value: 'A4' },
-    { value: 'A3' },
-    { value: 'A2' },
-    { value: 'A1' }
-  ];
+  artTypes: ArtTypes[] = [];
+  artSizes: ArtSizes[] = [];
   selectedArtType: string;
   selectedArtSize: string;
   selectedArtPrice: number;
@@ -54,6 +42,22 @@ export class PricingComponent implements OnInit, OnDestroy {
         )
       }
     );
+    this.pricingService.getArtTypes().subscribe(
+      (artTypes: ArtTypes[]) => {
+        this.artTypes = artTypes;
+      },
+      (err) => {
+        alert(err);
+      }
+    )
+    this.pricingService.getArtSizes().subscribe(
+      (artSizes: ArtSizes[]) => {
+        this.artSizes = artSizes;
+      },
+      (err) => {
+        alert(err);
+      }
+    )
   }
 
   addPricing(f: NgForm) {
@@ -127,12 +131,12 @@ export class PricingComponent implements OnInit, OnDestroy {
       }, 3000);
   }
 
-  editProduct(product: Product){
+  editProduct(product: Product) {
     this.productService.setProduct(product);
     this.router.navigateByUrl('administration/manage/product/add');
   }
 
-  resetForm(f: NgForm){
+  resetForm(f: NgForm) {
     f.reset();
   }
 
