@@ -1,5 +1,5 @@
 import { Price } from './prices.model';
 
 export class Product {
-    constructor(public name: string, public description: string, public pricing: Price[], public url?: string, public id?: number) { }
+    constructor(public id: number, public name: string, public url: string, public pricing: Price[], public description: string) { }
 }

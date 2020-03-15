@@ -71,7 +71,7 @@ export class DataStorageService {
   }
 
   addCartItem(item) {
-    return this.http.post(environment.apiBaseUrl + '/cart/add', item);
+    return this.http.post(environment.apiBaseUrl + '/add-to-cart', item);
   }
 
   removeCartItem(item) {
@@ -79,7 +79,7 @@ export class DataStorageService {
   }
 
   updateCartItemQty(item) {
-    return this.http.post(environment.apiBaseUrl + 'cart/update/', item);
+    return this.http.post(environment.apiBaseUrl + '/update-cart/', item);
   }
 
   saveAddress(address: Address) {
@@ -106,11 +106,11 @@ export class DataStorageService {
   }
 
   getOrders() {
-    return this.http.get(environment.apiBaseUrl + '/order');
+    return this.http.get(environment.apiBaseUrl + '/orders');
   }
 
   getOrder(order) {
-    return this.http.post(environment.apiBaseUrl + '/order', order);
+    return this.http.post(environment.apiBaseUrl + '/order/get', order);
   }
 
   createOrder(order) {
@@ -126,11 +126,11 @@ export class DataStorageService {
   }
 
   createAdvertisementEntry(formDetails) {
-    return this.http.post(environment.apiBaseUrl + '/advertisements/create', formDetails);
+    return this.http.post(environment.apiBaseUrl + '/order/advertise', formDetails);
   }
 
   getAdvertisements() {
-    return this.http.get(environment.apiBaseUrl + '/advertisements');
+    return this.http.get(environment.apiBaseUrl + '/order/advertisements');
   }
 
   createFeedbackEntry(formDetails) {
