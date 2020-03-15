@@ -17,24 +17,26 @@ module.exports.getArtTypes = (req, res, next) => {
 
 module.exports.createArtType = (req, res, next) => {
     let newArtType = new ArtType({
-        value: req.body.artType
+        value: req.body.value.trim()
     });
 
     newArtType.save((err, artType) => {
         if (err) {
-            return res.status(500).json({
-                error: err.message
-            });
+            if (err.name == "MongoError" && err.code == 11000) {
+                return res.status(422).send("Art Type already exist");
+            } else {
+                return res.status(500).json({
+                    error: err.message
+                });
+            }
         } else {
-            return res.status(200).json({
-                message: "ArtType saved"
-            });
+            return res.status(200).send(artType);
         }
     });
 }
 
 module.exports.deleteArtType = (req, res, next) => {
-    ArtType.deleteOne({ value: req.params.arttype }, (err, success) => {
+    ArtType.deleteOne({ _id: req.params.id }, (err, success) => {
         if (err) {
             return res.status(500).json({
                 error: err.message

@@ -1,10 +1,7 @@
 <div class="container" *ngIf="product">
-    <h4><span class="bold">Name: </span> {{product.name}} <button mat-raised-button color="primary" class="edit-product-button" (click)="editProduct(product)">Edit Product</button></h4>
+    <h4><span class="bold">Name: </span> {{product.name}} <button mat-stroked-button color="primary" class="edit-product-button" (click)="editProduct(product)">Edit Product</button></h4>
     <span class="bold">Id: </span>{{product._id}}
     <div class="row">
-        <!--     <div class="col-md-3 sub-container">
-            <span class="bold">Name: </span> {{product.name}}
-        </div> -->
         <div class="col-md-7 sub-container">
             <img class="img-fluid img-thumbnail" src="{{product.url}}" alt="{{product.name}}.jpg">
         </div>
@@ -20,7 +17,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <h4>Pricing</h4>
+                            <h4>
+                                Pricing
+                                <button mat-stroked-button color="accent" routerLink="/administration/metadata">Art Types & Sizes</button>
+                            </h4>
                         </tr>
                         <tr class="d-flex">
                             <th class="col-md-4">Art Type</th>

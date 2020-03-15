@@ -25,7 +25,6 @@ import { HeaderService } from './shared/header.service';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { GalleryOfArtItemComponent } from './gallery/gallery-of-art-item/gallery-of-art-item.component';
 import { GalleryItemCartComponent } from './gallery/gallery-item-cart/gallery-item-cart.component';
-import { MatDialogRef } from '@angular/material/dialog';
 import { CheckoutComponent } from './shopping/checkout/checkout.component';
 import { PaymentComponent } from './shopping/payment/payment.component';
 import { OrderReviewComponent } from './shopping/order-review/order-review.component';
@@ -47,6 +46,7 @@ import { ProductComponent } from './gallery/product/product.component';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
 import { PricingComponent } from './admin/pricing/pricing.component';
+import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,8 @@ import { PricingComponent } from './admin/pricing/pricing.component';
     ProductComponent,
     AddProductComponent,
     AllProductsComponent,
-    PricingComponent
+    PricingComponent,
+    ArtTypeSizeComponent
   ],
   imports: [
     BrowserModule,

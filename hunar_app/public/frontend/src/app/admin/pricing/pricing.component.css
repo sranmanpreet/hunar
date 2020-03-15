@@ -67,3 +67,9 @@
 .reset-icon {
     margin-right: 10px;
 }
+
+h4 button {
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}

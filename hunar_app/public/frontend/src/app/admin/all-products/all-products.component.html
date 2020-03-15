@@ -1,6 +1,9 @@
 <div class="container">
-    <h4>Manage Products
-        <mat-spinner diameter="20" *ngIf="showSpinner"></mat-spinner><button mat-raised-button color="primary" routerLink="/administration/manage/product/add">Add Product</button></h4>
+    <h4>Products
+        <mat-spinner diameter="20" *ngIf="showSpinner"></mat-spinner>
+        <button mat-stroked-button color="accent" routerLink="/administration/manage/product/add" matTooltip="Add New Product" aria-hidden="true">New</button>
+        <button mat-stroked-button color="accent" routerLink="/administration/metadata" matTooltip="Manage Art Types and Art Sizes" aria-hidden="true">Metadata</button>
+    </h4>
     <table class="table table-hover">
         <thead>
             <tr class="d-flex">

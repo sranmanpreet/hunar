@@ -13,12 +13,12 @@ router.post('/arttype', ctrlArtType.createArtType);
 
 router.get('/arttypes', ctrlArtType.getArtTypes);
 
-router.delete('/arttype/:arttype', ctrlArtType.deleteArtType);
+router.delete('/arttype/:id', ctrlArtType.deleteArtType);
 
 router.post('/artsize', ctrlArtSize.createArtSize);
 
 router.get('/artsizes', ctrlArtSize.getArtSizes);
 
-router.delete('/arttype/:artsize', ctrlArtSize.deleteArtSize);
+router.delete('/artsize/:id', ctrlArtSize.deleteArtSize);
 
 module.exports = router;
