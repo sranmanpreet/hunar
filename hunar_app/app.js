@@ -14,6 +14,8 @@ const MongoStore = require('connect-mongo')(session);
 
 const metadataRoutes = require('./routes/meta-data.router');
 const addressRoutes = require('./routes/address.router');
+const advertisementRoutes = require('./routes/advertisement.router');
+const orderRoutes = require('./routes/order.router');
 const rtsIndex = require('./routes/index.router');
 const userRoutes = require('./routes/user.router');
 
@@ -61,6 +63,10 @@ app.use((err, req, res, next) => {
 
 app.use('/api/metadata', metadataRoutes);
 app.use('/api/address', addressRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/advertisements', advertisementRoutes);
+app.use('/api/order', orderRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api', rtsIndex);
 

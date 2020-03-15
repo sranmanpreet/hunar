@@ -35,10 +35,7 @@ const upload = multer({
 });
 
 const jwtHelper = require('../config/jwtHelper');
-const ctrlGallery = require('../controllers/product.controller');
-const ctrlShoppingCart = require('../controllers/cart.controller');
-const ctrlOrder = require('../controllers/order.controller');
-const ctrlAdvertisement = require('../controllers/advertisement.controller');
+
 const ctrlSupport = require('../controllers/support.controller');
 const ctrlFeedback = require('../controllers/feedback.controller');
 
