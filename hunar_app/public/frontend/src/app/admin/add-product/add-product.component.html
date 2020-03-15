@@ -1,0 +1,83 @@
+<div class="container">
+    <h3 class="text-center">{{!productService.productToBeEdited? 'Add Product' : 'Edit Product'}}</h3>
+    <hr>
+    <div class="wrapper">
+        <form #addProductForm='ngForm' (ngSubmit)="onAddProduct(addProductForm, $event)" *ngIf="!productService.productToBeEdited">
+            <div class="row">
+                <div class="col-md-7 text-center">
+                    <br>
+                    <div class="img-holder">
+                        <label *ngIf="!previewImage" for="file-upload" class="img-input">Upload Product Image</label>
+                        <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
+                        <img class='selectedImage img-fluid' [src]="previewImage" alt="" *ngIf="previewImage">
+                        <p class="message" *ngIf="message">{{message}}</p>
+                    </div>
+                    <label *ngIf="previewImage" for="file-upload" class="img-change">Update Product Image</label>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <mat-form-field>
+                        <mat-label>Product Name</mat-label>
+                        <input matInput type="text" name="name" [(ngModel)]="name" placeholder="e.g. Mona Lisa" [pattern]="nameRegex" required>
+                        <mat-error align='end' *ngIf="addProductForm.submitted && addProductForm.controls.name.invalid">
+                            <label *ngIf="addProductForm.controls.name.errors.required" class='validation-message'>Enter Product Name.</label>
+                            <label *ngIf="addProductForm.controls.name.errors.pattern" class="validation-message">Only albhabets and digits are allowed.</label>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Product Description</mat-label>
+                        <textarea rows="8" matInput type="text" name="description" [(ngModel)]="description" placeholder="e.g. The Mona Lisa is an oil painting by Italian artist, inventor, and writer Leonardo da Vinci. Likely completed in 1506, the piece features a portrait of a seated woman set against an imaginary landscape. "
+                            [pattern]="descriptionRegex" required></textarea>
+                        <mat-error align='end' *ngIf="addProductForm.submitted && addProductForm.controls.description.invalid">
+                            <label *ngIf="addProductForm.controls.description.errors.required" class='validation-message'>Enter Product Description.</label>
+                            <label *ngIf="addProductForm.controls.description.errors.pattern" class="validation-message">Only albhabets and digits are allowed. No new line allowed.</label>
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="control">
+                        <button type="submit" mat-raised-button color="accent" [disabled]="!previewImage && !addProductForm.dirty && addProductForm.invalid">Save Product</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+        <form #updateProductForm='ngForm' (ngSubmit)="onUpdateProduct(updateProductForm, $event)" *ngIf="productService.productToBeEdited">
+            <div class="row">
+                <div class="col-md-7 text-center">
+                    <br>
+                    <div class="img-holder">
+                        <label *ngIf="!previewImage" for="file-upload" class="img-input">Upload Product Image</label>
+                        <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
+                        <img class='selectedImage img-fluid' [src]="previewImage" alt="" *ngIf="previewImage">
+                    </div>
+                    <label *ngIf="previewImage" for="file-upload" class="img-change">Change Image</label>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <mat-form-field>
+                        <mat-label>Product Name</mat-label>
+                        <input matInput type="text" name="name" [(ngModel)]="name" placeholder="e.g. Mona Lisa" [pattern]="nameRegex" required>
+                        <mat-error align='end' *ngIf="updateProductForm.submitted && updateProductForm.controls.name.invalid">
+                            <label *ngIf="updateProductForm.controls.name.errors.required" class='validation-message'>Enter Product Name.</label>
+                            <label *ngIf="updateProductForm.controls.name.errors.pattern" class="validation-message">Only albhabets and digits are allowed.</label>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Product Description</mat-label>
+                        <textarea rows="8" matInput type="text" name="description" [(ngModel)]="description" placeholder="e.g. The Mona Lisa is an oil painting by Italian artist, inventor, and writer Leonardo da Vinci. Likely completed in 1506, the piece features a portrait of a seated woman set against an imaginary landscape. "
+                            [pattern]="descriptionRegex" required></textarea>
+                        <mat-error align='end' *ngIf="updateProductForm.submitted && updateProductForm.controls.description.invalid">
+                            <label *ngIf="updateProductForm.controls.description.errors.required" class='validation-message'>Enter Product Description.</label>
+                            <label *ngIf="updateProductForm.controls.description.errors.pattern" class="validation-message">Only albhabets and digits are allowed. No new line allowed.</label>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="control">
+                        <button type="submit" mat-raised-button color="accent" [disabled]="!previewImage && !updateProductForm.dirty && updateProductForm.invalid">Update Product</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
