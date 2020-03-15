@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Art Types</h3>
+            <form #artTypeForm='ngForm' (ngSubmit)="addArtType(artTypeForm)">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-md-9">
+                                <mat-form-field>
+                                    <mat-label>Art Type</mat-label>
+                                    <input matInput type="text" name="artType" [(ngModel)]="artType" placeholder="e.g. Digital Art" [pattern]="nameRegex" required>
+                                    <mat-error align='end' *ngIf="artTypeForm.submitted && artTypeForm.controls.artType.invalid">
+                                        <label *ngIf="artTypeForm.controls.artType.errors.required" class='validation-message'>Enter Art Type.</label>
+                                        <label *ngIf="artTypeForm.controls.artType.errors.pattern" class="validation-message">Special characters are not allowed.</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </th>
+                            <th class="col-md-3">
+                                <button type="submit" mat-raised-button color="primary">Add</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let artType of artTypes">
+                            <td class="col-md-12">{{artType.value}}
+                                <a href="JavaScript:(0)" (click)="deleteArtType(artType._id)" class="remove"><i class="fa fa-trash" matTooltip="Delete Art Type"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="offset-md-2 col-md-3">
+            <h3>Art Sizes</h3>
+            <form #artSizeForm='ngForm' (ngSubmit)="addArtSize(artSizeForm)">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="d-flex">
+                            <th class="col-md-9">
+                                <mat-form-field>
+                                    <mat-label>Art Size</mat-label>
+                                    <input matInput type="text" name="artSize" [(ngModel)]="artSize" placeholder="e.g. A1" [pattern]="nameRegex" required>
+                                    <mat-error align='end' *ngIf="artSizeForm.submitted && artSizeForm.controls.artSize.invalid">
+                                        <label *ngIf="artSizeForm.controls.artSize.errors.required" class='validation-message'>Enter Art Size.</label>
+                                        <label *ngIf="artSizeForm.controls.artSize.errors.pattern" class="validation-message">Special characters are not allowed.</label>
+                                    </mat-error>
+                                </mat-form-field>
+                            </th>
+                            <th class="col-md-3">
+                                <button type="submit" mat-raised-button color="primary">Add</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let artSize of artSizes">
+                            <td class="col-md-12">{{artSize.value}}
+                                <a href="JavaScript:(0)" (click)="deleteArtSize(artSize._id)" class="remove"><i class="fa fa-trash" matTooltip="Delete Art Size"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

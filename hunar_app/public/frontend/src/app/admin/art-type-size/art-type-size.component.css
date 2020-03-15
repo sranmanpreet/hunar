@@ -1,0 +1,19 @@
+::placeholder {
+    color: rgb(190, 190, 190);
+    opacity: 0.8;
+}
+
+label {
+    white-space: nowrap;
+}
+
+.message {
+    color: red;
+    font-size: 80%;
+    font-style: italic;
+}
+
+.remove {
+    margin-left: 10px;
+    float: right;
+}
