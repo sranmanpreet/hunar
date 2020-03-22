@@ -9,6 +9,7 @@ module.exports.getProducts = (req, res, next) => {
             console.log(err);
             res.send(err);
         } else {
+            res.cookie('XSRF-TOKEN', req.csrfToken());
             res.send(galleryImages);
         }
     });

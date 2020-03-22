@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,6 +47,7 @@ import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
 import { PricingComponent } from './admin/pricing/pricing.component';
 import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.component';
+import { XsrfInterceptor } from './authentication/xsrf.interceptor';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions(),
     FormsModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
@@ -99,6 +101,11 @@ import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.compon
     GalleryItemCartComponent
   ],
   providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: XsrfInterceptor,
+    multi: true
+  },
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

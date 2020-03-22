@@ -72,9 +72,9 @@ module.exports.login = (req, res, next) => {
                                         }, (err, result) => {
                                             if (!err) {
                                                 req.session.cartId = '';
+                                                res.cookie('jwt', user.generateJwt());
                                                 return res.status(200).json({
                                                     status: true,
-                                                    token: user.generateJwt(),
                                                     message: cartMessage
                                                 });
                                             }
@@ -91,9 +91,9 @@ module.exports.login = (req, res, next) => {
                                         cartMessage = "Cart items retained."
                                     }
                                     req.session.cartId = '';
+                                    res.cookie('jwt', user.generateJwt());
                                     return res.status(200).json({
                                         status: true,
-                                        token: user.generateJwt(),
                                         message: cartMessage
                                     });
                                 });
@@ -102,9 +102,9 @@ module.exports.login = (req, res, next) => {
                     }
                 });
             } else {
+                res.cookie('jwt', user.generateJwt());
                 return res.status(200).json({
                     status: true,
-                    token: user.generateJwt(),
                     message: "No items present in cart for retention"
                 });
             }

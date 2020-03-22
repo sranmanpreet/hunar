@@ -5,9 +5,11 @@ require('./config/passportConfig');
 // importing modules
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
+const cookieparser = require('cookie-parser');
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
+const csrf = require('csurf');
 const passport = require('passport');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
@@ -22,6 +24,10 @@ var app = express();
 // middleware
 app.use(bodyparser.json());
 
+app.use(cookieparser());
+
+app.use(csrf({ cookie: true, httpOnly: false, path: '/' }));
+
 app.use(cors({
     origin: [
         "http://127.0.0.1:4200", "http://localhost:4200"
@@ -29,7 +35,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(session({
-    name: "hunarSession",
+    name: "session",
     secret: "widn#4sd2@2sl",
     resave: false,
     saveUninitialized: false,
@@ -52,6 +58,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use((err, req, res, next) => {
+    if (err.code == 'EBADCSRFTOKEN') {
+        res.status(403).send('Invalid CSRF token');
+    }
     if (err.name === 'ValidationError') {
         var valErrors = [];
         Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));

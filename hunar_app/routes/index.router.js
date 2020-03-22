@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const csrf = require('csurf');
 const dateFormat = require('dateformat');
 const multer = require('multer');
 
@@ -41,10 +40,6 @@ const ctrlOrder = require('../controllers/order.controller');
 const ctrlAdvertisement = require('../controllers/advertisement.controller');
 const ctrlSupport = require('../controllers/support.controller');
 const ctrlFeedback = require('../controllers/feedback.controller');
-
-const csrfProtection = csrf();
-
-//router.use(csrfProtection);
 
 // retrieving products
 router.get('/products', ctrlGallery.getProducts);

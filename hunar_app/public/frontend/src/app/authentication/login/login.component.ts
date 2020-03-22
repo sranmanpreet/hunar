@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSignIn(form: NgForm) {
     this.authService.login(form.value).subscribe(
       (res) => {
-        this.authService.setToken(res['token']);
         if (this.prevPage === 'checkout-address') {
           this.router.navigate(['/checkout/address']);
         } else {

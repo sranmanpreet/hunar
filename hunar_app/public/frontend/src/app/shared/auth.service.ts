@@ -65,24 +65,17 @@ export class AuthService {
   }
 
   // Helper methods
-
-  setToken(token) {
-    const expiredDate = new Date();
-    expiredDate.setDate(expiredDate.getDate() + 30);
-    return this.cookieService.set('hunarToken', token, expiredDate);
-  }
-
   getToken() {
-    return this.cookieService.get('hunarToken');
+    return this.cookieService.get('jwt');
   }
 
   logout() {
-    this.cookieService.deleteAll();
+    this.cookieService.delete('jwt');
     return this.http.get(environment.apiBaseUrl + '/user/logout');
   }
 
   getUserPayload() {
-    const token = this.cookieService.get('hunarToken');
+    const token = this.getToken();
     if (token) {
       const userPayload = atob(token.split('.')[1]);
       return JSON.parse(userPayload);
