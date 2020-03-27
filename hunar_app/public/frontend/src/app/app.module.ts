@@ -14,7 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FooterComponent } from './footer/footer.component';
 import { OrderComponent } from './order/order.component';
@@ -48,6 +48,7 @@ import { AllProductsComponent } from './admin/all-products/all-products.componen
 import { PricingComponent } from './admin/pricing/pricing.component';
 import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.component';
 import { XsrfInterceptor } from './authentication/xsrf.interceptor';
+import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { XsrfInterceptor } from './authentication/xsrf.interceptor';
     AddProductComponent,
     AllProductsComponent,
     PricingComponent,
-    ArtTypeSizeComponent
+    ArtTypeSizeComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './error-pages/page-not-found/page-not-found.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { GalleryOfArtComponent } from './gallery/gallery-of-art/gallery-of-art.component';
 import { OrderComponent } from './order/order.component';
@@ -40,6 +40,7 @@ import { AllProductsResolverService } from './admin/all-products/all-products-re
 import { PricingComponent } from './admin/pricing/pricing.component';
 import { ProductResolverService } from './gallery/product/product-resolver.service';
 import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.component';
+import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, resolve: { products: GalleryProductResolverService } },
@@ -107,6 +108,7 @@ const routes: Routes = [
       },
     ]
   },
+  { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

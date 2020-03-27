@@ -212,7 +212,7 @@ module.exports.resetPassword = (req, res, next) => {
 
 module.exports.userProfile = (req, res, next) => {
     User.findOne({
-        _id: req._id
+        _id: req.user._id
     }, (err, user) => {
         if (!user) {
             return res.status(404).json({

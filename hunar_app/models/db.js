@@ -22,6 +22,7 @@ require('./city.model');
 require('./cart.model');
 require('./address.model');
 require('./order.model');
+require('./user-role.model');
 require('./user.model');
 require('./product.model');
 require('./advertisement.model');

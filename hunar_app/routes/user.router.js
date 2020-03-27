@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const jwtHelper = require('../config/jwtHelper');
+const authorize = require('../config/authorize');
 const csrf = require('csurf');
 
 const csrfProtection = csrf();
@@ -17,11 +17,11 @@ router.post('/forgot-password', ctrlUser.forgotPasswordSendEmail);
 
 router.post('/reset-password/:token', ctrlUser.resetPassword);
 
-router.get('/profile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
+router.get('/profile', authorize.authorize(), ctrlUser.userProfile);
 
-router.post('/updateProfile', jwtHelper.verifyJwtToken, ctrlUser.updateUserDetails);
+router.post('/updateProfile', authorize.authorize(), ctrlUser.updateUserDetails);
 
-router.post('/updatePassword', ctrlUser.updatePassword);
+router.post('/updatePassword', authorize.authorize(), ctrlUser.updatePassword);
 
 router.get('/logout', ctrlUser.logout);
 
