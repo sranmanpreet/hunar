@@ -22,6 +22,11 @@ var userSchema = new mongoose.Schema({
         minlength: [8, 'Password must be atleast eight characters long'],
         maxlength: [16, 'Password should not exceed 16 characters in length'],
     },
+    role: {
+        type: String,
+        required: "Role is required",
+        default: "Customer"
+    },
     saltSecret: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date
@@ -53,7 +58,8 @@ userSchema.methods.verifyPassword = function(password) {
 
 userSchema.methods.generateJwt = function() {
     return jwt.sign({
-        _id: this._id
+        _id: this._id,
+        role: this.role
     }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXP
     });

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Address } from './address.model';
-import { DataStorageService } from './data-storage.service';
-import { Observable, Subject } from 'rxjs';
+import { Address } from '../models/address.model';
+import { DataStorageService } from '../services/data-storage.service';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Cart } from '../shopping/cart.model';
-import { CheckoutNavService } from './checkout-nav.service';
+import { Cart } from '../../shopping/cart.model';
+import { CheckoutNavService } from '../services/checkout-nav.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 

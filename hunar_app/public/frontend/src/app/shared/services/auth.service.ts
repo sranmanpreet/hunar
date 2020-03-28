@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
-import { User } from './user.model';
+import { environment } from '../../../environments/environment';
+import { User } from '../models/user.model';
 import { DataStorageService } from './data-storage.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
@@ -65,24 +65,17 @@ export class AuthService {
   }
 
   // Helper methods
-
-  setToken(token) {
-    const expiredDate = new Date();
-    expiredDate.setDate(expiredDate.getDate() + 30);
-    return this.cookieService.set('hunarToken', token, expiredDate);
-  }
-
   getToken() {
-    return this.cookieService.get('hunarToken');
+    return this.cookieService.get('jwt');
   }
 
   logout() {
-    this.cookieService.deleteAll();
+    this.cookieService.delete('jwt');
     return this.http.get(environment.apiBaseUrl + '/user/logout');
   }
 
   getUserPayload() {
-    const token = this.cookieService.get('hunarToken');
+    const token = this.getToken();
     if (token) {
       const userPayload = atob(token.split('.')[1]);
       return JSON.parse(userPayload);
@@ -97,6 +90,16 @@ export class AuthService {
       return userPayload.exp > Date.now() / 1000;
     } else {
       return false;
+    }
+  }
+
+  getUserRole() {
+    const userPayload = this.getUserPayload();
+    if (userPayload) {
+      return userPayload.role;
+    } else {
+      this.logout();
+      return;
     }
   }
 

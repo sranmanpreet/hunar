@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { NgForm } from '@angular/forms';
-import { HeaderService } from 'src/app/shared/header.service';
+import { HeaderService } from 'src/app/shared/services/header.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

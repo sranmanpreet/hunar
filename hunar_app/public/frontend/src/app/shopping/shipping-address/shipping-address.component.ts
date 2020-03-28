@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AddressService } from 'src/app/shared/address.service';
-import { Address } from 'src/app/shared/address.model';
-import { CheckoutNavService } from 'src/app/shared/checkout-nav.service';
+import { AddressService } from 'src/app/shared/services/address.service';
+import { Address } from 'src/app/shared/models/address.model';
+import { CheckoutNavService } from 'src/app/shared/services/checkout-nav.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 /* import { CookieService } from 'ngx-cookie-service'; */
-import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-shipping-address',

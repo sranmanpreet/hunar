@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from './shared/header.service';
+import { HeaderService } from './shared/services/header.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import 'hammerjs';
 

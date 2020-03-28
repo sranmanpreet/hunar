@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ShoppingCartService } from 'src/app/shared/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { NgForm } from '@angular/forms';
-import { HeaderService } from 'src/app/shared/header.service';
+import { HeaderService } from 'src/app/shared/services/header.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSignIn(form: NgForm) {
     this.authService.login(form.value).subscribe(
       (res) => {
-        this.authService.setToken(res['token']);
         if (this.prevPage === 'checkout-address') {
           this.router.navigate(['/checkout/address']);
         } else {

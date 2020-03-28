@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { Role } from '../shared/enums/user.roles.enum';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
   position = true;
   prevScrollpos = 0;
+  Role = Role;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {

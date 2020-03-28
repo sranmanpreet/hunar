@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { OrderService } from 'src/app/shared/order.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Data } from '@angular/router';
-import { Order } from 'src/app/shared/order.model';
+import { Order } from 'src/app/shared/models/order.model';
 
 @Component({
   selector: 'app-my-orders',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { OrderNavService } from '../shared/order-nav.service';
-import { Product } from '../shared/product.model';
+import { OrderNavService } from '../shared/services/order-nav.service';
+import { Product } from '../shared/models/product.model';
 
 @Component({
   selector: 'app-home',

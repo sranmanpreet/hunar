@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 
 
 @Injectable()
@@ -21,9 +21,16 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(clonedreq).pipe(
                 tap(
                     event => { },
-                    err => {
-                        if (err.error.status === false) {
-                            this.router.navigateByUrl('/sign-in');
+                    (err: any) => {
+                        if (err instanceof HttpErrorResponse) {
+                            if (err.status == 401) {
+                                this.router.navigateByUrl('/sign-in');
+                            }
+                            else if (err.status == 403) {
+                                this.router.navigateByUrl('/unauthorized');
+                            } else {
+                                return;
+                            }
                         }
                     }
                 )

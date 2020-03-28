@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ShoppingCartService } from '../../shared/shopping-cart.service';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 import { Cart } from '../cart.model';
 import { Observable } from 'rxjs';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router } from '@angular/router';
-import { AddressService } from 'src/app/shared/address.service';
+import { AddressService } from 'src/app/shared/services/address.service';
 import { Observable } from 'rxjs';
 
 @Injectable({

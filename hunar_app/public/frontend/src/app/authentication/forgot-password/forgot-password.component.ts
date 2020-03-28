@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({

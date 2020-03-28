@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AddressService } from '../shared/address.service';
-import { ShoppingCartService } from '../shared/shopping-cart.service';
-import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../shared/auth.service';
+import { AddressService } from '../shared/services/address.service';
+import { ShoppingCartService } from '../shared/services/shopping-cart.service';
+import { DataStorageService } from '../shared/services/data-storage.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-contact-us',

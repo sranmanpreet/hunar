@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/shared/product.model';
+import { Product } from 'src/app/shared/models/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { GalleryItemCartComponent } from '../gallery-item-cart/gallery-item-cart.component';
 

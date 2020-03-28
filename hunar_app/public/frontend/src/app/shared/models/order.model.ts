@@ -1,5 +1,5 @@
 import { Address } from './address.model';
-import { CartItem } from '../shopping/cart-item.model';
+import { CartItem } from '../../shopping/cart-item.model';
 
 export class Order {
     constructor(

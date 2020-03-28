@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CheckoutNavService } from 'src/app/shared/checkout-nav.service';
+import { CheckoutNavService } from 'src/app/shared/services/checkout-nav.service';
 import { ActivatedRoute } from '@angular/router';
-import { AddressService } from 'src/app/shared/address.service';
-import { ShoppingCartService } from '../../shared/shopping-cart.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AddressService } from 'src/app/shared/services/address.service';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({

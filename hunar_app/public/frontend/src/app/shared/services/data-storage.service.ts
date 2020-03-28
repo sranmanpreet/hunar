@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Address } from './address.model';
+import { Address } from '../models/address.model';
 import { environment } from 'src/environments/environment';
-import { User } from './user.model';
-import { Product } from './product.model';
-import { Price } from './prices.model';
+import { User } from '../models/user.model';
+import { Product } from '../models/product.model';
+import { Price } from '../models/prices.model';
 
 @Injectable({
   providedIn: 'root'

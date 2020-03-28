@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PricingService } from 'src/app/shared/pricing.service';
+import { PricingService } from 'src/app/shared/services/pricing.service';
 import { ArtTypes, ArtSizes } from 'src/app/order/make-to-order/make-to-order.component';
 import { NgForm } from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class ArtTypeSizeComponent implements OnInit {
         this.artTypes = artTypes;
       },
       (err) => {
-        alert(err.error);
+        console.log(err.error);
       }
     );
 
@@ -32,7 +32,7 @@ export class ArtTypeSizeComponent implements OnInit {
         this.artSizes = artSizes;
       },
       (err) => {
-        alert(err.error);
+        console.log(err.error);
       }
     );
   }
@@ -47,12 +47,12 @@ export class ArtTypeSizeComponent implements OnInit {
               f.reset();
             },
             (err) => {
-              alert(err.error);
+              console.log(err.error);
             }
           );
         },
         (err) => {
-          alert(err.error);
+          console.log(err.error);
         }
       );
     }
@@ -66,7 +66,7 @@ export class ArtTypeSizeComponent implements OnInit {
             this.artTypes = artTypes;
           },
           (err) => {
-            alert(err.error);
+            console.log(err.error);
           }
         );
       }
@@ -82,13 +82,12 @@ export class ArtTypeSizeComponent implements OnInit {
               f.reset();
             },
             (err) => {
-              alert(err.error);
+              console.log(err.error);
             }
           );
         },
         (err) => {
-          console.log(err);
-          alert(err.error);
+          console.log(err.error);
         }
       );
     }
@@ -102,7 +101,7 @@ export class ArtTypeSizeComponent implements OnInit {
             this.artSizes = artSizes;
           },
           (err) => {
-            alert(err.error);
+            console.log(err.error);
           }
         );
       }

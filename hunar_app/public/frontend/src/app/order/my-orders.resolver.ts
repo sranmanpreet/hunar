@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { OrderService } from '../shared/order.service';
-import { Order } from '../shared/order.model';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { OrderService } from '../shared/services/order.service';
+import { Order } from '../shared/models/order.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({

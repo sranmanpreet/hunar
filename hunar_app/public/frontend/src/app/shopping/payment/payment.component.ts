@@ -8,7 +8,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment, Moment } from 'moment';
-import { CheckoutNavService } from 'src/app/shared/checkout-nav.service';
+import { CheckoutNavService } from 'src/app/shared/services/checkout-nav.service';
 
 const moment = _rollupMoment || _moment;
 
