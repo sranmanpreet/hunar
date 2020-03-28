@@ -16,6 +16,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 require('./art-size.model');
 require('./art-type.model');
+require('./pricelist.model');
 require('./country.model');
 require('./state.model');
 require('./city.model');

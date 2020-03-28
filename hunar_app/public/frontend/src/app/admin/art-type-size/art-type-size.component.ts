@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PricingService } from 'src/app/shared/services/pricing.service';
-import { ArtTypes, ArtSizes } from 'src/app/order/make-to-order/make-to-order.component';
 import { NgForm } from '@angular/forms';
+import { ArtType } from 'src/app/shared/models/art-type.model';
+import { ArtSize } from 'src/app/shared/models/art-size.model';
 
 @Component({
   selector: 'app-art-type-size',
@@ -9,17 +10,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./art-type-size.component.css']
 })
 export class ArtTypeSizeComponent implements OnInit {
-  artTypes: ArtTypes[];
+  artTypes: ArtType[];
   message: string;
 
   nameRegex = /^[a-zA-Z0-9 ]{1,30}$/;
-  artSizes: ArtSizes[];
+  artSizes: ArtSize[];
 
   constructor(private pricingService: PricingService) { }
 
   ngOnInit(){
     this.pricingService.getArtTypes().subscribe(
-      (artTypes: ArtTypes[]) => {
+      (artTypes: ArtType[]) => {
         this.artTypes = artTypes;
       },
       (err) => {
@@ -28,7 +29,7 @@ export class ArtTypeSizeComponent implements OnInit {
     );
 
     this.pricingService.getArtSizes().subscribe(
-      (artSizes: ArtSizes[]) => {
+      (artSizes: ArtSize[]) => {
         this.artSizes = artSizes;
       },
       (err) => {
@@ -42,7 +43,7 @@ export class ArtTypeSizeComponent implements OnInit {
       this.pricingService.addArtType({value: f.value.artType}).subscribe(
         () => {
           this.pricingService.getArtTypes().subscribe(
-            (artTypes: ArtTypes[]) => {
+            (artTypes: ArtType[]) => {
               this.artTypes = artTypes;
               f.reset();
             },
@@ -62,7 +63,7 @@ export class ArtTypeSizeComponent implements OnInit {
     this.pricingService.deleteArtType(artTypeId).subscribe(
       ()=>{
         this.pricingService.getArtTypes().subscribe(
-          (artTypes: ArtTypes[]) => {
+          (artTypes: ArtType[]) => {
             this.artTypes = artTypes;
           },
           (err) => {
@@ -77,7 +78,7 @@ export class ArtTypeSizeComponent implements OnInit {
       this.pricingService.addArtSize({value: f.value.artSize}).subscribe(
         () => {
           this.pricingService.getArtSizes().subscribe(
-            (artSizes: ArtSizes[]) => {
+            (artSizes: ArtSize[]) => {
               this.artSizes = artSizes;
               f.reset();
             },
@@ -97,7 +98,7 @@ export class ArtTypeSizeComponent implements OnInit {
     this.pricingService.deleteArtSize(artSizeId).subscribe(
       ()=>{
         this.pricingService.getArtSizes().subscribe(
-          (artSizes: ArtSizes[]) => {
+          (artSizes: ArtSize[]) => {
             this.artSizes = artSizes;
           },
           (err) => {

@@ -33,7 +33,7 @@
 }
 
 .img-input {
-    margin: 40px;
+    margin: 40px 40px 5px 40px;
     border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
@@ -126,6 +126,12 @@ label {
 
 #file-upload {
     display: none;
+}
+
+.message {
+    color: red;
+    font-size: 80%;
+    font-style: italic;
 }
 
 

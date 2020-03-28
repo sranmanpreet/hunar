@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { ArtTypes, ArtSizes } from 'src/app/order/make-to-order/make-to-order.component';
 import { Price } from 'src/app/shared/models/prices.model';
 import { PricingService } from 'src/app/shared/services/pricing.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { ArtType } from 'src/app/shared/models/art-type.model';
+import { ArtSize } from 'src/app/shared/models/art-size.model';
 
 @Component({
   selector: 'app-pricing',
@@ -16,8 +17,8 @@ import { DataStorageService } from 'src/app/shared/services/data-storage.service
 export class PricingComponent implements OnInit, OnDestroy {
   product: Product;
   productPrices: Price[];
-  artTypes: ArtTypes[] = [];
-  artSizes: ArtSizes[] = [];
+  artTypes: ArtType[] = [];
+  artSizes: ArtSize[] = [];
   selectedArtType: string;
   selectedArtSize: string;
   selectedArtPrice: number;
@@ -43,7 +44,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       }
     );
     this.pricingService.getArtTypes().subscribe(
-      (artTypes: ArtTypes[]) => {
+      (artTypes: ArtType[]) => {
         this.artTypes = artTypes;
       },
       (err) => {
@@ -51,7 +52,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       }
     )
     this.pricingService.getArtSizes().subscribe(
-      (artSizes: ArtSizes[]) => {
+      (artSizes: ArtSize[]) => {
         this.artSizes = artSizes;
       },
       (err) => {
