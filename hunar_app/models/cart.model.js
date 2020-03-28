@@ -37,8 +37,8 @@ const CartSchema = mongoose.Schema({
         },
         quantity: {
             type: Number,
-            required: true,
-            default: 0
+            default: 1,
+            required: true
         },
         expectedDeliveryDate: {
             type: Date
@@ -69,8 +69,6 @@ CartSchema.pre('save', function(next) {
     this.total = this.calculateCartTotal(this.subtotal, this.tax, this.shippingCost);
     next();
 });
-
-
 
 // Methods
 CartSchema.methods.calculateCartSubtotal = function(cartItems) {

@@ -95,15 +95,15 @@ export class MakeToOrderComponent implements OnInit {
         productFormData.append('artSize', f.value.selectedArtSize);
         productFormData.append('productImage', this.imageFileData);
         console.log(productFormData);
-/* 
-        productType: "Gallery"
-name: "Child and Bangles"
-imgurl: "assets\products\14-03-2020_17-00-40_work1.jpg"
-artType: "Water Colors"
-artSize: "A4"
-price: 3450
-quantity: 2 */
-       // this.shoppingCartService.addToCart(productFormData);
+        this.shoppingCartService.addToCartMakeToOrder(productFormData).subscribe(
+          (cart) => {
+            this.router.navigateByUrl('shopping-cart');
+          },
+          (err) => {
+            console.log(err);
+          }
+        )
+
       }
     }
   }

@@ -99,6 +99,7 @@ export class GalleryItemCartComponent implements OnInit, OnDestroy {
     if (this.galleryItemCartForm.valid) {
       const value = this.galleryItemCartForm.value;
       const product = {
+        productId: this.data.product._id,
         productType: 'Gallery', name: value.name, imgurl: value.url, artType: value.selectedArtType, artSize: value.selectedArtSize,
         price: value.price, quantity: value.quantity
       };

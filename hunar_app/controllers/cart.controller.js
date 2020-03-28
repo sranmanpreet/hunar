@@ -53,12 +53,30 @@ module.exports.getShoppingCartItems = (req, res, next) => {
 }
 
 
-module.exports.addShoppingCartItem = (req, res, next) => {
+module.exports.addShoppingCartItem = async(req, res, next) => {
+    console.log(req.body);
+    const productId = req.body.productId;
     const productType = req.body.productType;
     const productName = req.body.name;
     const productArtType = req.body.artType;
     const productArtSize = req.body.artSize;
-    const productQuantity = req.body.quantity;
+    const productQuantity = productType == 'Gallery' ? req.body.quantity : 1;
+
+    if (productType == 'Gallery' && !productId) {
+        res.status(400).send("Bad data");
+    }
+
+    let fetchedProduct = null;
+
+    await Product.findOne({ _id: productId }, (err, product) => {
+        if (err) {
+            res.status(500).send("Something went wrong. Please try after some time.");
+        }
+        if (product) {
+            return product;
+        }
+    }).then(result => fetchedProduct = result);
+
     if (req.session.userId) {
         User.findOne({
                 _id: req.session.userId
@@ -132,13 +150,13 @@ module.exports.addShoppingCartItem = (req, res, next) => {
 
                                     if (!itemPresent) {
                                         let newCartItem = {
-                                            productType: req.body.productType,
-                                            name: req.body.name,
-                                            imgurl: req.body.imgurl,
-                                            artType: req.body.artType,
-                                            artSize: req.body.artSize,
-                                            price: req.body.price,
-                                            quantity: req.body.quantity
+                                            productType: productType,
+                                            name: fetchedProduct.name,
+                                            imgurl: fetchedProduct.imgurl,
+                                            artType: productArtType,
+                                            artSize: productArtSize,
+                                            price: getProductPrice(fetchedProduct, productArtType, productArtSize),
+                                            quantity: productQuantity
                                         };
                                         if (productType == 'Make to Order') {
                                             newCartItem.expectedDeliveryDate = req.body.expectedDeliveryDate;
@@ -202,12 +220,12 @@ module.exports.addShoppingCartItem = (req, res, next) => {
 
                             if (!itemPresent) {
                                 let newCartItem = {
-                                    productType: req.body.productType,
+                                    productType: productType,
                                     name: req.body.name,
                                     imgurl: req.body.imgurl,
-                                    artType: req.body.artType,
-                                    artSize: req.body.artSize,
-                                    price: req.body.price,
+                                    artType: productArtType,
+                                    artSize: productArtSize,
+                                    price: getProductPrice(fetchedProduct, productArtType, productArtSize),
                                     quantity: req.body.quantity
                                 };
                                 if (productType == 'Make to Order') {
@@ -280,13 +298,13 @@ module.exports.addShoppingCartItem = (req, res, next) => {
 
                 if (!itemPresent) {
                     let newCartItem = {
-                        productType: req.body.productType,
-                        name: req.body.name,
-                        imgurl: req.body.imgurl,
-                        artType: req.body.artType,
-                        artSize: req.body.artSize,
-                        price: req.body.price,
-                        quantity: req.body.quantity
+                        productType: productType,
+                        name: fetchedProduct.name,
+                        imgurl: fetchedProduct.imgurl,
+                        artType: productArtType,
+                        artSize: productArtSize,
+                        price: getProductPrice(fetchedProduct, productArtType, productArtSize),
+                        quantity: productQuantity
                     };
                     if (productType == 'Make to Order') {
                         newCartItem.expectedDeliveryDate = req.body.expectedDeliveryDate;
@@ -351,17 +369,18 @@ module.exports.addShoppingCartItem = (req, res, next) => {
                 let cItems = cart.cartItems;
 
                 let newCartItem = {
-                    productType: req.body.productType,
-                    name: req.body.name,
-                    imgurl: req.body.imgurl,
-                    artType: req.body.artType,
-                    artSize: req.body.artSize,
-                    price: req.body.price,
+                    productType: productType,
+                    name: fetchedProduct.name,
+                    imgurl: fetchedProduct.imgurl,
+                    artType: productArtType,
+                    artSize: productArtSize,
+                    price: getProductPrice(fetchedProduct, productArtType, productArtSize),
                     quantity: req.body.quantity
                 };
                 if (productType == 'Make to Order') {
                     newCartItem.expectedDeliveryDate = req.body.expectedDeliveryDate;
                     newCartItem.instructionsToArtist = req.body.instructionsToArtist;
+                    newCartItem.quantity = 1;
                 }
                 cItems.push(newCartItem);
                 let subtotal = cart.calculateCartSubtotal(cItems);
@@ -702,5 +721,13 @@ module.exports.updateCart = (req, res, next) => {
                 }
             }
         });
+    }
+}
+
+function getProductPrice(product, artType, artSize) {
+    for (let pricing in product.pricing) {
+        if (pricing.artType == artType && pricing.artSize == artSize) {
+            return pricing.price;
+        }
     }
 }
