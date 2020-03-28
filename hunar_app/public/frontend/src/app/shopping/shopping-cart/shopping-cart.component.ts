@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ShoppingCartService } from '../../shared/shopping-cart.service';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 import { ActivatedRoute, Router, Data } from '@angular/router';
-import { CheckoutNavService } from 'src/app/shared/checkout-nav.service';
+import { CheckoutNavService } from 'src/app/shared/services/checkout-nav.service';
 import { Subscription, config } from 'rxjs';
-import { AddressService } from 'src/app/shared/address.service';
+import { AddressService } from 'src/app/shared/services/address.service';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 
 @Component({

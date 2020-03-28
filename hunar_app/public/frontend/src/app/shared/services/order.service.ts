@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Order } from './order.model';
+import { Order } from '../models/order.model';
 import { DataStorageService } from './data-storage.service';
 
 @Injectable({

@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const csrf = require('csurf');
 
-const csrfProtection = csrf();
+const ROLE = require('../config/role')
+const authorize = require('../config/authorize');
 
 //router.use(csrfProtection);
 
 const ctrlArtType = require('../controllers/art-type.controller');
 const ctrlArtSize = require('../controllers/art-size.controller');
+
+router.use(authorize.authorize(ROLE.Admin));
 
 router.post('/arttype', ctrlArtType.createArtType);
 

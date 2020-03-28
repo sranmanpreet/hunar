@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product } from 'src/app/shared/product.model';
-import { ProductService } from 'src/app/shared/product.service';
+import { Product } from 'src/app/shared/models/product.model';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { ArtTypes, ArtSizes } from 'src/app/order/make-to-order/make-to-order.component';
-import { Price } from 'src/app/shared/prices.model';
-import { PricingService } from 'src/app/shared/pricing.service';
+import { Price } from 'src/app/shared/models/prices.model';
+import { PricingService } from 'src/app/shared/services/pricing.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 
 @Component({
   selector: 'app-pricing',

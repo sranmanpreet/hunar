@@ -62,11 +62,11 @@
                     <a class="nav-link" routerLinkActive="active-link" href="JavaScript:void(0)" [matMenuTriggerFor]="menu">My Account <i
               class="fa fa-angle-down" aria-hidden="true"></i></a>
                     <mat-menu #menu="matMenu">
-                        <button class="d-none d-sm-block" routerLinkActive="active-link" mat-menu-item routerLink="/administration/manage/products" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <button class="d-none d-sm-block" *ngIf="this.authService.getUserRole()==Role.ADMIN" routerLinkActive="active-link" mat-menu-item routerLink="/administration/manage/products" data-toggle="collapse" data-target="#collapsibleNavbar">
                             <i class="fa fa-product-hunt" aria-hidden="true"></i>
               <span> Manage Products</span>
             </button>
-                        <button class="d-block d-sm-none" routerLinkActive="active-link" mat-menu-item routerLink="/administration/manage/products" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <button class="d-block d-sm-none" *ngIf="this.authService.getUserRole()==Role.ADMIN" routerLinkActive="active-link" mat-menu-item routerLink="/administration/manage/products" data-toggle="collapse" data-target="#collapsibleNavbar">
                             <i class="fa fa-product-hunt" aria-hidden="true"></i>
               <span> Manage Products</span>
             </button>

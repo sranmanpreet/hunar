@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgForm } from '@angular/forms';
 
 @Component({

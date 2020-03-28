@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OrderService } from 'src/app/shared/order.service';
-import { CheckoutNavService } from 'src/app/shared/checkout-nav.service';
+import { OrderService } from 'src/app/shared/services/order.service';
+import { CheckoutNavService } from 'src/app/shared/services/checkout-nav.service';
 
 @Component({
   selector: 'app-order-confirmation',

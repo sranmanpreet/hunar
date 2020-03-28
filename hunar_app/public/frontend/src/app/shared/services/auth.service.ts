@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
-import { User } from './user.model';
+import { environment } from '../../../environments/environment';
+import { User } from '../models/user.model';
 import { DataStorageService } from './data-storage.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
@@ -90,6 +90,16 @@ export class AuthService {
       return userPayload.exp > Date.now() / 1000;
     } else {
       return false;
+    }
+  }
+
+  getUserRole() {
+    const userPayload = this.getUserPayload();
+    if (userPayload) {
+      return userPayload.role;
+    } else {
+      this.logout();
+      return;
     }
   }
 

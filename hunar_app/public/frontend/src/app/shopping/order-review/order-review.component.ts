@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ShoppingCartService } from '../../shared/shopping-cart.service';
-import { AddressService } from 'src/app/shared/address.service';
-import { CheckoutNavService } from 'src/app/shared/checkout-nav.service';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { AddressService } from 'src/app/shared/services/address.service';
+import { CheckoutNavService } from 'src/app/shared/services/checkout-nav.service';
 import { map } from 'rxjs/operators';
-import { Address } from 'src/app/shared/address.model';
-import { Order } from 'src/app/shared/order.model';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { Address } from 'src/app/shared/models/address.model';
+import { Order } from 'src/app/shared/models/order.model';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { OrderService } from 'src/app/shared/order.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-order-review',

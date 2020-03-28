@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Order } from 'src/app/shared/order.model';
+import { Order } from 'src/app/shared/models/order.model';
 import { map } from 'rxjs/operators';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { OrderService } from 'src/app/shared/order.service';
+import { DataStorageService } from 'src/app/shared/services/data-storage.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Injectable({
     providedIn: 'root'

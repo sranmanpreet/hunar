@@ -1,4 +1,4 @@
-import { Product } from '../shared/product.model';
+import { Product } from '../shared/models/product.model';
 
 export class Gallery {
     public images: Product[];

@@ -21,7 +21,7 @@ import { OrderComponent } from './order/order.component';
 import { GalleryOfArtComponent } from './gallery/gallery-of-art/gallery-of-art.component';
 import { MakeToOrderComponent } from './order/make-to-order/make-to-order.component';
 import { AdvertiseComponent } from './order/advertise/advertise.component';
-import { HeaderService } from './shared/header.service';
+import { HeaderService } from './shared/services/header.service';
 import { ShoppingCartComponent } from './shopping/shopping-cart/shopping-cart.component';
 import { GalleryOfArtItemComponent } from './gallery/gallery-of-art-item/gallery-of-art-item.component';
 import { GalleryItemCartComponent } from './gallery/gallery-item-cart/gallery-item-cart.component';

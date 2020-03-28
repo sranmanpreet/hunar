@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AddressService } from '../shared/address.service';
+import { AddressService } from '../shared/services/address.service';
 import { CookieService } from 'ngx-cookie-service';
 
 interface UserDetails {

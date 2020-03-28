@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderNavService } from '../shared/order-nav.service';
+import { OrderNavService } from '../shared/services/order-nav.service';
 
 @Component({
   selector: 'app-order',

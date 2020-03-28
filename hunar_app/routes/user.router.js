@@ -1,12 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
 const authorize = require('../config/authorize');
-const csrf = require('csurf');
-
-const csrfProtection = csrf();
-
-//router.use(csrfProtection);
-
 const ctrlUser = require('../controllers/user.controller');
 
 router.post('/register', ctrlUser.register);
