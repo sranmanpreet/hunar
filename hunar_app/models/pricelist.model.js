@@ -16,7 +16,7 @@ const PriceListSchema = mongoose.Schema({
     personCount: {
         type: Number,
         required: "Person count is required",
-        min: 1,
+        min: 0,
         max: 4
     },
     price: {

@@ -66,6 +66,19 @@
                     </mat-form-field>
                 </div>
                 <div class="control">
+                    <mat-form-field>
+                        <mat-label>Number of persons</mat-label>
+                        <mat-select name="personCount" [(ngModel)]="personCount" required>
+                            <mat-option *ngFor="let count of personCountList" [value]="count">
+                                {{count}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error align='end' *ngIf="makeToOrderForm.submitted && makeToOrderForm.controls.personCount.invalid">
+                            <label *ngIf="makeToOrderForm.controls.personCount.errors.required" class="validation-message">Please enter number of persons in the picture</label>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="control">
                     <mat-form-field class="example-full-width">
                         <mat-label>Expected Delivery Date
                         </mat-label>

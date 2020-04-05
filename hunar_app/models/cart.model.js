@@ -45,6 +45,9 @@ const CartSchema = mongoose.Schema({
         },
         instructionsToArtist: {
             type: String
+        },
+        personCount: {
+            type: Number
         }
     }],
     subtotal: {

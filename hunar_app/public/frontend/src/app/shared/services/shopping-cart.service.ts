@@ -25,7 +25,7 @@ export class ShoppingCartService {
   }
 
   addToCartMakeToOrder(product){
-    return this.http.post(environment.apiBaseUrl + 'make-to-order/add-to-cart' , product);
+    return this.http.post(environment.apiBaseUrl + '/make-to-order/add-to-cart' , product);
   }
 
   removeFromCart(product) {

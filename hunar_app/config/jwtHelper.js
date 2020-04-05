@@ -19,6 +19,7 @@ module.exports.verifyJwtToken = (req, res) => {
                         message: 'Authentication failed.'
                     });
                 } else {
+                    req.session.userId = decoded._id;
                     req.user = decoded;
                 }
             });

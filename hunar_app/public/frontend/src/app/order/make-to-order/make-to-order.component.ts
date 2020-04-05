@@ -23,6 +23,8 @@ export class MakeToOrderComponent implements OnInit {
   artSizes: ArtSize[] = [];
   selectedArtType: string;
   selectedArtSize: string;
+  personCount: Number;
+  personCountList = [0,1,2,3,4];
  
   instructions: string;
   instructionsRegex = /^[a-zA-Z0-9 ,.']{1,1000}$/;
@@ -84,22 +86,24 @@ export class MakeToOrderComponent implements OnInit {
 
   onAddToCart(f: NgForm) {
     if (f.valid && f.dirty) {
-      console.log(f.value);
       if (!this.previewImage) {
         this.message = "Please select an image.";
       } else {
         const productFormData = new FormData();
-        productFormData.append('productType', 'Exclusive');
+        productFormData.append('productType', 'Make To Order');
         productFormData.append('name', f.value.name);
         productFormData.append('artType', f.value.selectedArtType);
         productFormData.append('artSize', f.value.selectedArtSize);
+        productFormData.append('personCount', f.value.personCount.toString());
+        productFormData.append('expectedDeliveryDate', f.value.expectedDeliveryDate);
+        productFormData.append('instructionsToArtist', f.value.instructions);
         productFormData.append('productImage', this.imageFileData);
-        console.log(productFormData);
         this.shoppingCartService.addToCartMakeToOrder(productFormData).subscribe(
           (cart) => {
             this.router.navigateByUrl('shopping-cart');
           },
           (err) => {
+            this.message = err.error;
             console.log(err);
           }
         )

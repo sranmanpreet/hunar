@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
     filename: function(req, file, cb) {
         if (req.body.productType == 'Make To Order') {
             req.body.name = 'Exclusive Art - ' + file.originalname;
-            req.body.imgurl = "./public/frontend/src/assets/make-to-order/" + dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname;
+            req.body.imgurl = "./assets/make-to-order/" + dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname;
         }
         cb(null, dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname);
     }
