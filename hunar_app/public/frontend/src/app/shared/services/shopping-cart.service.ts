@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cart } from '../../shopping/cart.model';
 import { DataStorageService } from 'src/app/shared/services/data-storage.service';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,6 +22,10 @@ export class ShoppingCartService {
     this.dataService.addCartItem(product).subscribe((cart: Cart) => {
       this.cartObserver.next(cart);
     });
+  }
+
+  addToCartMakeToOrder(product){
+    return this.http.post(environment.apiBaseUrl + '/make-to-order/add-to-cart' , product);
   }
 
   removeFromCart(product) {

@@ -26,59 +26,82 @@
 </div>
 
 <div class="wrapper">
-    <form #makeToOrderForm='ngForm' (ngSubmit)="onContinue(makeToOrderForm)">
+    <form #makeToOrderForm='ngForm' (ngSubmit)="onAddToCart(makeToOrderForm)">
         <div class="row">
             <div class="col-md-7 offset-md-1 text-center">
                 <br>
                 <div class="img-holder">
-                    <label *ngIf="!photo" for="file-upload" class="img-input">Upload Your Picture</label>
+                    <label *ngIf="!previewImage" for="file-upload" class="img-input">Upload Photo</label>
                     <input id='file-upload' type="file" name="image" (change)="onFileSelect($event)">
-                    <img class='selectedImage img-fluid' [src]="image" alt="" *ngIf="photo">
+                    <img class='selectedImage img-fluid' [src]="previewImage" alt="" *ngIf="previewImage">
+                    <p class="message" *ngIf="message">{{message}}</p>
                 </div>
-                <label *ngIf="photo" for="file-upload" class="img-change">
-                Change Picture
-            </label>
-                <!-- <input *ngIf="photo" id='file-upload' type="file" (change)="onFileSelect($event)"> -->
+                <label *ngIf="previewImage" for="file-upload" class="img-change">Change Photo</label>
             </div>
             <div class="col-md-3 col-xs-12 text-center">
                 <div class="control">
                     <mat-form-field>
                         <mat-label>Art Work Type</mat-label>
-                        <mat-select name="selectArtType" [(ngModel)]="selectedArtType">
-                            <mat-option *ngFor="let artType of artTypes" [value]="artType.name">
-                                {{artType.name}}
+                        <mat-select name="selectedArtType" [(ngModel)]="selectedArtType" required>
+                            <mat-option *ngFor="let artType of artTypes" [value]="artType.value">
+                                {{artType.value}}
                             </mat-option>
                         </mat-select>
+                        <mat-error align='end' *ngIf="makeToOrderForm.submitted && makeToOrderForm.controls.selectedArtType.invalid">
+                            <label *ngIf="makeToOrderForm.controls.selectedArtType.errors.required" class='validation-message'>Select Art Type</label>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="control">
                     <mat-form-field>
                         <mat-label>Art Work Size</mat-label>
-                        <mat-select name="selectArtSize" [(ngModel)]="selectedArtSize">
+                        <mat-select name="selectedArtSize" [(ngModel)]="selectedArtSize" required>
                             <mat-option *ngFor="let artSize of artSizes" [value]="artSize.value">
                                 {{artSize.value}}
                             </mat-option>
                         </mat-select>
+                        <mat-error align='end' *ngIf="makeToOrderForm.submitted && makeToOrderForm.controls.selectedArtSize.invalid">
+                            <label *ngIf="makeToOrderForm.controls.selectedArtSize.errors.required" class='validation-message'>Select Art Size</label>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="control">
+                    <mat-form-field>
+                        <mat-label>Number of persons</mat-label>
+                        <mat-select name="personCount" [(ngModel)]="personCount" required>
+                            <mat-option *ngFor="let count of personCountList" [value]="count">
+                                {{count}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error align='end' *ngIf="makeToOrderForm.submitted && makeToOrderForm.controls.personCount.invalid">
+                            <label *ngIf="makeToOrderForm.controls.personCount.errors.required" class="validation-message">Please enter number of persons in the picture</label>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="control">
                     <mat-form-field class="example-full-width">
                         <mat-label>Expected Delivery Date
                         </mat-label>
-                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" name="expectedDeliveryDate" [(ngModel)]="expectedDeliveryDate">
+                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" name="expectedDeliveryDate" [(ngModel)]="expectedDeliveryDate" required>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
+                        <mat-error align='end' *ngIf="makeToOrderForm.submitted && makeToOrderForm.controls.expectedDeliveryDate.invalid">
+                            <label *ngIf="makeToOrderForm.controls.expectedDeliveryDate.errors.required" class='validation-message'>Select Expected Delivery Date</label>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="control">
                     <mat-form-field class="example-full-width">
-                        <mat-label>Instructions for the artist
+                        <mat-label>Instructions for the artist (optional)
                         </mat-label>
-                        <textarea matInput rows="5" name="instructions" [(ngModel)]="instructions"></textarea>
+                        <textarea matInput rows="5" name="instructions" [(ngModel)]="instructions" [pattern]="instructionsRegex"></textarea>
+                        <mat-error align='end' *ngIf="makeToOrderForm.submitted && makeToOrderForm.controls.instructions.invalid">
+                            <label *ngIf="makeToOrderForm.controls.instructions.errors.pattern" class="validation-message">Only albhabets and digits are allowed. No new line allowed.</label>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="control">
-                    <button type="submit" mat-raised-button color="accent">Continue</button>
+                    <button type="submit" mat-raised-button color="accent">Add To Cart</button>
                 </div>
 
             </div>

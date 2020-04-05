@@ -41,6 +41,8 @@ import { PricingComponent } from './admin/pricing/pricing.component';
 import { ProductResolverService } from './gallery/product/product-resolver.service';
 import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.component';
 import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.component';
+import { PricelistComponent } from './admin/pricelist/pricelist.component';
+import { MetadataHubComponent } from './admin/metadata-hub/metadata-hub.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, resolve: { products: GalleryProductResolverService } },
@@ -51,10 +53,16 @@ const routes: Routes = [
   { path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard], resolve: { addresses: AddressResolverService } },
 
   { path: 'administration/manage/products', component: AllProductsComponent, canActivate: [AuthGuard], resolve: { products: AllProductsResolverService } },
-  { path: 'administration/metadata', component: ArtTypeSizeComponent, canActivate: [AuthGuard] },
   { path: 'administration/manage/product/add', component: AddProductComponent, canActivate: [AuthGuard] },
   { path: 'administration/manage/product/:id/pricing', component: PricingComponent, canActivate: [AuthGuard], resolve: { product: ProductResolverService } },
-
+  {
+    path: 'administration/metadata', component: MetadataHubComponent, canActivate: [AuthGuard], children: [
+      {
+        path: 'art-types-sizes', component: ArtTypeSizeComponent
+      },
+      { path: 'pricelist', component: PricelistComponent, resolve: { products: GalleryProductResolverService } }
+    ]
+  },
   {
     path: 'support-requests',
     component: SupportRequestsComponent,

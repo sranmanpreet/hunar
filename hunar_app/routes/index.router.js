@@ -15,9 +15,17 @@ const ctrlFeedback = require('../controllers/feedback.controller');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, "./public/frontend/src/assets/products/");
+        if (req.body.productType == 'Make To Order') {
+            cb(null, "./public/frontend/src/assets/make-to-order/");
+        } else {
+            cb(null, "./public/frontend/src/assets/products/");
+        }
     },
     filename: function(req, file, cb) {
+        if (req.body.productType == 'Make To Order') {
+            req.body.name = 'Exclusive Art - ' + file.originalname;
+            req.body.imgurl = "./assets/make-to-order/" + dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname;
+        }
         cb(null, dateFormat(new Date(), "dd-mm-yyyy_HH-MM-ss_") + file.originalname);
     }
 });
@@ -73,6 +81,9 @@ router.get('/cart', ctrlShoppingCart.getShoppingCartItems);
 
 //add shopping cart item 
 router.post('/add-to-cart', ctrlShoppingCart.addShoppingCartItem);
+
+//add 'Make To Order' shopping cart item  
+router.post('/make-to-order/add-to-cart', upload.single('productImage'), ctrlShoppingCart.addShoppingCartItem);
 
 //deleting shopping cart item
 router.delete('/cart/cart-item/:id', ctrlShoppingCart.deleteShoppingCartItem);

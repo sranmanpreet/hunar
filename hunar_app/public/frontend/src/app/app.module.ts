@@ -49,6 +49,8 @@ import { PricingComponent } from './admin/pricing/pricing.component';
 import { ArtTypeSizeComponent } from './admin/art-type-size/art-type-size.component';
 import { XsrfInterceptor } from './authentication/xsrf.interceptor';
 import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.component';
+import { PricelistComponent } from './admin/pricelist/pricelist.component';
+import { MetadataHubComponent } from './admin/metadata-hub/metadata-hub.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { UnauthorizedComponent } from './error-pages/unauthorized/unauthorized.c
     AllProductsComponent,
     PricingComponent,
     ArtTypeSizeComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    PricelistComponent,
+    MetadataHubComponent
   ],
   imports: [
     BrowserModule,
