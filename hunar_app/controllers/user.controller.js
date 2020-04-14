@@ -8,6 +8,176 @@ const _ = require('lodash');
 const User = mongoose.model('User');
 const Cart = mongoose.model('Cart');
 
+module.exports.googleLoginRedirect = (req, res, next) => {
+    passport.authenticate('google',
+        (err, flag, user) => {
+            // err from passport middleware
+            if (!flag) {
+                return res.status(401).json({
+                    status: false,
+                    message: user
+                });
+            }
+            // registered user
+            else {
+                req.session.userId = user._id;
+                let cartMessage = '';
+                if (req.session.cartId) {
+                    Cart.findOne({
+                        _id: req.session.cartId
+                    }, (err, cartTemp) => {
+                        if (cartTemp) {
+                            Cart.findOne({
+                                userId: req.session.userId
+                            }, (err, cartUser) => {
+                                if (cartUser) {
+                                    for (let i = 0; i < cartTemp.cartItems.length; i++) {
+                                        let itemPresent = false;
+                                        for (let j = 0; j < cartUser.cartItems.length; j++) {
+                                            if (cartTemp.cartItems[i].name === cartUser.cartItems[j].name && cartTemp.cartItems[i].artType === cartUser.cartItems[j].artType && cartTemp.cartItems[i].artSize === cartUser.cartItems[j].artSize) {
+                                                itemPresent = true;
+                                                cartUser.cartItems[j].quantity = cartTemp.cartItems[i].quantity + cartUser.cartItems[j].quantity;
+                                                if (cartUser.cartItems[j].quantity > 5) {
+                                                    cartUser.cartItems[j].quantity = 5;
+                                                }
+                                                break;
+                                            }
+
+                                        }
+                                        if (!itemPresent) {
+                                            cartUser.cartItems.push(cartTemp.cartItems[i]);
+                                        }
+                                    }
+
+                                    cartUser.save((err, cartFinal) => {
+                                        if (err) {
+                                            cartMessage = "Alert! Cart refreshed. No items retained from current cart."
+                                        } else {
+                                            cartMessage = "Cart items retained."
+                                            Cart.deleteOne({
+                                                _id: req.session.cartId
+                                            }, (err, result) => {
+                                                if (!err) {
+                                                    req.session.cartId = '';
+                                                    res.cookie('jwt', user.generateJwt());
+                                                    res.writeHead(301, { Location: 'http://localhost:4200/' });
+                                                    res.end();
+                                                }
+
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    cartTemp.userId = req.session.userId;
+                                    cartTemp.save((err, cartFinal) => {
+                                        if (err) {
+                                            cartMessage = "Cart refreshed. No items retained from current cart."
+                                        } else {
+                                            cartMessage = "Cart items retained."
+                                        }
+                                        req.session.cartId = '';
+                                        res.cookie('jwt', user.generateJwt());
+                                        res.writeHead(301, { Location: 'http://localhost:4200/' });
+                                        res.end();
+                                    });
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    res.cookie('jwt', user.generateJwt());
+                    res.writeHead(301, { Location: 'http://localhost:4200/' });
+                    res.end();
+                }
+            }
+        })(req, res);
+}
+
+module.exports.facebookLoginRedirect = (req, res, next) => {
+    passport.authenticate('facebook',
+        (err, flag, user) => {
+            // err from passport middleware
+            if (!flag) {
+                return res.status(401).json({
+                    status: false,
+                    message: user
+                });
+            }
+            // registered user
+            else {
+                req.session.userId = user._id;
+                let cartMessage = '';
+                if (req.session.cartId) {
+                    Cart.findOne({
+                        _id: req.session.cartId
+                    }, (err, cartTemp) => {
+                        if (cartTemp) {
+                            Cart.findOne({
+                                userId: req.session.userId
+                            }, (err, cartUser) => {
+                                if (cartUser) {
+                                    for (let i = 0; i < cartTemp.cartItems.length; i++) {
+                                        let itemPresent = false;
+                                        for (let j = 0; j < cartUser.cartItems.length; j++) {
+                                            if (cartTemp.cartItems[i].name === cartUser.cartItems[j].name && cartTemp.cartItems[i].artType === cartUser.cartItems[j].artType && cartTemp.cartItems[i].artSize === cartUser.cartItems[j].artSize) {
+                                                itemPresent = true;
+                                                cartUser.cartItems[j].quantity = cartTemp.cartItems[i].quantity + cartUser.cartItems[j].quantity;
+                                                if (cartUser.cartItems[j].quantity > 5) {
+                                                    cartUser.cartItems[j].quantity = 5;
+                                                }
+                                                break;
+                                            }
+
+                                        }
+                                        if (!itemPresent) {
+                                            cartUser.cartItems.push(cartTemp.cartItems[i]);
+                                        }
+                                    }
+
+                                    cartUser.save((err, cartFinal) => {
+                                        if (err) {
+                                            cartMessage = "Alert! Cart refreshed. No items retained from current cart."
+                                        } else {
+                                            cartMessage = "Cart items retained."
+                                            Cart.deleteOne({
+                                                _id: req.session.cartId
+                                            }, (err, result) => {
+                                                if (!err) {
+                                                    req.session.cartId = '';
+                                                    res.cookie('jwt', user.generateJwt());
+                                                    res.writeHead(301, { Location: 'http://localhost:4200/' });
+                                                    res.end();
+                                                }
+
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    cartTemp.userId = req.session.userId;
+                                    cartTemp.save((err, cartFinal) => {
+                                        if (err) {
+                                            cartMessage = "Cart refreshed. No items retained from current cart."
+                                        } else {
+                                            cartMessage = "Cart items retained."
+                                        }
+                                        req.session.cartId = '';
+                                        res.cookie('jwt', user.generateJwt());
+                                        res.writeHead(301, { Location: 'http://localhost:4200/' });
+                                        res.end();
+                                    });
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    res.cookie('jwt', user.generateJwt());
+                    res.writeHead(301, { Location: 'http://localhost:4200/' });
+                    res.end();
+                }
+            }
+        })(req, res);
+}
+
 module.exports.register = (req, res, next) => {
     passport.authenticate('local.register', {
         successRedirect: '/user/profile',

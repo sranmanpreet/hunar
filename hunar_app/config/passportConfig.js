@@ -1,16 +1,19 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20');
+const FacebookStrategy = require('passport-facebook');
+const generator = require('generate-password');
 const mongoose = require('mongoose');
 
-var Cart = mongoose.model('Cart');
-var User = mongoose.model('User');
+const User = mongoose.model('User');
+const Role = require('./role');
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
         done(err, user);
     });
 });
@@ -51,7 +54,7 @@ passport.use('local.register', new localStrategy({
                             status: true,
                             message: "Registration successful"
                         })
-                    } else if (err){
+                    } else if (err) {
                         console.log(err);
                         return done(null, false, {
                             status: false,
@@ -91,3 +94,105 @@ passport.use('local.signin', new localStrategy({
             }
         })
 }));
+
+passport.use('google', new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_REDIRECT_URL
+}, (accessToken, refreshToken, profile, done) => {
+    User.findOne({
+            email: profile.emails[0].value
+        },
+        (err, existingUser) => {
+            if (err) {
+                return done(null, false, err.message);
+            }
+            // unknown user
+            else if (!existingUser) {
+                const password = generator.generate({
+                    length: 12,
+                    numbers: true,
+                    symbols: true,
+                    strict: true
+                });
+                let newUser = {
+                    firstName: profile.name.givenName,
+                    lastName: profile.name.familyName,
+                    email: profile.emails[0].value,
+                    googleId: profile.id,
+                    password: password,
+                    role: Role.Customer
+                };
+                newUser = new User(newUser);
+                newUser.save(
+                    (err, user) => {
+                        if (user) {
+                            return done(null, true, user);
+                        } else if (err) {
+                            console.log(err);
+                            return done(null, false, {
+                                status: false,
+                                message: err.message
+                            });
+                        }
+                    });
+            } else {
+                return done(null, true, existingUser);
+            }
+        });
+}));
+
+passport.use(
+    new FacebookStrategy({
+            clientID: process.env.FACEBOOK_CLIENT_ID,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+            callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+            profileFields: ["email", "name"]
+        },
+        function(accessToken, refreshToken, profile, done) {
+            let profileEmail = profile.emails[0].value;
+            if (!profileEmail) {
+                profileEmail = profile.id + "@facebook.com";
+            }
+            User.findOne({
+                    email: profileEmail
+                },
+                (err, existingUser) => {
+                    if (err) {
+                        return done(null, false, err.message);
+                    }
+                    // unknown user
+                    else if (!existingUser) {
+                        const password = generator.generate({
+                            length: 12,
+                            numbers: true,
+                            symbols: true,
+                            strict: true
+                        });
+                        let newUser = {
+                            firstName: profile.name.givenName,
+                            lastName: profile.name.familyName,
+                            email: profileEmail,
+                            facebookId: profile.id,
+                            password: password,
+                            role: Role.Customer
+                        };
+                        new User(newUser).save(
+                            (err, user) => {
+                                if (user) {
+                                    return done(null, true, user);
+                                } else if (err) {
+                                    console.log(err);
+                                    return done(null, false, {
+                                        status: false,
+                                        message: err.message
+                                    });
+                                }
+                            });
+                    } else {
+                        return done(null, true, existingUser);
+                    }
+                });
+        }
+    )
+);

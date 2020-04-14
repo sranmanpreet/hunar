@@ -28,7 +28,7 @@ export class AuthService {
   constructor(private http: HttpClient, private dataService: DataStorageService, private cookieService: CookieService) { }
 
   // Http methods
-
+  
   register(user: User) {
     return this.http.post(environment.apiBaseUrl + '/user/register', user, this.noAuthHeader);
   }

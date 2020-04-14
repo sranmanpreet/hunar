@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit, OnDestroy {
           // this.resetForm(form);
         },
         (err) => {
-          this.serverErrorMessages = err.error.message.join('<br/>');
+          this.serverErrorMessages = err.error['message'];
         }
       );
     }
