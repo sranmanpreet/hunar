@@ -29,9 +29,15 @@
             <a routerLink="/sign-up" queryParamsHandling='preserve'>Don't have an account? SIGN UP</a>
             <br><br>
             <a href="http://localhost:3000/api/user/auth/google">
-                <button type="button" mat-button color="primary" (click)="onSignInViaGoogle()">
+                <button type="button" mat-button color="primary">
                     <img src="./../../../assets/images/google.png" alt="google-img" class='img img-fluid'>
-                    Sign in via Google
+                    Login with Google
+                </button>
+            </a>
+            <a href="http://localhost:3000/api/user/auth/facebook">
+                <button type="button" mat-button color="primary">
+                    <img src="./../../../assets/images/facebook.png" alt="facebook-img" class='img img-fluid'>
+                    Login with Facebook
                 </button>
             </a>
         </form>

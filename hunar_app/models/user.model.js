@@ -17,6 +17,7 @@ var userSchema = new mongoose.Schema({
         unique: true
     },
     googleId: String,
+    facebookId: String,
     password: {
         type: String,
         required: "Password can't be empty",

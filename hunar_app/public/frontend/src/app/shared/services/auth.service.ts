@@ -37,10 +37,6 @@ export class AuthService {
     return this.http.post(environment.apiBaseUrl + '/user/login', authCredentitals, this.noAuthHeader);
   }
 
-  loginViaGoogle() {
-    return this.http.get(environment.apiBaseUrl + '/user/auth/google', this.noAuthHeader);
-  }
-
   getUserProfile() {
     return this.http.get(environment.apiBaseUrl + '/user/profile');
   }

@@ -49,21 +49,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
-  onSignInViaGoogle(){
-    this.authService.loginViaGoogle().subscribe(
-      (res) => {
-        if (this.prevPage === 'checkout-address') {
-          this.router.navigate(['/checkout/address']);
-        } else {
-          this.router.navigateByUrl('/gallery-of-art');
-        }
-      },
-      (err) => {
-        this.serverErrorMessages = err.error.message;
-      }
-    );
-  }
-
   ngOnDestroy() {
     this.headerService.showHeader = true;
   }
