@@ -10,9 +10,7 @@ router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 
 router.get('/auth/google/redirect', ctrlUser.googleLoginRedirect);
 
 router.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['email'],
-    successRedirect: "http://localhost:3000/api/user/auth/facebook/redirect",
-    failureRedirect: "http://localhost:3000/api/user/auth/facebook/redirect"
+    scope: ['email']
 }));
 
 router.get('/auth/facebook/redirect', ctrlUser.facebookLoginRedirect);
