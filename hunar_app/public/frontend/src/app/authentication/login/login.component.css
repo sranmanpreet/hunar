@@ -1,85 +1,96 @@
-.my-container{
-  padding-top: 5%;
+.my-container {
+    padding-top: 5%;
 }
 
 .card {
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  padding-bottom: 1%;
-  box-shadow: 2px 2px 8px rgb(126, 126, 126);
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding-bottom: 1%;
+    box-shadow: 2px 2px 8px rgb(126, 126, 126);
 }
 
 .fail {
-  padding-top: 10px;
-  width: 100%;
-  background-color: rgb(199, 79, 79);
-  text-align: center;
-  color: white;
-  height: 50px;
+    padding-top: 10px;
+    width: 100%;
+    background-color: rgb(199, 79, 79);
+    text-align: center;
+    color: white;
+    height: 50px;
 }
-
 
 mat-form-field {
-  width: 100%;
+    width: 100%;
 }
 
-form{
-  width: 90%;
-  margin: 0 auto;
-}
-
-a{
-  font-size: 0.8em;
-}
-
-h4{
-  margin: 0 auto;
-}
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 400px) {
-  .card {
+form {
     width: 90%;
-    padding: 3% 2%;
-  }
-  
+    margin: 0 auto;
 }
+
+a {
+    font-size: 0.8em;
+}
+
+h4 {
+    margin: 0 auto;
+}
+
+.img {
+    max-width: 20px;
+}
+
+
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (min-width: 400px) {
-  .card {
-    width: 70%;
-    padding: 3% 2%;
-  }
-  
+
+@media only screen and (max-width: 400px) {
+    .card {
+        width: 90%;
+        padding: 3% 2%;
+    }
 }
+
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (min-width: 400px) {
+    .card {
+        width: 70%;
+        padding: 3% 2%;
+    }
+}
+
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
+
 @media only screen and (min-width: 540px) {
-  .card {
-    width: 50%;
-  }
+    .card {
+        width: 50%;
+    }
 }
 
+
 /* Medium devices (landscape tablets, 768px and up) */
+
 @media only screen and (min-width: 768px) {
-  .card {
-    width: 40%;
-  }
+    .card {
+        width: 40%;
+    }
 }
 
 
 /* Large devices (laptops/desktops, 992px and up) */
+
 @media only screen and (min-width: 992px) {
-  .card {
-    width: 30%;
-  }
+    .card {
+        width: 30%;
+    }
 }
+
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .card {
-    width: 25%;
-  }
-}
 
+@media only screen and (min-width: 1200px) {
+    .card {
+        width: 25%;
+    }
+}

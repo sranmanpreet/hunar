@@ -28,13 +28,17 @@ export class AuthService {
   constructor(private http: HttpClient, private dataService: DataStorageService, private cookieService: CookieService) { }
 
   // Http methods
-
+  
   register(user: User) {
     return this.http.post(environment.apiBaseUrl + '/user/register', user, this.noAuthHeader);
   }
 
   login(authCredentitals) {
     return this.http.post(environment.apiBaseUrl + '/user/login', authCredentitals, this.noAuthHeader);
+  }
+
+  loginViaGoogle() {
+    return this.http.get(environment.apiBaseUrl + '/user/auth/google', this.noAuthHeader);
   }
 
   getUserProfile() {

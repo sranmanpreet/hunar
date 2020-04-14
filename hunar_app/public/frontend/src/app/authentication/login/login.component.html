@@ -27,6 +27,13 @@
             <button type="submit" mat-raised-button color="primary">Login</button>
             <br><br>
             <a routerLink="/sign-up" queryParamsHandling='preserve'>Don't have an account? SIGN UP</a>
+            <br><br>
+            <a href="http://localhost:3000/api/user/auth/google">
+                <button type="button" mat-button color="primary" (click)="onSignInViaGoogle()">
+                    <img src="./../../../assets/images/google.png" alt="google-img" class='img img-fluid'>
+                    Sign in via Google
+                </button>
+            </a>
         </form>
     </div>
 </div>
