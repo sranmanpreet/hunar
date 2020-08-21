@@ -3,7 +3,7 @@
         "PORT": 3000,
         "MONGODB_URI": "mongodb://localhost:27017/hunar?authSource=hunar",
         "MONGODB_USER": "hunarAdmin",
-        "MONGODB_PASS": "password",
+        "MONGODB_PASS": "hunarAdmin#847",
         "JWT_SECRET": "secret",
         "JWT_REFRESH_SECRET": "refreshsecret",
         "JWT_EXP": "60m",
