@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form #addPriceForm='ngForm' (ngSubmit)="addPrice(addPriceForm)">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <h4>
+                                Price List
+                                <button mat-stroked-button color="accent" routerLink="/administration/metadata">Art Types & Sizes</button>
+                            </h4>
+                        </tr>
+                        <tr class="d-flex">
+                            <th class="col-md-4">Art Type</th>
+                            <th class="col-md-2">Art Size</th>
+                            <th class="col-md-2">Person Count</th>
+                            <th class="col-md-2">Price</th>
+                            <th class="col-md-2">Action</th>
+                        </tr>
+                        <tr class="d-flex" *ngIf="successMessage || errorMessage">
+                            <th class="col-md-12 text-center message">
+                                <p>
+                                    <span class="success" *ngIf="successMessage">{{successMessage}}</span>
+                                    <span class="error" *ngIf="errorMessage">{{errorMessage}}</span>
+                                </p>
+                            </th>
+                        </tr>
+                        <tr class="d-flex">
+                            <th class="col-md-4">
+                                <select class="form-control form-control-sm" name="artType" [(ngModel)]="selectedArtType" required>
+                <option *ngFor="let artType of artTypes" [value]="artType.value">{{artType.value}}</option>
+            </select>
+                            </th>
+                            <th class="col-md-2">
+                                <select class="form-control form-control-sm" name="artSize" [(ngModel)]="selectedArtSize" required>
+                <option *ngFor="let artSize of artSizes" [value]="artSize.value">{{artSize.value}}</option>
+              </select>
+                            </th>
+                            <th class="col-md-2">
+                                <input class="form-control form-control-sm" type="number" min="1" max="4" name="personCount" [(ngModel)]="selectedArtPersonCount" required>
+                                <input class="form-control form-control-sm" type="text" name="priceId" [(ngModel)]="selectedPriceId" hidden></th>
+                            <th class="col-md-2">
+                                <input class="form-control form-control-sm" type="number" min="1" name="price" [(ngModel)]="selectedArtPrice" required>
+                                <th class="col-md-2">
+                                    <div class="fa-icon">
+                                        <a href="JavaScript:(0)" *ngIf="selectedArtType || selectedArtSize || selectedArtPrice || selectedArtPersonCount" (click)="resetForm(addPriceForm)" class="remove"><i class="fa fa-times reset-icon" matTooltip="Reset Price Fields" aria-hidden="true"></i></a>
+                                    </div>
+                                    <button type="submit" mat-raised-button color="primary">Add Price</button>
+                                </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="d-flex" *ngFor="let price of pricelist">
+                            <td class="col-md-4">{{price.artType}}</td>
+                            <td class="col-md-2">{{price.artSize}}</td>
+                            <td class="col-md-2">{{price.personCount}}</td>
+                            <td class="col-md-2">{{price.price}}</td>
+                            <td class="col-md-2">
+                                <div class="fa-icon">
+                                    <a href="JavaScript:(0)" (click)="deletePrice(price._id)" class="remove"><i class="fa fa-trash" matTooltip="Delete Price"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

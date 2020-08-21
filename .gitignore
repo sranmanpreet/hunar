@@ -1,4 +1,8 @@
 /docs
 /hunar_db
-/hunar_frontend/node_modules
-/hunar_backend/node_modules
+/hunar_app/node_modules
+/hunar_app/public/frontend/node_modules
+/hunar_app/public/frontend/src/assets/products
+/hunar_app/public/frontend/src/assets/images-exclusive-orders
+/hunar_app/public/frontend/src/assets/make-to-order
+/.vscode

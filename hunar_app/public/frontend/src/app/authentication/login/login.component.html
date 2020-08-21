@@ -1,0 +1,45 @@
+<div class="fail" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+</div>
+<div class="my-container">
+    <div class="card mx-auto">
+        <h4>Login</h4>
+        <br>
+        <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSignIn(signInForm)">
+            <mat-form-field>
+                <input matInput type="text" name="email" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex" required>
+                <mat-error align='end' *ngIf="signInForm.submitted && signInForm.controls.email.invalid">
+                    <label *ngIf="signInForm.controls.email.errors.required" class='validation-message'>Enter email id.</label>
+                    <label *ngIf="signInForm.controls.email.errors.pattern" class="validation-message">Invalid email id.</label>
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="password" name="password" [(ngModel)]="model.password" required placeholder="Password" minlength="8">
+                <mat-error align='end' *ngIf="signInForm.submitted && signInForm.controls.password.invalid">
+                    <label *ngIf="signInForm.controls.password.errors.required" class='validation-message'>Enter a password.</label>
+                    <label *ngIf="signInForm.controls.password.errors.minlength" class='validation-message'>Password should be atleast 8 characters long.</label>
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <a routerLink='/forgot-password'>Forgot password?</a>
+            <br><br>
+            <button type="submit" mat-raised-button color="primary">Login</button>
+            <br><br>
+            <a routerLink="/sign-up" queryParamsHandling='preserve'>Don't have an account? SIGN UP</a>
+            <br><br>
+            <a href="http://localhost:3000/api/user/auth/google">
+                <button type="button" mat-button color="primary">
+                    <img src="./../../../assets/images/google.png" alt="google-img" class='img img-fluid'>
+                    Login with Google
+                </button>
+            </a>
+            <a href="http://localhost:3000/api/user/auth/facebook">
+                <button type="button" mat-button color="primary">
+                    <img src="./../../../assets/images/facebook.png" alt="facebook-img" class='img img-fluid'>
+                    Login with Facebook
+                </button>
+            </a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+.td-container div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: justify;
+}
+
+.td-container {
+    max-height: 150px;
+    overflow: hidden;
+    font-size: 75%;
+}
+
+.btn {
+    padding: 1px 3px;
+    font-size: 0.8rem;
+}
+
+h4 button {
+    float: right;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.fa {
+    font-size: 130%;
+}
+
+.fa-icon {
+    display: inline;
+}
+
+.fa-icon a {
+    color: grey;
+    margin: 5px;
+}

@@ -1,0 +1,75 @@
+.sub-container {
+    font-size: 80%;
+    margin-top: 10px;
+}
+
+.sub-container div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: justify;
+    /*     text-overflow: ellipsis;
+    white-space: nowrap; */
+}
+
+.sub-container img {
+    max-height: 350px;
+    width: auto;
+}
+
+.btn {
+    margin-left: 5px;
+}
+
+.edit-product-button {
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.row {
+    margin-top: 20px;
+    ;
+}
+
+.fa-icon {
+    display: inline;
+}
+
+.fa-icon a {
+    color: grey;
+    margin: 5px;
+}
+
+.message {
+    font-size: 0.8rem;
+    margin: 0px;
+    padding: 0px;
+}
+
+.message p {
+    margin: 0;
+}
+
+.message .success {
+    padding-top: 10px;
+    color: green;
+}
+
+.message .error {
+    margin-top: 5px;
+    padding-top: 10px;
+    color: red;
+}
+
+.reset-icon {
+    margin-right: 10px;
+}
+
+h4 button {
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
